@@ -24,8 +24,13 @@ class User extends Authenticatable
         'password',
         'phone',
         'role',
-        'CIN'
+        'CIN',
+        'address'
     ];
+public function getCinAttribute()
+{
+    return $this->attributes['CIN'];
+}
 
     /**
      * The attributes that should be hidden for serialization.
@@ -47,17 +52,22 @@ class User extends Authenticatable
     ];
     public function isAnalyst()
     {
-        return $this->role === 'Analyst';
+       return $this->role === 'Analyst';
     }
 
-    public function isManager()
+    public function isAdmin()
     {
-        return $this->role === 'Manager';
+        return $this->role === 'Admin';
     }
 
     public function isFormateur()
     {
         return $this->role === 'Formateur';
+    }
+
+    public function isSuperAdmin()
+    {
+        return $this->role === 'SA';
     }
 
 }

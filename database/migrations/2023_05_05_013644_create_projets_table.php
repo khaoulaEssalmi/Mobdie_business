@@ -17,7 +17,9 @@ return new class extends Migration
             $table->string('Nom')->nullable();
             $table->string('Description')->nullable();
             $table->string('Statut')->nullable();
-            $table->string('FormateurCIN')->nullable();
+            $table->string('ManagerCIN')->nullable();
+            $table->string('AdminCIN')->nullable();
+            $table->timestamps();
         });
     }
 

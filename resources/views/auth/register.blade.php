@@ -7,7 +7,11 @@
                     <div class="card-body">
     <form method="POST" action="{{ route('register') }}">
         @csrf
-
+        <div>
+            <x-input-label for="CIN" :value="__('CIN')" />
+            <x-text-input id="CIN" class="block mt-1 w-full" type="text" name="CIN" :value="old('CIN')" required autofocus autocomplete="CIN" />
+            <x-input-error :messages="$errors->get('CIN')" class="mt-2" />
+        </div>
         <!-- Name -->
         <div>
             <x-input-label for="name" :value="__('Name')" />
@@ -22,6 +26,12 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 <br>
+        <div class="mt-4">
+            <x-input-label for="address" :value="__('Email')" />
+            <x-text-input id="adress" class="block mt-1 w-full" type="text" name="address" :value="old('adress')" required autocomplete="username" />
+            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        </div>
+        <br>
         <div>
             <x-input-label for="name" :value="__('Phone')" />
             <x-text-input id="phone" class="block mt-1 w-full" type="text" name="phone"  aria-placeholder="06 ** ** ** **"  :value="old('name')"  />
@@ -56,7 +66,7 @@
                 <input type="radio" id="manager" name="manager" value="Manager">Manager</label>
             &nbsp;&nbsp;
             <label class="radio-inline">
-                <input type="radio" id="fomateur" name="formateur" value="Formateur">Formateur</label>
+                <input type="radio" id="admin" name="admin" value="Admin">Admin</label>
             &nbsp;&nbsp;
             <label class="radio-inline">
                 <input type="radio" id="analyst" name="analyst" value="Analyst">Analyst</label>

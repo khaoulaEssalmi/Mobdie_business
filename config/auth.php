@@ -41,7 +41,7 @@ return [
             'provider' => 'users',
         ],
 
-        'manager' => [
+        'admin' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
@@ -52,6 +52,11 @@ return [
         ],
 
         'formateur' => [
+            'driver' => 'session',
+            'provider' => 'users',
+        ],
+
+        'super' => [
             'driver' => 'session',
             'provider' => 'users',
         ],

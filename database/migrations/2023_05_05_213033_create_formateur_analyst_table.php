@@ -13,12 +13,14 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('analysts', function (Blueprint $table) {
-            $table->string('FormateurCIN')->nullable();
+        Schema::create('AnalystManager', function (Blueprint $table) {
+            $table->string('ManagerCIN')->nullable();
             $table->string('AnalystCIN')->nullable();
+            $table->string('AdminCIN')->nullable();
             $table->foreign('AnalystCIN')->references('CIN')->on('users');
-            $table->foreign('FormateurCIN')->references('CIN')->on('formateurs');
-            $table->primary(['FormateurCIN','AnalystCIN']);
+            $table->foreign('AdminCIN')->references('CIN')->on('users');
+            $table->foreign('ManagerCIN')->references('CIN')->on('formateurs');
+            $table->primary(['ManagerCIN','AnalystCIN']);
         });
 
         Schema::enableForeignKeyConstraints();

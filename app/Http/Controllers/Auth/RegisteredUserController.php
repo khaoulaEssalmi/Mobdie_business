@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
 use Illuminate\View\View;
+use phpDocumentor\Reflection\DocBlock\Tags\Formatter\AlignFormatter;
 
 class RegisteredUserController extends Controller
 {
@@ -28,7 +29,7 @@ class RegisteredUserController extends Controller
      *
      * @throws \Illuminate\Validation\ValidationException
      */
-    public function store(Request $request): RedirectResponse
+    public function store(Request $request)//: RedirectResponse
     {
         $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -38,11 +39,12 @@ class RegisteredUserController extends Controller
 
         $user = User::create([
             'name' => $request->name,
+            'CIN' => $request->CIN,
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone'=>$request->phone,
-            'role'=> $request->input('manager') ?? $request->input('formatteur') ?? $request->input('analyst'),
-
+            'role'=> $request->input('manager') ?? $request->input('admin') ?? $request->input('analyst'),
+            'address'=>$request->address,
 
         ]);
 
@@ -50,6 +52,7 @@ class RegisteredUserController extends Controller
 
         Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        return redirect('/superAdmin/dashboard');
+//        return redirect(RouteServiceProvider::HOME);
     }
 }

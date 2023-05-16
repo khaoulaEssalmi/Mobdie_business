@@ -20,7 +20,8 @@ class Projet extends Model
         'Nom',
         'Description',
         'Statut',
-        'FormateurCIN',
+        'ManagerCIN',
+        'AdminCIN',
     ];
 
     public function candidat():BelongsTo{

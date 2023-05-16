@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\User;
 
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -29,11 +30,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $user = User::where('email', $request->email)->first();
-
-        if ($user->isManager()) {
-            Auth::guard('manager')->login($user);
-
-            return redirect('/manager/dashboard');
+//        dd($user);
+        $cin=$user->CIN;
+        if ($user->isAdmin()) {
+            Auth::guard('admin')->login($user);
+            return redirect()->route('admin.dashboard', ['cin' => $cin]);
         }
 
         if ($user->isAnalyst()) {
@@ -47,8 +48,13 @@ class AuthenticatedSessionController extends Controller
             return redirect('/formateur/dashboard');
         }
 
+        if ($user->isSuperAdmin()){
+//            dd('super admin');
+            Auth::guard('super')->login($user);
+            return redirect()->route('superAdmin.dashboard', ['cin' => $cin]);
+        }
 
-        return redirect('/dashboard');
+        return redirect()->route('superAdmin.dashboard');
 //        $request->authenticate();
 //
 //        $request->session()->regenerate();
