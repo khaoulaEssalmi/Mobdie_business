@@ -25,7 +25,8 @@ class User extends Authenticatable
         'phone',
         'role',
         'CIN',
-        'address'
+        'address',
+        'picture',
     ];
 public function getCinAttribute()
 {
@@ -60,9 +61,9 @@ public function getCinAttribute()
         return $this->role === 'Admin';
     }
 
-    public function isFormateur()
+    public function isManager()
     {
-        return $this->role === 'Formateur';
+        return $this->role === 'Manager';
     }
 
     public function isSuperAdmin()

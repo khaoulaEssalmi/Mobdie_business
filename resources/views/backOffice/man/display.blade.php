@@ -78,7 +78,7 @@
                                                 {{$manager->address}}
                                             </td>
                                             {{--                                        <td>--}}
-                                            {{--                                            <label for="" class="badge {{$manager->role == 1 ? "badge-warning" : "badge-success" }}">{{$manager->role == 1 ? "Editor" : "Moderator" }}</label>--}}
+                                            {{--                                            <label for="" class="badge {{$man->role == 1 ? "badge-warning" : "badge-success" }}">{{$man->role == 1 ? "Editor" : "Moderator" }}</label>--}}
                                             {{--                                        </td>--}}
                                             <td>
                                                 <form style="display: inline; margin-right: 10px" method="POST"
@@ -89,9 +89,9 @@
                                                 </form>
                                                 {{--                                            <form style="display: inline;" method="POST" action="">--}}
                                                 {{--                                                @csrf--}}
-                                                {{--                                                <input type="hidden" name="id" value="{{$manager->CIN}}">--}}
-                                                {{--                                                <input type="hidden" name="role" value="{{$manager->role == 2 ? 1 : 2}}">--}}
-                                                {{--                                                <button type="submit" class="btn badge badge-info">Modify --}}{{--{{$manager->role == 2 ? "Editor" : "Moderator"}}--}}{{--</button>--}}
+                                                {{--                                                <input type="hidden" name="id" value="{{$man->CIN}}">--}}
+                                                {{--                                                <input type="hidden" name="role" value="{{$man->role == 2 ? 1 : 2}}">--}}
+                                                {{--                                                <button type="submit" class="btn badge badge-info">Modify --}}{{--{{$man->role == 2 ? "Editor" : "Moderator"}}--}}{{--</button>--}}
                                                 {{--                                            </form>--}}
                                                 <a href=""></a>
                                             </td>

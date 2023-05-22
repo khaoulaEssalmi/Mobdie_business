@@ -50,7 +50,7 @@ class SuperAdminController extends Controller
     {
 //        $managers = User::where("role", "<>", "Admin")->get();
         $managers = User::where("role", "=", "Admin")->get();
-        return view("backOffice.manager.display", compact("managers"));
+        return view("backOffice.man.display", compact("managers"));
     }
 
 }

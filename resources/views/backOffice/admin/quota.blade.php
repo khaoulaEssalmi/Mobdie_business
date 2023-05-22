@@ -33,7 +33,7 @@
                             </div>
                             <hr class="border-light m-0">
 
-                            <form id="general" method="POST" action="{{ route('admin.manager.change.quota',['cin'=>$user->CIN]) }}">
+                            <form id="general" method="POST" action="{{ route('admin.man.change.quota',['cin'=>$user->CIN]) }}">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">

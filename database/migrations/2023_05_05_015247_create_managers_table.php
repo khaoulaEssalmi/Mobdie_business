@@ -11,13 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('formateurs', function (Blueprint $table) {
+        Schema::create('managers', function (Blueprint $table) {
             $table->string('CIN')->unique()->primary();
             $table->integer('nb_max_des_appels');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */

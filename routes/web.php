@@ -68,11 +68,11 @@ Route::namespace("Admin")->prefix("superAdmin")->name("superAdmin.")->group(func
         #################################   Super Admin Tasks Begin    ###########################################################
         Route::middleware(["auth:admin", "isSuper"])->prefix("superAdmin")->group(function () {
 
-//            Route::get("/", [ManagerController::Class, "display"])->name("managers.display");
-//            Route::get("add", [ManagerController::Class, "add"])->name("managers.add");
-//            Route::post("insert", [ManagerController::Class, "insert"])->name("managers.insert");
+//            Route::get("/", [ManController::Class, "display"])->name("managers.display");
+//            Route::get("add", [ManController::Class, "add"])->name("managers.add");
+//            Route::post("insert", [ManController::Class, "insert"])->name("managers.insert");
 
-            Route::post("changeRole", [ManagerController::Class, "changeRole"])->name("managers.changeRole");
+            Route::post("changeRole", [ManController::Class, "changeRole"])->name("managers.changeRole");
 
         });
         #################################   Super Admin Tasks End    #############################################################
@@ -124,14 +124,31 @@ Route::namespace("Admin")->prefix("admin")->name("admin.")->group(function () {
         Route::get('/analysts',[AdminController::class, "displayAnalysts"])->name("analysts");
         Route::post("/managers/projects",[AdminController::class,"affectationDesProjets"])->name("projects.to.managers");
         Route::post("/projects/submit",[AdminController::class,"projectsSubmit"])->name("projects.submit");
-        Route::post("/managers/quota",[AdminController::class,"affectationQuota"])->name("manager.quota");
-        Route::post("/managers/quota/change",[AdminController::class,"quotaChange"])->name("manager.change.quota");
+        Route::post("/managers/quota",[AdminController::class,"affectationQuota"])->name("man.quota");
+        Route::post("/managers/quota/change",[AdminController::class,"quotaChange"])->name("man.change.quota");
+        Route::post("/managers/showProjects",[AdminController::class,"ManagerProjects"])->name("man.showProjects");
+        Route::post("/managers/showAnalysts",[AdminController::class,"ManagerAnalysts"])->name("man.showAnalysts");
         Route::post("/analysts/managers",[AdminController::class,"affectationDesManagers"])->name("managers.to.analysts");
         Route::post("/managers/submit",[AdminController::class,"managersSubmit"])->name("managers.submit");
+        Route::post("/managers/showAnalystsdelete",[AdminController::class,"deleteAnalyst"])->name("deleteAnalyst");
+        Route::get("/man/add", [AdminController::Class, "addManager"])->name("addManager");
+        Route::post("/man/add/submit",[AdminController::class,"addManagerSubmit"])->name("man.add.submit");
 
     });
 });
 
+#######################################################################################################
+## manager tasks##
+#######################################################################################################
+Route::namespace("Manager")->prefix("manager")->name("manager.")->group(function () {
+    Route::middleware("auth:man")->group(function () {
+        Route::get("dashboard/{name?}", [ManagerController::Class, "index"])->name("dashboard");
+        Route::get("/calls",[ManagerController::class,"calls"])->name("listCalls");
+        Route::post("/call/candidat",[ManagerController::class,"callCandidat"])->name("callCandidat");
+        Route::post("/call/candidat/submit",[ManagerController::class,"CallCandidatSubmit"])->name("submitFormCall");
+        Route::post("/call/candidat/ProjectComplete",[ManagerController::class,"CallCandidatProjectComplete"])->name("ProjectComplete");
+    });
+});
 
 #######################################################################################################
                            ##general tasks##

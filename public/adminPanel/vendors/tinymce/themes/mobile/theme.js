@@ -5306,7 +5306,7 @@
       strict$1('getFallbackEntry'),
       strict$1('getDataKey'),
       strict$1('setValue'),
-      output('manager', {
+      output('man', {
         setValue: setValue$1,
         getValue: getValue$1,
         onLoad: onLoad$2,
@@ -5331,7 +5331,7 @@
       strict$1('getValue'),
       defaulted$1('setValue', noop),
       option('initialValue'),
-      output('manager', {
+      output('man', {
         setValue: setValue$2,
         getValue: getValue$2,
         onLoad: onLoad$3,
@@ -5359,7 +5359,7 @@
     };
     var MemoryStore = [
       option('initialValue'),
-      output('manager', {
+      output('man', {
         setValue: setValue$3,
         getValue: getValue$3,
         onLoad: onLoad$4,
@@ -6021,7 +6021,7 @@
             return Cell(spec.mode.minX);
           }),
           strict$1('getInitialValue'),
-          output('manager', HorizontalModel)
+          output('man', HorizontalModel)
         ],
         y: [
           defaulted$1('minY', 0),
@@ -6030,7 +6030,7 @@
             return Cell(spec.mode.minY);
           }),
           strict$1('getInitialValue'),
-          output('manager', VerticalModel)
+          output('man', VerticalModel)
         ],
         xy: [
           defaulted$1('minX', 0),
@@ -6044,7 +6044,7 @@
             });
           }),
           strict$1('getInitialValue'),
-          output('manager', TwoDModel)
+          output('man', TwoDModel)
         ]
       })),
       field$1('sliderBehaviours', [

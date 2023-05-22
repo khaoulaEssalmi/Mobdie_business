@@ -1190,13 +1190,13 @@ window.tinymce.Resource.add("tinymce.plugins.emoticons", {
     category: "people"
   },
   woman_office_worker: {
-    keywords: [ "business", "manager", "woman", "human" ],
+    keywords: [ "business", "man", "woman", "human" ],
     "char": '<img data-emoticon="true" style="width:1em;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em" draggable="false" alt="\ud83d\udc69\u200d\ud83d\udcbc" src="1f469-200d-1f4bc.png"/>',
     fitzpatrick_scale: true,
     category: "people"
   },
   man_office_worker: {
-    keywords: [ "business", "manager", "man", "human" ],
+    keywords: [ "business", "man", "man", "human" ],
     "char": '<img data-emoticon="true" style="width:1em;height:1em;margin:0 .05em 0 .1em;vertical-align:-.1em" draggable="false" alt="\ud83d\udc68\u200d\ud83d\udcbc" src="1f468-200d-1f4bc.png"/>',
     fitzpatrick_scale: true,
     category: "people"

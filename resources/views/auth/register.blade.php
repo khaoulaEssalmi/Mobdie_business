@@ -13,6 +13,7 @@
             <x-input-error :messages="$errors->get('CIN')" class="mt-2" />
         </div>
         <!-- Name -->
+        <br>
         <div>
             <x-input-label for="name" :value="__('Name')" />
             <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
@@ -27,9 +28,9 @@
         </div>
 <br>
         <div class="mt-4">
-            <x-input-label for="address" :value="__('Email')" />
+            <x-input-label for="address" :value="__('Address')" />
             <x-text-input id="adress" class="block mt-1 w-full" type="text" name="address" :value="old('adress')" required autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+{{--            <x-input-error :messages="$errors->get('email')" class="mt-2" />--}}
         </div>
         <br>
         <div>

@@ -47,7 +47,7 @@
                                                     {{$project->ID}}
                                                 </td>
                                                 <td>
-                                                    {{$project->Nom}}
+                                                    {{$project->NomPr}}
                                                 </td>
                                                 <td>
                                                     <input type="checkbox" name="action[]" value="{{ $project->ID }}">

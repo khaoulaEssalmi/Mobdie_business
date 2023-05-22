@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use App\Models\User;
 
-class Formateur extends User
+class Manager extends User
 {
     use HasFactory;
     protected $primaryKey = 'CIN';

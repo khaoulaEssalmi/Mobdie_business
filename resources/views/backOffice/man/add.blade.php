@@ -9,7 +9,6 @@
                         <div class="card-body">
                             <h4 class="card-title">Add Manager</h4>
                             <p class="card-description">
-                                Basic form elements
                             </p>
                             <form class="forms-sample" method="POST" action="{{ route('superAdmin.managers.insert') }}"
                                   enctype="multipart/form-data">
@@ -70,18 +69,6 @@
                                         <strong>{{ $message }}</strong>
                                     </span>
                                     @enderror
-                                </div>
-                                <div class="form-group">
-                                    <label>File upload</label>
-                                    <input type="file" name="images[]" multiple class="file-upload-default">
-                                    <div class="input-group col-xs-12">
-                                        <input type="text" class="form-control file-upload-info" disabled
-                                               placeholder="Upload Image">
-                                        <span class="input-group-append">
-                                          <button class="file-upload-browse btn btn-primary"
-                                                  type="button">Upload</button>
-                                        </span>
-                                    </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary mr-2" name="button_clicked"
                                         value="validate">Submit

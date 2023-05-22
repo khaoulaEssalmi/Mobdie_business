@@ -13,19 +13,17 @@ return new class extends Migration
     {
         Schema::disableForeignKeyConstraints();
 
-        Schema::create('AnalystManager', function (Blueprint $table) {
+        Schema::create('analyst_managers', function (Blueprint $table) {
+            $table->id();
             $table->string('ManagerCIN')->nullable();
             $table->string('AnalystCIN')->nullable();
-            $table->string('AdminCIN')->nullable();
             $table->foreign('AnalystCIN')->references('CIN')->on('users');
-            $table->foreign('AdminCIN')->references('CIN')->on('users');
-            $table->foreign('ManagerCIN')->references('CIN')->on('formateurs');
-            $table->primary(['ManagerCIN','AnalystCIN']);
+            $table->foreign('ManagerCIN')->references('CIN')->on('users');
+            $table->timestamps();
         });
 
         Schema::enableForeignKeyConstraints();
     }
-
     /**
      * Reverse the migrations.
      */

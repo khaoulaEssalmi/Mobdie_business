@@ -17,6 +17,7 @@ return new class extends Migration
                 $table->date('Date_appel')->nullable();
                 $table->date('Prochain_appel')->nullable();
                 $table->integer('ProjetID')->nullable();
+                $table->timestamps();
             });
     }
 

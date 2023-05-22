@@ -4,198 +4,155 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helper\UploadController;
+use App\Models\Appel;
 use App\Models\User;
+use App\Models\Projet;
+use App\Models\Manager;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Carbon\Carbon;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\DB;
+
 
 class ManagerController extends Controller
 {
-    ##################################### Profile begin ###################################################
-
-    public function profile()
-    {
-        return view("backOffice.manager.settings");
-    }
-
-    public function updateGeneral(Request $request) {
-        if ($request->input('button_clicked') == 'save_changes')
-        {
-            $request->validate([
-                "full_name" => "required",
-                "email" => "required",
-                "address" => "max:255",
-                "Phone" => "max:20",
-            ],
-                [
-                    "full_name.required" => "le champ nom et Prenom est obligatoite",
-                    "full_name.max" => "le champ nom et Prenom ne peut pas depasser 100 caracteres",
-
-                    "email.required" => "le champ Email est obligatoite",
-                    "email.email" => "le champ Email doit respecter la structure des emails",
-
-                    "address.max" => "l'Address ne peut pas depasser 255 caracteres",
-
-                    "Phone.max" => "le champ Phone ne peut pas depasser 20 caracteres",
-                ]);
-
-            $manager = User::find(auth()->user()->CIN);
-
-            $manager->name = $request->input("full_name");
-            $manager->email = $request->input("email");
-            $manager->address = $request->input("address");
-            $manager->phone = $request->input("phone");
-
-            $manager->update();
-            return redirect()->route("superAdmin.profile")->with(["success" => "Vos information general ont ete mises a jour avec succes"]);
-        }
-        elseif ($request->input('button_clicked') == 'cancel') {
-            return redirect()->route("superAdmin.dashboard");
-        }
-    }
-
-    public function resetPicture(Request $request) {
-
-        $user = User::find(auth("manager")->user()->CIN);
-
-        if ($user->picture !== "avatar.png"){
-            $path = public_path() . "\uploads\managers\avatars\\" . $user->picture;
-            echo $path;
-            if(File::exists($path)) {
-                File::delete($path);
-            }
-        }
-
-        $user->picture  = "avatar.png";
-
-        $user->update();
-        return redirect()->route("superAdmin.profile")->with(["success" => "Votre image de profile a ete mise a l'image par defaut"]);
-    }
-
-    public function changePicture(Request $request) {
-
-        $user = User::find(auth()->user()->CIN);
-//dd($user);
-        if ($user->picture !== "avatar.png"){
-            $path = public_path() . "\uploads\managers\avatars\\" . $user->picture;
-            if(File::exists($path)) {
-                File::delete($path);
-            }
-        }
-
-        $user->picture  = UploadController::userPic($request);
-
-        $user->update();
-        return redirect()->route("superAdmin.profile")->with(["success" => "Votre image de profile a ete mise a ajour par succes"]);
-    }
-
-    public function changePass(Request $request) {
-        if ($request->input('button_clicked') == 'save_changes') {
-            $user = User::find(auth()->user()->CIN);
-
-            $request->validate([
-                'password' => 'required',
-                'new_pass_confirm' => 'required_with:new_pass|same:new_pass',
-                'new_pass' => 'required|min:8',
-            ]);
-
-            if (!Hash::check($request->input("password"), $user->password)) {
-                return redirect()->back()->withErrors(["password" => "merci de verifier votre mot de pass et de ressayer plus tard"]);
-            }
-
-            $user->password = Hash::make($request->input("new_pass"));
-
-            $user->update();
-            return redirect()->route("superAdmin.profile")->with(["success" => "Votre mot de pass a ete mis a ajour par succes"]);
-        }
-        elseif ($request->input('button_clicked') == 'cancel') {
-            return redirect()->route("superAdmin.dashboard");
-        }
-    }
-
-    #####################################  Profile end ###################################################
-
-
-    public function display()
-    {
-//        $managers = User::where("role", "<>", "Admin")->get();
-        $managers = User::where("role", "=", "Manager")->get();
-        return view("backOffice.manager.display", compact("managers"));
-    }
-
-    public function add()
-    {
-        return view("backOffice.manager.add");
-    }
-
-    public function insert(Request $request)
-    {
-        if ($request->input('button_clicked') == 'validate') {
-            $request->validate([
-                "name" => "required|max:100,name",
-                "cin" => "required|max:100|unique:users,CIN",
-                "email" => "required|email|unique:users,email",
-                "password" => "required|min:8",
-                "address" => "max:255",
-                "phone" => "max:20",
-            ],
-                [
-                    "name.required" => "le champ nom et Prenom est obligatoite",
-                    "name.max" => "le champ nom et Prenom ne peut pas depasser 100 caracteres",
-//                "name.unique"   => "cet utilisateur existe deja dans la base de donnees",
-
-                    "cin.required" => "le champ nom et Prenom est obligatoite",
-                    "cin.max" => "le champ nom et Prenom ne peut pas depasser 100 caracteres",
-                    "cin.unique" => "cet CIN existe deja dans la base de donnees",
-
-                    "email.required" => "le champ Email est obligatoite",
-                    "email.email" => "le champ Email doit respecter la structure des emails",
-                    "email.unique" => "cet email existe deja",
-
-                    "password.required" => "le mot de passe est obligatoite",
-                    "password.min" => "le mot de passe ne peut pas etre compose de moins de 8 caracteres",
-
-                    "address.max" => "l'Address ne peut pas depasser 255 caracteres",
-
-                    "phone.max" => "le champ Phone ne peut pas depasser 20 caracteres",
-                ]);
-
-            $user = new User();
-
-            $user->name = $request->input("name");
-            $user->CIN = $request->input("cin");
-            $user->email = $request->input("email");
-            $user->password = Hash::make($request->input("password"));
-            $user->address = $request->input("address");
-            $user->phone = $request->input("Phone");
-            $user->role = "Manager";
-            $user->picture = $request->file('images') ? UploadController::userPic($request) : "avatar.png";
-
-            $user->save();
-            return redirect()->route("superAdmin.managers.display")->with(["success" => "vous avez ajoute votre manager avec succes"]);
-        }
-        elseif ($request->input('button_clicked') == 'cancel') {
-            return redirect()->route("superAdmin.managers.display");
-        }
-    }
-
-    public function delete(Request $request)
+    public function index()
     {
         $cin = request()->query('cin');
-        $manager= User::where('CIN', $cin)->first();
-        $image_path = public_path("uploads/managers/avatars/{$manager->picture}");
-        unlink($image_path);
-
-        $manager->delete();
-
-        return redirect()->route("superAdmin.managers.display")->with(["success" => "vous avez supprimer votre manager avec succes"]);
+        $nbrClients = 2000;
+        $nbrProducts = 9800;
+        $user = User::where('CIN', $cin)->first();
+        return view('backOffice.manager.dashboardManager')->with(["nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
     }
 
-    public function changeRole(Request $request) {
-        $manager = Manager::find($request->input("id"));
-        $manager->role = $request->input("role");
+    public function calls(Request $request){
+        $cin=request()->input('cin');
+        $today=Carbon::today();
+        $candidats = DB::table('candidats')
+            ->join('projets', 'candidats.ID', '=', 'projets.CandidatID')
+            ->join('appels', 'projets.ID', '=', 'appels.ProjetID')
+            ->where('projets.ManagerCIN', $cin)
+            ->where(function ($query) use ($today) {
+                $query->whereNull('appels.Prochain_appel')
+                    ->orWhereDate('appels.Prochain_appel', '<',$today);
+            })
+            ->where('appels.Done','=', 0)
+            ->select('candidats.*', 'projets.*')
+            ->get();
 
-        $manager->Update();
-        return redirect()->route("admin.managers.display")->with(["success" => "Role modifie avec succes"]);
+        return view('backOffice.manager.displayCalls')->with(['candidats'=>$candidats]);
+    }
+    public function callCandidat(Request $request){
+        $ProjetID=request()->input('ProjetID');
+        $appels = DB::table('appels')
+            ->where('ProjetID', '=', $ProjetID)
+            ->orderBy('date_appel', 'asc')
+            ->get();
+
+
+        $Pr = DB::table('projets')
+            ->where('ID', '=',$ProjetID)
+            ->first();
+
+        return view('backOffice.manager.displayProjectCalls')->with(['appels'=>$appels,'Pr'=>$Pr]);
+    }
+
+    public function CallCandidatSubmit(Request $request)
+    {
+        $call1=request()->input("call1");
+//        dd($call1);
+        $call2=request()->input("call2");
+        $comment=request()->input("comment");
+        $id=request()->input("PrId");
+
+        $buttonClicked = $request->input('button_clicked');
+
+        if ($buttonClicked === 'validate') {
+
+            DB::table('appels')
+                ->where('ProjetID','=',$id)
+                ->whereDate('Prochain_appel', Carbon::today())
+                ->update(['Done' => 1]);
+
+            $appel = Appel::where('ProjetID', $id)->first();
+            if ($appel->Commentaire === null && $appel->date_appel === null && $appel->prochain_appel === null) {
+                Appel::where('ProjetID', $id)
+                    ->whereNull('Date_appel')
+                    ->whereNull('Prochain_appel')
+                    ->whereNull('Commentaire')
+                    ->delete();
+
+                $appel = new Appel();
+                $appel->Commentaire = $comment;
+                $appel->Date_appel = $call1;
+                $appel->Prochain_appel = $call2;
+                $appel->Done = 0;
+                $appel->ProjetID = $id;
+
+                $appel->save();
+
+                $cin = auth()->user()->CIN;
+                $candidats = DB::table('candidats')
+                    ->join('projets', 'candidats.ID', '=', 'projets.CandidatID')
+                    ->join('appels', 'projets.ID', '=', 'appels.ProjetID')
+                    ->where('projets.ManagerCIN', $cin)
+                    ->where(function ($query) {
+                        $query->whereNull('appels.Prochain_appel')
+                            ->orWhereDate('appels.Prochain_appel', Carbon::yesterday());
+                    })
+                    ->where('appels.Done', '=', 0)
+                    ->select('candidats.*', 'projets.*')
+                    ->get();
+                return view('backOffice.manager.displayCalls')->with(['candidats' => $candidats]);
+
+            }
+            else {
+                $appel = new Appel();
+                $appel->Commentaire = $comment;
+                $appel->Date_appel = $call1;
+                $appel->Prochain_appel = $call2;
+                $appel->Done = 0;
+                $appel->ProjetID = $id;
+
+                $appel->save();
+                $cin = auth()->user()->CIN;
+                $candidats = DB::table('candidats')
+                    ->join('projets', 'candidats.ID', '=', 'projets.CandidatID')
+                    ->join('appels', 'projets.ID', '=', 'appels.ProjetID')
+                    ->where('projets.ManagerCIN', $cin)
+                    ->where(function ($query) {
+                        $query->whereNull('appels.Prochain_appel')
+                            ->orWhereDate('appels.Prochain_appel', Carbon::yesterday());
+                    })
+                    ->where('appels.Done', '=', 0)
+                    ->select('candidats.*', 'projets.*')
+                    ->get();
+                return view('backOffice.manager.displayCalls')->with(['candidats' => $candidats]);
+            }
+        }
+        elseif ($buttonClicked === 'mark'){
+            $id=request()->input('PrId');
+//            dd($id);
+            $call1=request()->input("call1");
+            $comment=request()->input("comment");
+
+            $appel = new Appel();
+            $appel->Commentaire = $comment;
+            $appel->Date_appel = $call1;
+            $appel->ProjetID=$id;
+            $appel->save();
+
+            DB::table('appels')
+                ->where('ProjetID','=',$id)
+                ->whereDate('Prochain_appel', Carbon::today())
+                ->update(['Done' => 1]);
+
+            Projet::where('ID', $id)
+                ->update(['Statut' => 'Completed']);
+
+        }
     }
 }

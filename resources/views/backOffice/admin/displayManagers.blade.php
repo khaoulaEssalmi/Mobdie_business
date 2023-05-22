@@ -19,12 +19,14 @@
                     <div class="card">
                         <div class="card-body">
                             <h4 class="card-title">Managers List</h4>
-{{--                            <p class="card-description">--}}
-{{--                                <a href="{{ route('superAdmin.managers.add') }}" class="btn btn-sm btn-outline-success">--}}
-{{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
-{{--                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter</strong>--}}
-{{--                                </a>--}}
-{{--                            </p>--}}
+                            <br><br>
+                            <p class="card-description">
+                                <a href="{{ route('admin.addManager') }}" class="btn btn-sm btn-outline-success">
+                                    <i class="mdi mdi-plus-box"></i> <strong
+                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter un manager</strong>
+                                </a>
+                            </p>
+                            <br>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
@@ -42,7 +44,7 @@
                                             CIN
                                         </th>
                                         <th>
-                                            Action
+
                                         </th>
                                     </tr>
                                     </thead>
@@ -64,7 +66,7 @@
                                             </td>
 
                                             <td>
-                                                <form style="display: inline; margin-right: 10px" method="POST"
+                                                <form style="display: inline; margin-right: -40px" method="POST"
                                                       action="{{ route("admin.projects.to.managers",['cin'=> $manager->CIN] )}}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">
@@ -72,10 +74,24 @@
                                                 </form>
                                             </td>
                                             <td>
-                                                <form style="display: inline;" method="POST" action="{{ route("admin.manager.quota",['cin'=>$manager->CIN]) }}">
+                                                <form style="display: inline;margin-right: -40px" method="POST" action="{{ route("admin.man.showProjects",['cin'=>$manager->CIN]) }}">
                                                     @csrf
-                                                    <input type="hidden" name="id" value="">
-                                                    <button type="submit" class="btn badge badge-warning">Call quota</button>
+                                                    <input type="hidden" name="id" value="{{$manager->CIN}}">
+                                                    <button type="submit" class="btn badge badge-warning">Show Projects</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.quota",['cin'=>$manager->CIN]) }}">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$manager->CIN}}">
+                                                    <button type="submit" class="btn badge badge-success">Call quota</button>
+                                                </form>
+                                            </td>
+                                            <td>
+                                                <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.showAnalysts",['cin'=>$manager->CIN]) }}">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$manager->CIN}}">
+                                                    <button type="submit" class="btn badge badge-info">Show Analysts</button>
                                                 </form>
                                             </td>
                                         </tr>

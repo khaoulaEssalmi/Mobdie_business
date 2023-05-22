@@ -16,7 +16,7 @@ class GeneralController extends Controller
 {
     public function profile()
     {
-        return view("backOffice.manager.settings");
+        return view("backOffice.man.settings");
     }
 
     public function updateGeneral(Request $request)

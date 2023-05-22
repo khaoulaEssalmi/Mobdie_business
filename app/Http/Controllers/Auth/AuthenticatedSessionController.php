@@ -42,10 +42,10 @@ class AuthenticatedSessionController extends Controller
             return redirect('/analyst/dashboard');
         }
 
-        if ($user->isFormateur()) {
-            Auth::guard('formateur')->login($user);
-
-            return redirect('/formateur/dashboard');
+        if ($user->isManager()) {
+            Auth::guard('man')->login($user);
+            
+            return redirect()->route('manager.dashboard', ['cin' => $cin]);
         }
 
         if ($user->isSuperAdmin()){

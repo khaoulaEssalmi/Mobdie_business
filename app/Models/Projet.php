@@ -29,7 +29,7 @@ class Projet extends Model
     }
 
     public function formateur():BelongsTo{
-        return  $this->belongsTo(Formateur::class,'FormateurCIN','CIN');
+        return  $this->belongsTo(Manager::class,'FormateurCIN','CIN');
     }
 
     public function appels():HasMany{

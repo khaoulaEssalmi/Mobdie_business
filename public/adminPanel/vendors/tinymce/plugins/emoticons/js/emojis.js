@@ -1177,13 +1177,13 @@ window.tinymce.Resource.add("tinymce.plugins.emoticons", {
     category: "people"
   },
   woman_office_worker: {
-    keywords: [ "business", "manager", "woman", "human" ],
+    keywords: [ "business", "man", "woman", "human" ],
     "char": "\ud83d\udc69\u200d\ud83d\udcbc",
     fitzpatrick_scale: true,
     category: "people"
   },
   man_office_worker: {
-    keywords: [ "business", "manager", "man", "human" ],
+    keywords: [ "business", "man", "man", "human" ],
     "char": "\ud83d\udc68\u200d\ud83d\udcbc",
     fitzpatrick_scale: true,
     category: "people"

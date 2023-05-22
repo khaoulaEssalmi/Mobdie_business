@@ -51,7 +51,7 @@ return [
             'provider' => 'users',
         ],
 
-        'formateur' => [
+        'man' => [
             'driver' => 'session',
             'provider' => 'users',
         ],
