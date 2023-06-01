@@ -68,7 +68,9 @@
                                                       action="{{ route("admin.managers.to.analysts",['cin'=> $analyst->CIN] )}}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$analyst->CIN}}">
-                                                    <button type="submit" class="btn badge badge-danger">Affect managers</button>
+                                                    <button type="submit" class="btn btn-affect-managers">
+                                                        <i class="fas fa-users"></i> &nbsp;Affect Managers
+                                                    </button>
                                                 </form>
                                             </td>
                                         </tr>

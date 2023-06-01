@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\SuperAdminController;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\GeneralController;
 use App\Http\Controllers\Admin\ManagerController;
+use App\Http\Controllers\Admin\AnalystController;
 
 
 /*
@@ -128,6 +129,7 @@ Route::namespace("Admin")->prefix("admin")->name("admin.")->group(function () {
         Route::post("/managers/quota/change",[AdminController::class,"quotaChange"])->name("man.change.quota");
         Route::post("/managers/showProjects",[AdminController::class,"ManagerProjects"])->name("man.showProjects");
         Route::post("/managers/showAnalysts",[AdminController::class,"ManagerAnalysts"])->name("man.showAnalysts");
+        Route::post("/managers/delete",[AdminController::class,"delete"])->name("man.delete");
         Route::post("/analysts/managers",[AdminController::class,"affectationDesManagers"])->name("managers.to.analysts");
         Route::post("/managers/submit",[AdminController::class,"managersSubmit"])->name("managers.submit");
         Route::post("/managers/showAnalystsdelete",[AdminController::class,"deleteAnalyst"])->name("deleteAnalyst");
@@ -140,9 +142,9 @@ Route::namespace("Admin")->prefix("admin")->name("admin.")->group(function () {
 #######################################################################################################
 ## manager tasks##
 #######################################################################################################
-Route::namespace("Manager")->prefix("manager")->name("manager.")->group(function () {
+Route::namespace("Admin")->prefix("manager")->name("manager.")->group(function () {
     Route::middleware("auth:man")->group(function () {
-        Route::get("dashboard/{name?}", [ManagerController::Class, "index"])->name("dashboard");
+        Route::get("dashboard", [ManagerController::Class, "index"])->name("dashboard");
         Route::get("/calls",[ManagerController::class,"calls"])->name("listCalls");
         Route::post("/call/candidat",[ManagerController::class,"callCandidat"])->name("callCandidat");
         Route::post("/call/candidat/submit",[ManagerController::class,"CallCandidatSubmit"])->name("submitFormCall");
@@ -162,7 +164,22 @@ Route::namespace("Admin")->prefix("general")->name('general.')->group(function()
         Route::post("picture/reset", [GeneralController::Class, "resetPicture"])->name("picture.reset");
         Route::post("picture/change", [GeneralController::Class, "changePicture"])->name("picture.change");
         Route::post("changePass", [GeneralController::Class, "changePass"])->name("change_password");
+        Route::get("inbox", [GeneralController::Class, "inbox"])->name("inbox");
+        Route::post("message/setRead", [GeneralController::Class, "setRead"])->name("message.setRead");
+
     });
 });
 
+###########################################################################################################
+                                       ##Analyst tasks##
+###########################################################################################################
+Route::namespace("Admin")->prefix("analyst")->name("analyst.")->group(function () {
+    Route::middleware("auth:analyst")->group(function () {
+        Route::get("dashboard", [AnalystController::Class, "index"])->name("dashboard");
+        Route::get("managers",[AnalystController::class,"displayManagers"])->name("managers");
+        Route::post("manager/projects",[AnalystController::class,"displayManagerProjects"])->name("manager.projects");
+        Route::post("/manager/project/calls",[AnalystController::class,"displayManagerProjectCalls"])->name("manager.project.calls");
+        Route::get("/manager/emailManager",[AnalystController::class,"emailManager"])->name("sendEmailToManager");
+    });
+});
 require __DIR__.'/auth.php';

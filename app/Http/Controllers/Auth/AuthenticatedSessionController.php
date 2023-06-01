@@ -39,12 +39,12 @@ class AuthenticatedSessionController extends Controller
 
         if ($user->isAnalyst()) {
             Auth::guard('analyst')->login($user);
-            return redirect('/analyst/dashboard');
+            return redirect()->route('analyst.dashboard', ['cin' => $cin]);
         }
 
         if ($user->isManager()) {
             Auth::guard('man')->login($user);
-            
+
             return redirect()->route('manager.dashboard', ['cin' => $cin]);
         }
 

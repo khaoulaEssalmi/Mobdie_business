@@ -1,4 +1,4 @@
-@extends("backOffice.layout.panelAdmin")
+@extends("backOffice.layout.panelManager")
 
 @section("style")
     <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/mdi/css/materialdesignicons.min.css">
@@ -42,20 +42,12 @@
                                     <tbody>
                                     @foreach($appels as $appel)
                                         <tr>
-                                            <td>
-                                                {{$appel->Date_appel}}
+                                            <td style="font-size: 12px; font-weight: bold;">
+                                                {{ $appel->Date_appel}}
                                             </td>
-                                            <td>
+                                            <td style="font-size: 12px; font-weight: bold;">
                                                 {{$appel->Commentaire }}
                                             </td>
-{{--                                            <td>--}}
-{{--                                                <form style="display: inline; margin-right: -40px" method="POST"--}}
-{{--                                                      action="#">--}}
-{{--                                                    @csrf--}}
-{{--                                                    <input type="hidden" name="id" value="">--}}
-{{--                                                    <button type="submit" class="btn badge badge-danger">Call</button>--}}
-{{--                                                </form>--}}
-{{--                                            </td>--}}
                                         </tr>
                                     @endforeach
                                     </tbody>
@@ -66,34 +58,37 @@
                 </div>
             </div>
         </div>
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="row">
+        <div class="main-panel" >
+            <div class="content-wrapper" >
+                <div class="row" style="width:430px !important;">
                     <div class="col-12 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
+                        <div class="card" style="width:400px !important;">
+                            <div class="card-body " style="width:400px !important;">
                                 <h4 class="card-title">Today Call</h4>
-                                <br><br>
-                                <form class="forms-sample" method="POST" action="{{route("manager.submitFormCall",['PrId'=>$Pr->ID])}}"
+{{--                                <br><br>--}}
+                                <form class="forms-sample"  style="width:400px !important;" method="POST" action="{{route("manager.submitFormCall",['PrId'=>$Pr->ID])}}"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="call1">Date of call </label>
+                                        <label for="call1" style="font-family: solid ; font-size: 15px;">Date of call </label>
                                         <input type="date" class="form-control" id="call1" name="call1">
                                     </div>
                                     <div class="form-group">
-                                        <label for="comment">Comment</label>
+                                        <label for="comment" style="font-family: solid ; font-size: 15px;">Comment</label>
                                         <input type="text" class="form-control" id="comment" name="comment">
                                     </div>
                                     <div class="form-group">
-                                        <label for="call2">Date of next call</label>
+                                        <label for="call2" style="font-family: solid ; font-size: 15px;">Date of next call</label>
                                         <input type="date" class="form-control" id="call2" name="call2">
                                     </div>
-                                    <button type="submit" class="btn btn-primary mr-2" name="button_clicked" value="validate">
+
+                                    <button type="submit" class="btn custom-button-style" style="margin-left: 240px !important;" name="button_clicked" value="validate">
+                                        <i class="fas fa-thumbs-up"></i>
                                         Validate the call
                                     </button>
                                     <br><br>
-                                        <button type="submit" class="btn btn-primary mr-2" name="button_clicked" value="mark">
+                                        <button type="submit" class="btn custom-button-style1" style="margin-left: 240px !important;" name="button_clicked" value="mark">
+                                            <i class="far fa-check-circle"></i>
                                             Mark as complete
                                         </button>
                                 </form>
@@ -104,15 +99,15 @@
             </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span
-                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a
-                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
-                        class="ti-heart text-danger ml-1"></i></span>
-            </div>
-        </footer>
+{{--        <footer class="footer">--}}
+{{--            <div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
+{{--                <span--}}
+{{--                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a--}}
+{{--                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>--}}
+{{--                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i--}}
+{{--                        class="ti-heart text-danger ml-1"></i></span>--}}
+{{--            </div>--}}
+{{--        </footer>--}}
         <!-- partial -->
     </div>
 @endsection

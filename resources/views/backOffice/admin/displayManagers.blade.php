@@ -21,10 +21,15 @@
                             <h4 class="card-title">Managers List</h4>
                             <br><br>
                             <p class="card-description">
-                                <a href="{{ route('admin.addManager') }}" class="btn btn-sm btn-outline-success">
-                                    <i class="mdi mdi-plus-box"></i> <strong
-                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter un manager</strong>
+                                <a  class="add-manager-link" href="{{ route('admin.addManager') }}">
+                                    <button class="add-manager-btn">
+                                        <i class="fas fa-plus"></i> ADD Manager
+                                    </button>
                                 </a>
+{{--                                <a href="{{ route('admin.addManager') }}" class="btn btn-sm btn-outline-success">--}}
+{{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
+{{--                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter un manager</strong>--}}
+{{--                                </a>--}}
                             </p>
                             <br>
                             <div class="table-responsive">
@@ -70,28 +75,45 @@
                                                       action="{{ route("admin.projects.to.managers",['cin'=> $manager->CIN] )}}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">
-                                                    <button type="submit" class="btn badge badge-danger">Give projects</button>
+                                                    <button type="submit" class="btn custom-button">
+                                                    <i class="fas fa-tasks"></i>
+                                                    </button>
                                                 </form>
                                             </td>
-                                            <td>
+                                            <td style="width:20px">
                                                 <form style="display: inline;margin-right: -40px" method="POST" action="{{ route("admin.man.showProjects",['cin'=>$manager->CIN]) }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">
-                                                    <button type="submit" class="btn badge badge-warning">Show Projects</button>
+                                                    <button type="submit" class="btn custom-button1">
+                                                        <i class="fas fa-eye"></i>
+                                                    </button>
                                                 </form>
                                             </td>
-                                            <td>
+                                            <td style="width:20px">
                                                 <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.quota",['cin'=>$manager->CIN]) }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">
-                                                    <button type="submit" class="btn badge badge-success">Call quota</button>
+                                                    <button type="submit" class="btn custom-button4">
+                                                        <i class="fas fa-sync-alt"></i>
+                                                    </button>
                                                 </form>
                                             </td>
-                                            <td>
+                                            <td style="width:20px">
                                                 <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.showAnalysts",['cin'=>$manager->CIN]) }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">
-                                                    <button type="submit" class="btn badge badge-info">Show Analysts</button>
+                                                    <button type="submit" class="btn custom-button2">
+                                                        <i class="fas fa-users"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td style="width:20px">
+                                                <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.delete",['cin'=>$manager->CIN]) }}">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$manager->CIN}}">
+                                                    <button type="submit" class="btn custom-button3">
+                                                        <i class="fas fa-trash-alt"></i>
+                                                    </button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -106,15 +128,15 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span
-                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a
-                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
-                        class="ti-heart text-danger ml-1"></i></span>
-            </div>
-        </footer>
+{{--        <footer class="footer">--}}
+{{--            <div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
+{{--                <span--}}
+{{--                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a--}}
+{{--                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>--}}
+{{--                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i--}}
+{{--                        class="ti-heart text-danger ml-1"></i></span>--}}
+{{--            </div>--}}
+{{--        </footer>--}}
         <!-- partial -->
     </div>
 @endsection

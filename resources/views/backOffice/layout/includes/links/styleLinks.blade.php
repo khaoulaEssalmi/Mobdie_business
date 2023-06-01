@@ -2,6 +2,9 @@
 <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/feather/feather.css">
 <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/ti-icons/css/themify-icons.css">
 <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/css/vendor.bundle.base.css">
+<link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/mdi/css/materialdesignicons.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+
 <!-- endinject -->
 
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">

@@ -41,14 +41,16 @@
                                     @foreach($projects as $project)
                                         <tr>
 
-                                            <td>
-                                                {{$project->Nom}}
+                                            <td  style="font-size: 12px; font-weight: bold;">
+                                                {{$project->NomPr}}
                                             </td>
                                             <td>
                                                 @if ($project->Statut == 'En cours')
-                                                    <span style="display: inline-block; width: 10px; height: 2px; background-color: yellow;"></span>
-                                                @elseif ($project->Statut == 'Terminé')
-                                                    <hr style="border-color:green;">
+                                                    <i class="fas fa-spinner"  style="font-size: 24px; color: #ffcd39; margin-right: 1px; "></i>
+                                                @elseif ($project->Statut == 'Completed')
+                                                    <i class="fas fa-check-circle" style="font-size: 24px; color: #00bb00; margin-right: 1px; "></i>
+                                                @elseif ($project->Statut == 'Blocked')
+                                                    <i class="fas fa-ban" style="font-size: 24px; color: #ff0000; margin-right: 1px; "></i>
                                                 @endif
                                             </td>
 

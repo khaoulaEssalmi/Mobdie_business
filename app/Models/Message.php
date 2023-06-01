@@ -14,5 +14,6 @@ class Message extends Model
         'Emetteur',
         'Recepteur',
         'date_envoi',
+        'state',
     ];
 }

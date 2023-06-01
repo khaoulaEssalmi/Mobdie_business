@@ -2,55 +2,55 @@
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ route("superAdmin.dashboard", ['name' => auth()->user()->name]) }}"  >
-                <i class="icon-grid menu-icon"></i>
+                <i class= "mdi mdi-monitor-dashboard" style="font-size: 20px;"></i>
+                &nbsp;&nbsp;&nbsp;
                 <span class="menu-title">Dashboard</span>
             </a>
         </li>
-
-{{--        <li class="nav-item">--}}
-{{--            <a class="nav-link" href="{{route("superAdmin.managers.display")}}" >--}}
-{{--                <i class="icon-layout menu-icon"></i>--}}
-{{--                <span class="menu-title">Managers</span>--}}
-{{--            </a>--}}
-{{--        </li>--}}
-{{--                <li class="nav-item">--}}
-{{--                    <a class="nav-link" href="#" >--}}
-{{--                        <i class="menu-icon fas fa-mail-bulk"></i>--}}
-{{--                        <span class="menu-title">Orders</span>--}}
-{{--                    </a>--}}
-{{--                </li>--}}
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-                        <i class="icon-columns menu-icon"></i>
+                    <a class="nav-link"  href="#form-elements" aria-expanded="false" aria-controls="form-elements">
+                        <i class="fas fa-tasks" style="font-size: 20px;"></i>
+                        &nbsp;&nbsp;&nbsp;
                         <span class="menu-title">Projects</span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="form-elements">
                         <ul class="nav flex-column sub-menu">
-                            <li class="nav-item"><a class="nav-link" href="">Import new projects</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('admin.projects') }}">List of projects </a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('admin.managers') }}">List of managers</a></li>
-                            <li class="nav-item"><a class="nav-link" href="{{ route('admin.analysts') }}">List of analysts</a></li>
+                            <li ><a class="custom-link" href=""><i class="fas fa-file-import" style="font-size: 15px"></i> &nbsp;&nbsp;Import new projects</a></li>
+                            <br>
+                            <li ><a class="custom-link" href="{{ route('admin.projects') }}"><i class="fas fa-list" style="font-size: 15px"></i> &nbsp;&nbsp; List of projects </a></li>
                         </ul>
                     </div>
 
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" >
-                        <i class="icon-grid-2 menu-icon"></i>
-                        <span class="menu-title">Inbox</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" >
-                        <i class="menu-icon fas fa-mail-bulk"></i>
-                        <span class="menu-title">Newsletter</span>
-                    </a>
-                </li>
-                <li class="nav-item">
 
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.managers') }}"  >
+                <i class= "fas fa-user-tie" style="font-size: 20px;"></i>
+                &nbsp;&nbsp;&nbsp;
+                <span class="menu-title">Managers</span>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{ route('admin.analysts') }}"  >
+                <i class= "fas fa-user-chart" style="font-size: 20px;"></i>
+                &nbsp;&nbsp;&nbsp;
+                <span class="menu-title">Analysts</span>
+            </a>
+        </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{route("general.inbox")}}">
+                        <i class="fas fa-inbox" style="font-size: 20px;"></i>
+                        &nbsp;&nbsp;&nbsp;
+                        <span class="menu-title">Inbox</span>
+                        <span class="num-messages">14</span>
+                    </a>
+                </li>
+                <li>
+                   <li class="nav-item">
                     <a class="nav-link" onclick="document.getElementById('logoutForm').submit()" href="#">
-                        <i class="fas fa-sign-out-alt menu-icon"></i>
+                        <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
+                        &nbsp;&nbsp;&nbsp;
                         <span class="menu-title">Logout</span>
                     </a>
                     <form id="logoutForm" method="GET" action="#">
@@ -59,3 +59,26 @@
                 </li>
     </ul>
 </nav>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var projectsLink = document.querySelector('.nav-item .nav-link[href="#form-elements"]');
+        var subMenu = document.querySelector('.nav-item #form-elements');
+        var menuArrow = document.querySelector('.nav-item .menu-arrow');
+
+        projectsLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            subMenu.classList.toggle('show');
+            menuArrow.classList.toggle('rotate');
+        });
+    });
+</script>
+
+<style>
+    .menu-arrow {
+        transition: transform 0.4s;
+    }
+
+    .rotate {
+        transform: rotate(90deg);
+    }
+</style>

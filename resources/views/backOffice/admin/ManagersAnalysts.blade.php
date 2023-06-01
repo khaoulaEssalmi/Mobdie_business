@@ -55,14 +55,17 @@
                                                     {{$manager->CIN}}
                                                 </td>
                                                 <td>
-                                                    <input type="checkbox" name="action[]" value="{{ $manager->CIN }}">
+                                                    <input type="checkbox" name="action[]" value="{{ $manager->CIN }}" class="custom-checkbox">
                                                 </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                                <button type="submit" class="btn badge badge-info">Soumettre</button>
+                                <button type="submit" class="btn custom-button-style">
+                                    <i class="fas fa-check-circle fa-lg"></i>
+                                    Soumettre
+                                </button>
                             </form>
                             {{--                            <p class="card-description">--}}
                             {{--                                <a href="{{ route('superAdmin.managers.add') }}" class="btn btn-sm btn-outline-success">--}}

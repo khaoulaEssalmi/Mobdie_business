@@ -5,16 +5,20 @@
         <div class="content-wrapper">
             <div class="row">
                 <div class="col-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
+                    <div class="tab-content2">
+                    <div class="cardy">
+                        <div class="card-body3 ">
                             <h4 class="card-title">Add Manager</h4>
                            <br><br>
                             <form class="forms-sample" method="POST" action="{{route("admin.man.add.submit")}}"
                                   enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group">
-                                    <label for="name">Full Name</label>
-                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label for="name"  style="font-family: solid ; font-size: 15px;">Full Name</label>
+                                    <br>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" class="my-custom-class" style="width: 200px !important;" id="name" name="name" placeholder="Name">
                                     @error('name')
                                     <span class="invalid-feedback" style="display: block !important;" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -22,8 +26,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="Email">Email address</label>
-                                    <input type="email" class="form-control" id="Email" name="email"
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label for="Email"  style="font-family: solid ; font-size: 15px;">Email address</label>
+                                    <br>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="email" class="my-custom-class" style="width: 200px !important;" id="Email" name="email"
                                            placeholder="Email">
                                     @error('email')
                                     <span class="invalid-feedback" style="display: block !important;" role="alert">
@@ -32,8 +39,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="Email">CIN</label>
-                                    <input type="text" class="form-control" id="cin" name="cin" placeholder="CIN">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label for="Email"  style="font-family: solid ; font-size: 15px;">CIN</label>
+                                    <br>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" class="my-custom-class" style="width: 200px !important;" id="cin" name="cin" placeholder="CIN">
                                     @error('cin')
                                     <span class="invalid-feedback" style="display: block !important;" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -41,8 +51,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="password">Password</label>
-                                    <input type="password" class="form-control" id="password" name="password"
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label for="password"  style="font-family: solid ; font-size: 15px;">Password</label>
+                                    <br>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="password" class="my-custom-class" style="width: 200px !important;" id="password" name="password"
                                            placeholder="Password">
                                     @error('password')
                                     <span class="invalid-feedback" style="display: block !important;" role="alert">
@@ -51,8 +64,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="address">Address</label>
-                                    <input type="text" class="form-control" id="address" name="address"
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label for="address"  style="font-family: solid ; font-size: 15px;">Address</label>
+                                    <br>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" class="my-custom-class" style="width: 200px !important;" id="address" name="address"
                                            placeholder="Address">
                                     @error('address')
                                     <span class="invalid-feedback" style="display: block !important;" role="alert">
@@ -61,8 +77,11 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="Phone">Phone</label>
-                                    <input type="text" class="form-control" id="Phone" name="Phone" placeholder="Phone">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label for="Phone"  style="font-family: solid ; font-size: 15px;">Phone</label>
+                                    <br>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" class="my-custom-class" style="width: 200px !important;" id="Phone" name="Phone" placeholder="Phone">
                                     @error('Phone')
                                     <span class="invalid-feedback" style="display: block !important;" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -70,29 +89,40 @@
                                     @enderror
                                 </div>
                                 <div class="form-group">
-                                    <label for="Phone">Call quota</label>
-                                    <input type="text" class="form-control" id="Call" name="Call" placeholder="Call">
+                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                    <label for="Phone"  style="font-family: solid ; font-size: 15px;">Call quota</label>
+                                    <br>
+                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <input type="text" class="my-custom-class" style="width: 200px !important;" id="Call" name="Call" placeholder="Call">
                                 </div>
-                                <button type="submit" class="btn btn-primary mr-2" name="button_clicked"
-                                        value="validate">Submit
+                                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <button type="submit" class="btn custom-button-style"  name="button_clicked"
+                                        value="validate">
+                                    <i class="fas fa-check"></i> Submit
                                 </button>
-                                <button class="btn btn-light" name="button_clicked" value="cancel">Cancel</button>
+                                <button type="submit" class="btn custom-button-style1" name="button_clicked" value="cancel">
+                                    <i class="fas fa-times"></i>
+                                    Cancel
+                                </button>
+                                <br>
+                                <p style=" color: transparent;">Ce texte est invisible.</p>
                             </form>
                         </div>
                     </div>
+                </div>
                 </div>
             </div>
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a
-                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
-                        class="ti-heart text-danger ml-1"></i></span>
-            </div>
-        </footer>
+{{--        <footer class="footer">--}}
+{{--            <div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
+{{--                <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a--}}
+{{--                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>--}}
+{{--                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i--}}
+{{--                        class="ti-heart text-danger ml-1"></i></span>--}}
+{{--            </div>--}}
+{{--        </footer>--}}
         <!-- partial -->
     </div>
 @endsection

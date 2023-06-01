@@ -1,142 +1,79 @@
+<style>
+    .nav-right .profile-button {
+        background-color: transparent;
+        border: none;
+        padding: 0;
+        cursor: pointer;
+    }
 
+    .nav-right .profile-button .profile-image {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+    }
+
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 130px;
+        margin-right: 20px;
+        margin-top: 10px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        top: 40px;
+        right: 0;
+    }
+    .dropdown-content a {
+        color: #333;
+        padding: 12px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 14px;
+    }
+
+    .dropdown-content a:hover {
+        background-color: #fff;
+        color: #333;
+        transform: scale(1.2); /* Agrandir l'élément */
+        transition: transform 0.3s; /* Ajouter une transition fluide */
+    }
+
+</style>
 
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-    <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="images/logo.svg" class="mr-2" alt="logo"/></a>
-        <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
-    </div>
-    <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
-        <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
-            <span class="icon-menu"></span>
-        </button>
-        <ul class="navbar-nav mr-lg-2">
-            <li class="nav-item nav-search d-none d-lg-block">
-                <div class="input-group">
-                    <div class="input-group-prepend hover-cursor" id="navbar-search-icon">
-                <span class="input-group-text" id="search">
-                  <i class="icon-search"></i>
-                </span>
-                    </div>
-                    <input type="text" class="form-control" id="navbar-search-input" placeholder="Search now" aria-label="search" aria-describedby="search">
+    <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+            <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{{asset("uploads/managers/avatars/logo.jpg")}}" class="mr-2" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
+        </div>
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+            <div class="nav-right">
+                <div class="profile-button">
+                    <img class="profile-image" src="{{asset("uploads/managers/avatars/" . auth()->user()->picture)}}" alt="Photo de profil">
                 </div>
-            </li>
-        </ul>
-        <ul class="navbar-nav navbar-nav-right">
-            <li class="nav-item dropdown">
-                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                    <i class="far fa-comment"></i>
-                    <span class="count" style="
-                    left: 70%;
-                    height: fit-content;
-                    width: 18px;
-                    font-size: 10px;
-                    color: #fff;
-                    font-weight: bold;">3</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                    <p class="mb-0 font-weight-normal float-left dropdown-header">messages</p>
-
-                    @foreach([1,1,1] as $i)
-                        <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon">
-                                <img src="{{asset("uploads/managers/avatars/avatar.png")}}" alt="">
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <h6 class="preview-subject font-weight-normal">full name</h6>
-                            <p class="font-weight-light small-text mb-0 text-muted">
-                                test subject
-                            </p>
-                        </div>
-                    </a>
-                    @endforeach
-
-                    <hr>
-                    <a style="margin-top: -10px;" class="dropdown-item preview-item" href="/inbox">
-                        <div class="preview-item-content text-center">
-                            afficher tous les messages
-                        </div>
-                    </a>
+                <div class="dropdown-content">
+                    <a href="#" style="font-style: inherit; font-size: 14px;"><i class="fas fa-user" style="color: #AD5DEC; font-size: 15px;"></i> &nbsp; Profil</a>
+                    <a href="#" style="font-style: inherit; font-size: 14px;"><i class="fas fa-sign-out-alt" style="color: #AD5DEC; font-size: 15px;"> </i> &nbsp; Logout </a>
                 </div>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link count-indicator dropdown-toggle" id="notificationDropdown" href="#" data-toggle="dropdown">
-                    <i class="icon-bell mx-0"></i>
-                    <span class="count"></span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
-                    <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-success">
-                                <i class="ti-info-alt mx-0"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <h6 class="preview-subject font-weight-normal">Application Error</h6>
-                            <p class="font-weight-light small-text mb-0 text-muted">
-                                Just now
-                            </p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-warning">
-                                <i class="ti-settings mx-0"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <h6 class="preview-subject font-weight-normal">Settings</h6>
-                            <p class="font-weight-light small-text mb-0 text-muted">
-                                Private message
-                            </p>
-                        </div>
-                    </a>
-                    <a class="dropdown-item preview-item">
-                        <div class="preview-thumbnail">
-                            <div class="preview-icon bg-info">
-                                <i class="ti-user mx-0"></i>
-                            </div>
-                        </div>
-                        <div class="preview-item-content">
-                            <h6 class="preview-subject font-weight-normal">New user registration</h6>
-                            <p class="font-weight-light small-text mb-0 text-muted">
-                                2 days ago
-                            </p>
-                        </div>
-                    </a>
-                </div>
-            </li>
-            <li class="nav-item nav-profile dropdown">
-                <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-                    <img src="{{asset("uploads/managers/avatars/" . auth()->user()->picture)}}" alt="profile"/>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item" href="{{ route("general.profile") }}"  >
-                        <i class="ti-settings text-primary" ></i>
-                        Settings
-                    </a>
-                    <a class="dropdown-item" method="POST" href="{{ route('general.logout') }}">
-                        <i class="ti-power-off text-primary"></i>
-                        Logout
-                    </a>
-{{--                    <form id="logoutForm1" method="GET" action="/logout">--}}
-{{--                        @csrf--}}
-{{--                    </form>--}}
-{{--                    <form id="logoutForm1" method="POST" action="{{ route('logout') }}">--}}
-{{--                        @csrf--}}
-{{--                    </form>--}}
-                </div>
-            </li>
-{{--            <li class="nav-item nav-settings d-none d-lg-flex">--}}
-{{--                <a class="nav-link" href="#">--}}
-{{--                    <i class="icon-ellipsis"></i>--}}
-{{--                </a>--}}
-{{--            </li>--}}
-        </ul>
-        <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
-            <span class="icon-menu"></span>
-        </button>
-    </div>
+            </div>
+        </div>
+    </nav>
 </nav>
+<script>
+    window.onload = function() {
+        var profileButton = document.querySelector('.profile-button');
+        var dropdownContent = document.querySelector('.dropdown-content');
+
+        profileButton.addEventListener('click', function() {
+            dropdownContent.style.display = (dropdownContent.style.display === 'block') ? 'none' : 'block';
+        });
+
+        document.addEventListener('click', function(event) {
+            if (!profileButton.contains(event.target)) {
+                dropdownContent.style.display = 'none';
+            }
+        });
+    };
+
+</script>

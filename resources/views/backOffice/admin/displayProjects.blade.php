@@ -49,17 +49,23 @@
                                     <tbody>
                                     @foreach($projects as $project)
                                         <tr>
-                                            <td>
+                                            <td style="font-size: 12px; font-weight: bold;">
                                                 {{$project->ID}}
                                             </td>
-                                            <td>
-                                                {{$project->Nom}}
+                                            <td style="font-size: 12px; font-weight: bold;">
+                                                {{ Str::limit($project->NomPr, $limit = 17, $end = ' ...') }}
+                                            </td>
+                                            <td style="font-size: 12px; font-weight: bold;">
+                                                {{ Str::limit($project->Description, $limit = 140, $end = ' ...') }}
                                             </td>
                                             <td>
-                                                {{ Str::limit($project->Description, $limit = 160, $end = ' ...') }}
-                                            </td>
-                                            <td>
-                                                {{$project->Statut}}
+                                                @if ($project->Statut == 'En cours')
+                                                    <i class="fas fa-spinner"  style="font-size: 24px; color: #ffcd39; margin-right: 1px; "></i>
+                                                @elseif ($project->Statut == 'Completed')
+                                                    <i class="fas fa-check-circle" style="font-size: 24px; color: #00bb00; margin-right: 1px; "></i>
+                                                @elseif ($project->Statut == 'Blocked')
+                                                    <i class="fas fa-ban" style="font-size: 24px; color: #ff0000; margin-right: 1px; "></i>
+                                                @endif
                                             </td>
 {{--                                            <td>--}}
 {{--                                                {{$man->address}}--}}
@@ -94,15 +100,15 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span
-                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a
-                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
-                        class="ti-heart text-danger ml-1"></i></span>
-            </div>
-        </footer>
+{{--        <footer class="footer">--}}
+{{--            <div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
+{{--                <span--}}
+{{--                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a--}}
+{{--                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>--}}
+{{--                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i--}}
+{{--                        class="ti-heart text-danger ml-1"></i></span>--}}
+{{--            </div>--}}
+{{--        </footer>--}}
         <!-- partial -->
     </div>
 @endsection

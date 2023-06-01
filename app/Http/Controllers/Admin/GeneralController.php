@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helper\UploadController;
+use App\Models\Contact;
 use App\Models\User;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -11,6 +12,9 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
+use App\Models\Message;
+use Illuminate\Support\Facades\DB;
+
 
 class GeneralController extends Controller
 {
@@ -132,5 +136,30 @@ class GeneralController extends Controller
         $request->session()->regenerateToken();
 
         return  redirect("/");
+    }
+
+    public function inbox (Request $request) {
+        $cin=request()->input('cin');
+//        dd($cin);
+        $messages = DB::table('messages')
+            ->where('Recepteur', $cin)
+            ->orderBy('date_envoi', 'desc')
+            ->get();
+//        $messages = Contact::orderBy("created_at","DESC")->paginate(10);
+        return view("backOffice.general.inbox",compact("messages"));
+    }
+
+    public function setRead(Request $request)
+    {
+        $messageId = $request->input('id');
+//        dd($messageId);
+        Message::where('id', $messageId)->update(['state' => 0]);
+
+        return response('ok');
+
+//        $manager->state = 0;
+//        $manager->update();
+//
+//        return "ok";
     }
 }

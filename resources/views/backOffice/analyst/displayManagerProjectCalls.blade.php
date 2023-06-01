@@ -1,4 +1,4 @@
-@extends("backOffice.layout.panelAdmin")
+@extends("backOffice.layout.panelAnalyst")
 
 @section("style")
     <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/mdi/css/materialdesignicons.min.css">
@@ -18,46 +18,51 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title"> List of {{ $user->name }}'s analysts</h4>
-                            {{--                            <p class="card-description">--}}
-                            {{--                                <a href="{{ route('superAdmin.managers.add') }}" class="btn btn-sm btn-outline-success">--}}
-                            {{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
-                            {{--                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter</strong>--}}
-                            {{--                                </a>--}}
-                            {{--                            </p>--}}
+                            <h4 class="card-title">{{ $projet->NomPr  }} 's List Calls</h4>
+                            <p class="card-description">
+                                <a href="{{ route('admin.addManager') }}" class="btn btn-sm btn-outline-success">
+                                    <i class="mdi mdi-plus-box"></i> <strong
+                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter un manager</strong>
+                                </a>
+                            </p>
+                            <br>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>
-                                            User
-                                        </th>
-                                        <th>
-                                            Full name
-                                        </th>
-                                        <th>
-
-                                        </th>
+{{--                                        <th>--}}
+{{--                                            Project Name--}}
+{{--                                        </th>--}}
+{{--                                        <th>--}}
+{{--                                            Candidat Name--}}
+{{--                                        </th>--}}
+{{--                                        <th>--}}
+{{--                                            Number of calls--}}
+{{--                                        </th>--}}
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($analysts as $analyst)
+                                    @foreach($appels as $appel)
                                         <tr>
-                                            <td class="py-1">
-                                                <img src="{{asset("uploads/managers/avatars/" . $analyst->picture)}}"
-                                                     alt="image"/>
-                                            </td>
-                                            <td style="font-size: 15px">
-                                                {{$analyst->name}}
-                                            </td>
+{{--                                            <td>--}}
+{{--                                                {{$info->NomPr}}--}}
+{{--                                            </td>--}}
+{{--                                            <td>--}}
+{{--                                                {{$info->candidats_names}}--}}
+{{--                                            </td>--}}
+{{--                                            <td>--}}
+{{--                                                {{$info->appels_count}}--}}
+{{--                                            </td>--}}
+
                                             <td>
                                                 <form style="display: inline; margin-right: -40px" method="POST"
-                                                      action="{{ route("admin.deleteAnalyst",['cinMan'=>$user->CIN,'cinAna'=> $analyst->CIN] )}}">
+                                                      action="#">
                                                     @csrf
-                                                    <input type="hidden" name="id" value="{{$analyst->CIN}}">
-                                                    <button type="submit" class="btn badge  btn-delete"><i class="fas fa-trash" style="font-size:17px"></i></button>
+                                                    <input type="hidden" name="id" value="">
+                                                    <button type="submit" class="btn badge badge-danger">Details of calls</button>
                                                 </form>
                                             </td>
+                                        </tr>
                                     @endforeach
                                     </tbody>
                                 </table>

@@ -9,6 +9,7 @@
     <title>@yield('title')</title>
 
     @include("backOffice.layout.includes.links.styleLinks")
+    @include("backOffice.layout.includes.links.scriptLinks")
 
     @yield('style')
 </head>

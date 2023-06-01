@@ -7,6 +7,7 @@ use App\Http\Controllers\Helper\UploadController;
 use App\Models\Appel;
 use App\Models\User;
 use App\Models\Projet;
+use App\Models\Score;
 use App\Models\Manager;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
@@ -72,6 +73,38 @@ class ManagerController extends Controller
 
         if ($buttonClicked === 'validate') {
 
+            $currentDate = Carbon::today()->toDateString();
+//            dd($currentDate);
+
+            $cin=auth()->user()->CIN;
+//            dd($cin);
+
+            $manager = Manager::where('CIN', $cin)->first();
+            $nb=$manager->nb_max_des_appels;
+//            dd($nb);
+
+            $scores = Score::where('ManagerCIN', $cin)
+                ->whereDate('Date', $currentDate)
+                ->first();
+
+//            dd($scores->Score);
+            $inc=1*100/$nb;
+
+//            dd($inc);
+
+            if (empty($scores)){
+                $score=new Score();
+                $score->Date=$currentDate;
+                $score->Score=$inc;
+                $score->ManagerCIn=$cin;
+
+                $score->save();
+            }
+            else{
+                $scores->Score=$scores->Score+$inc;
+                $scores->save();
+            }
+
             DB::table('appels')
                 ->where('ProjetID','=',$id)
                 ->whereDate('Prochain_appel', Carbon::today())
@@ -101,7 +134,7 @@ class ManagerController extends Controller
                     ->where('projets.ManagerCIN', $cin)
                     ->where(function ($query) {
                         $query->whereNull('appels.Prochain_appel')
-                            ->orWhereDate('appels.Prochain_appel', Carbon::yesterday());
+                            ->orWhereDate('appels.Prochain_appel', Carbon::today());
                     })
                     ->where('appels.Done', '=', 0)
                     ->select('candidats.*', 'projets.*')
@@ -143,16 +176,32 @@ class ManagerController extends Controller
             $appel->Commentaire = $comment;
             $appel->Date_appel = $call1;
             $appel->ProjetID=$id;
+            $appel->Done=1;
             $appel->save();
 
             DB::table('appels')
                 ->where('ProjetID','=',$id)
-                ->whereDate('Prochain_appel', Carbon::today())
+                ->whereDate('Prochain_appel','<=', Carbon::today())
                 ->update(['Done' => 1]);
 
             Projet::where('ID', $id)
                 ->update(['Statut' => 'Completed']);
 
         }
+        $cin=auth()->user()->CIN;
+        $today=Carbon::today();
+        $candidats = DB::table('candidats')
+            ->join('projets', 'candidats.ID', '=', 'projets.CandidatID')
+            ->join('appels', 'projets.ID', '=', 'appels.ProjetID')
+            ->where('projets.ManagerCIN', $cin)
+            ->where(function ($query) use ($today) {
+                $query->whereNull('appels.Prochain_appel')
+                    ->orWhereDate('appels.Prochain_appel', '<',$today);
+            })
+            ->where('appels.Done','=', 0)
+            ->select('candidats.*', 'projets.*')
+            ->get();
+
+        return view('backOffice.manager.displayCalls')->with(['candidats'=>$candidats]);
     }
 }

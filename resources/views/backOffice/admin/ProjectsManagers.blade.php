@@ -43,21 +43,24 @@
                                         <tbody>
                                         @foreach($projects as $project)
                                             <tr>
-                                                <td>
+                                                <td style="font-size: 12px; font-weight: bold;">
                                                     {{$project->ID}}
                                                 </td>
-                                                <td>
+                                                <td style="font-size: 12px; font-weight: bold; padding-right: 10px; margin-right: 10px">
                                                     {{$project->NomPr}}
                                                 </td>
-                                                <td>
-                                                    <input type="checkbox" name="action[]" value="{{ $project->ID }}">
+                                                <td >
+                                                    <input type="checkbox" name="action[]" value="{{ $project->ID }}" class="custom-checkbox">
                                                 </td>
                                             </tr>
                                         @endforeach
                                         </tbody>
                                     </table>
                                 </div>
-                                <button type="submit" class="btn badge badge-info">Soumettre</button>
+                                <button type="submit" class="btn custom-button-style">
+                                    <i class="fas fa-check-circle fa-lg"></i>
+                                    Soumettre
+                                </button>
                             </form>
                             {{--                            <p class="card-description">--}}
                             {{--                                <a href="{{ route('superAdmin.managers.add') }}" class="btn btn-sm btn-outline-success">--}}
@@ -87,15 +90,15 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span
-                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a
-                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
-                        class="ti-heart text-danger ml-1"></i></span>
-            </div>
-        </footer>
+{{--        <footer class="footer">--}}
+{{--            <div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
+{{--                <span--}}
+{{--                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a--}}
+{{--                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>--}}
+{{--                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i--}}
+{{--                        class="ti-heart text-danger ml-1"></i></span>--}}
+{{--            </div>--}}
+{{--        </footer>--}}
         <!-- partial -->
     </div>
 @endsection

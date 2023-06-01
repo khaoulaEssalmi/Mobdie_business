@@ -1,9 +1,12 @@
-@extends("backOffice.layout.panelManager")
+@extends("backOffice.layout.panelManager ")
 
 @section("style")
     <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/mdi/css/materialdesignicons.min.css">
     <style>
-
+        .mycardtitle{
+            font-size: 30px;
+            color: violet !important;
+        }
     </style>
 @endsection
 
@@ -18,14 +21,9 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Calls List</h4>
+                            <h4 class="card-title mycardtitle">Calls List</h4>
                             <br><br>
-{{--                            <p class="card-description">--}}
-{{--                                <a href="{{ route('admin.addManager') }}" class="btn btn-sm btn-outline-success">--}}
-{{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
-{{--                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter un manager</strong>--}}
-{{--                                </a>--}}
-{{--                            </p>--}}
+
                             <br>
                             <div class="table-responsive">
                                 <table class="table table-striped">
@@ -35,7 +33,7 @@
                                             CandidatID
                                         </th>
                                         <th>
-                                            FUll Name
+                                            Full Name
                                         </th>
                                         <th>
                                             Projet
@@ -45,13 +43,13 @@
                                     <tbody>
                                     @foreach($candidats as $candidat)
                                         <tr>
-                                            <td>
+                                            <td style="font-size: 12px; font-weight: bold;">
                                                 {{$candidat->CandidatID}}
                                             </td>
-                                            <td>
+                                            <td style="font-size: 12px; font-weight: bold;">
                                                 {{$candidat->Nom}} {{$candidat->Prenom}}
                                             </td>
-                                            <td>
+                                            <td style="font-size: 12px; font-weight: bold;">
                                                 {{$candidat->NomPr }}
                                             </td>
                                             <td>
@@ -59,7 +57,9 @@
                                                       action="{{route('manager.callCandidat',['ProjetID'=>$candidat->ID])}}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="">
-                                                    <button type="submit" class="btn badge badge-danger">Call</button>
+                                                    <button type="submit" class="btn badge badge-danger custom-icon11" st>
+                                                        <i class="mdi mdi-phone">&nbsp; Call</i>
+                                                        </button>
                                                 </form>
                                             </td>
                                         </tr>
@@ -74,15 +74,15 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span
-                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a
-                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
-                        class="ti-heart text-danger ml-1"></i></span>
-            </div>
-        </footer>
+{{--        <footer class="footer">--}}
+{{--            <div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
+{{--                <span--}}
+{{--                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a--}}
+{{--                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>--}}
+{{--                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i--}}
+{{--                        class="ti-heart text-danger ml-1"></i></span>--}}
+{{--            </div>--}}
+{{--        </footer>--}}
         <!-- partial -->
     </div>
 @endsection
