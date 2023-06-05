@@ -17,7 +17,7 @@ class Projet extends Model
 
     protected $fillable = [
         'ID',
-        'Nom',
+        'NomPr',
         'Description',
         'Statut',
         'ManagerCIN',

@@ -7,7 +7,7 @@
         <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
     @endif
     <div class="main-panel">
-        <div class="content-wrapper" style="height: 70px !important;">
+        <div class="content-wrapper1" style="height: 70px !important;">
             <div class="row" style="width: 0px !important; background-color: transparent !important;">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">

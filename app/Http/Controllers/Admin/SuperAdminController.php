@@ -22,10 +22,12 @@ class SuperAdminController extends Controller
     public function index()
     {
         $cin = request()->query('cin');
+        $count=request()->query('count');
+
         $nbrClients = 20;
         $nbrProducts = 10;
         $user = User::where('CIN', $cin)->first();
-        return view('backOffice.dashboardSuperAdmin')->with(["nbrClients" => $nbrClients,"nbrProducts" => $nbrProducts,"user"=>$user]);
+        return view('backOffice.dashboardSuperAdmin')->with(["count"=>$count,"nbrClients" => $nbrClients,"nbrProducts" => $nbrProducts,"user"=>$user]);
     }
 
     public function check(Request $request) {

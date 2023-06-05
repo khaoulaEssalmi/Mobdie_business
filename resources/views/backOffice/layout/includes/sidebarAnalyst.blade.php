@@ -32,6 +32,7 @@
                 <i class="fas fa-inbox" style="font-size: 20px;"></i>
                 &nbsp;&nbsp;&nbsp;
                 <span class="menu-title">Inbox</span>
+                <span class="num-messages">{{ $count }}</span>
             </a>
         </li>
 {{--        <li class="nav-item">--}}
@@ -40,16 +41,5 @@
 {{--                <span class="menu-title">Newsletter</span>--}}
 {{--            </a>--}}
 {{--        </li>--}}
-        <li class="nav-item">
-
-            <a class="nav-link" onclick="document.getElementById('logoutForm').submit()" href="#">
-                <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
-                &nbsp;&nbsp;&nbsp;
-                <span class="menu-title">Logout</span>
-            </a>
-            <form id="logoutForm" method="GET" action="#">
-                @csrf
-            </form>
-        </li>
     </ul>
 </nav>

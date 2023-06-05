@@ -13,7 +13,7 @@
     @endif
 
     <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -57,8 +57,8 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <button type="submit" class="btn custom-button-style">
-                                    <i class="fas fa-check-circle fa-lg"></i>
+                                <button type="submit" class="btn custom-button-style ">
+                                    <i class="fas fa-check-circle fa-lg" style="font-size: 15px !important;"></i>
                                     Soumettre
                                 </button>
                             </form>

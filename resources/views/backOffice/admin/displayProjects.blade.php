@@ -13,11 +13,11 @@
         <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
     @endif
     <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" style="max-width: 1092px !important;">
                             <h3 class="card-title">Projects List</h3>
 {{--                            <p class="card-description">--}}
 {{--                                <a href="#" class="btn btn-sm btn-outline-success">--}}

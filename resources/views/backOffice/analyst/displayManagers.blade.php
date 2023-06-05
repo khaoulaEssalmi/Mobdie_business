@@ -13,7 +13,7 @@
         <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
     @endif
     <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -58,7 +58,9 @@
                                                         &nbsp;
                                                         <i class="fas fa-project-diagram" style="font-size: 14px !important;"></i>
                                                         &nbsp;
-                                                        Projects
+                                                        <b>
+                                                            Projects
+                                                        </b>
                                                         &nbsp;
                                                     </button>
                                                 </form>

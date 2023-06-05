@@ -21,6 +21,8 @@
     },
     "dependencies": {
         "@mdi/font": "^7.2.96",
-        "bootstrap": "^5.2.3"
+        "bootstrap": "^5.2.3",
+        "bootstrap-toaster": "^5.2.0-beta1.1",
+        "sweetalert2": "^11.7.10"
     }
 }

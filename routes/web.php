@@ -121,9 +121,11 @@ Route::namespace("Admin")->prefix("admin")->name("admin.")->group(function () {
 
         Route::get("dashboard/{name?}", [AdminController::Class, "index"])->name("dashboard");
         Route::get("/projects",[AdminController::class, "displayProjects"])->name("projects");
+        Route::get("/importProjects",[AdminController::class,"import"])->name("import");
+        Route::post("/import",[AdminController::class,"importcsv"])->name("import.csv");
         Route::get('/managers',[AdminController::class, "displayManagers"])->name("managers");
         Route::get('/analysts',[AdminController::class, "displayAnalysts"])->name("analysts");
-        Route::post("/managers/projects",[AdminController::class,"affectationDesProjets"])->name("projects.to.managers");
+        Route::match(['get', 'post'],"/managers/projects",[AdminController::class,"affectationDesProjets"])->name("projects.to.managers");
         Route::post("/projects/submit",[AdminController::class,"projectsSubmit"])->name("projects.submit");
         Route::post("/managers/quota",[AdminController::class,"affectationQuota"])->name("man.quota");
         Route::post("/managers/quota/change",[AdminController::class,"quotaChange"])->name("man.change.quota");
@@ -166,6 +168,7 @@ Route::namespace("Admin")->prefix("general")->name('general.')->group(function()
         Route::post("changePass", [GeneralController::Class, "changePass"])->name("change_password");
         Route::get("inbox", [GeneralController::Class, "inbox"])->name("inbox");
         Route::post("message/setRead", [GeneralController::Class, "setRead"])->name("message.setRead");
+        Route::get("messages",[GeneralController::class,"showMessage"])->name("message.show");
 
     });
 });

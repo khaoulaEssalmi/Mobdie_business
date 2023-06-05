@@ -1,8 +1,19 @@
 @extends("backOffice.layout.panelAdmin")
 
 @section("content-wrapper")
+        <script>
+            @if ($errors->any()){
+                Swal.fire({
+                    title: 'Validation error',
+                    html: '<ol>@foreach ($errors->all() as $error)  <b>{{ $error }}</b><br>@endforeach</ol>',
+                    icon: 'error',
+                    confirmButtonText: 'OK'
+                });
+            }
+            @endif
+        </script>
     <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper1">
             <div class="row">
                 <div class="col-12 grid-margin stretch-card">
                     <div class="tab-content2">
@@ -19,11 +30,11 @@
                                     <br>
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="text" class="my-custom-class" style="width: 200px !important;" id="name" name="name" placeholder="Name">
-                                    @error('name')
-                                    <span class="invalid-feedback" style="display: block !important;" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+{{--                                    @error('name')--}}
+{{--                                    <span class="invalid-feedback" style="display: block !important;" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
                                 </div>
                                 <div class="form-group">
                                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -32,11 +43,11 @@
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="email" class="my-custom-class" style="width: 200px !important;" id="Email" name="email"
                                            placeholder="Email">
-                                    @error('email')
-                                    <span class="invalid-feedback" style="display: block !important;" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+{{--                                    @error('email')--}}
+{{--                                    <span class="invalid-feedback" style="display: block !important;" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
                                 </div>
                                 <div class="form-group">
                                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -44,11 +55,11 @@
                                     <br>
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="text" class="my-custom-class" style="width: 200px !important;" id="cin" name="cin" placeholder="CIN">
-                                    @error('cin')
-                                    <span class="invalid-feedback" style="display: block !important;" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+{{--                                    @error('cin')--}}
+{{--                                    <span class="invalid-feedback" style="display: block !important;" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
                                 </div>
                                 <div class="form-group">
                                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -57,11 +68,11 @@
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="password" class="my-custom-class" style="width: 200px !important;" id="password" name="password"
                                            placeholder="Password">
-                                    @error('password')
-                                    <span class="invalid-feedback" style="display: block !important;" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+{{--                                    @error('password')--}}
+{{--                                    <span class="invalid-feedback" style="display: block !important;" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
                                 </div>
                                 <div class="form-group">
                                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -70,11 +81,11 @@
                                                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <input type="text" class="my-custom-class" style="width: 200px !important;" id="address" name="address"
                                            placeholder="Address">
-                                    @error('address')
-                                    <span class="invalid-feedback" style="display: block !important;" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
+{{--                                    @error('address')--}}
+{{--                                    <span class="invalid-feedback" style="display: block !important;" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                    @enderror--}}
                                 </div>
                                 <div class="form-group">
                                     &nbsp;&nbsp;&nbsp;&nbsp;
@@ -88,13 +99,13 @@
                                     </span>
                                     @enderror
                                 </div>
-                                <div class="form-group">
-                                    &nbsp;&nbsp;&nbsp;&nbsp;
-                                    <label for="Phone"  style="font-family: solid ; font-size: 15px;">Call quota</label>
-                                    <br>
-                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="text" class="my-custom-class" style="width: 200px !important;" id="Call" name="Call" placeholder="Call">
-                                </div>
+{{--                                <div class="form-group">--}}
+{{--                                    &nbsp;&nbsp;&nbsp;&nbsp;--}}
+{{--                                    <label for="Phone"  style="font-family: solid ; font-size: 15px;">Call quota</label>--}}
+{{--                                    <br>--}}
+{{--                                                                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;--}}
+{{--                                    <input type="text" class="my-custom-class" style="width: 200px !important;" id="Call" name="Call" placeholder="Call">--}}
+{{--                                </div>--}}
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <button type="submit" class="btn custom-button-style"  name="button_clicked"
                                         value="validate">

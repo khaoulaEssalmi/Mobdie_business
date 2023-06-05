@@ -13,7 +13,7 @@
         <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
     @endif
     <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -45,7 +45,7 @@
                                                 {{$project->NomPr}}
                                             </td>
                                             <td>
-                                                @if ($project->Statut == 'En cours')
+                                                @if ($project->Statut == 'In progress')
                                                     <i class="fas fa-spinner"  style="font-size: 24px; color: #ffcd39; margin-right: 1px; "></i>
                                                 @elseif ($project->Statut == 'Completed')
                                                     <i class="fas fa-check-circle" style="font-size: 24px; color: #00bb00; margin-right: 1px; "></i>
@@ -66,15 +66,15 @@
         </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
-        <footer class="footer">
-            <div class="d-sm-flex justify-content-center justify-content-sm-between">
-                <span
-                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a
-                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>
-                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i
-                        class="ti-heart text-danger ml-1"></i></span>
-            </div>
-        </footer>
-        <!-- partial -->
+{{--        <footer class="footer">--}}
+{{--            <div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
+{{--                <span--}}
+{{--                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a--}}
+{{--                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>--}}
+{{--                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i--}}
+{{--                        class="ti-heart text-danger ml-1"></i></span>--}}
+{{--            </div>--}}
+{{--        </footer>--}}
+{{--        <!-- partial -->--}}
     </div>
 @endsection

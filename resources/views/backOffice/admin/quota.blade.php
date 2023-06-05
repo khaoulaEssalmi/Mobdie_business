@@ -21,7 +21,7 @@
 {{--                    </div>--}}
                 </div>
                 <div class="col-md-100">
-                    <div class="tab-content1">
+                    <div class="tab-content1" style="margin-top: 60px !important;">
                         <div class="tab-pane fade active show" id="account-general">
                             <div class="card-body1 media align-items-center custom-border">
                                 <img src="{{asset("uploads/managers/avatars/" .  $user->picture )}}" width="130px" height="100px" alt="" class="d-block">

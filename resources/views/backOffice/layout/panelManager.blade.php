@@ -2,7 +2,7 @@
 
 <div class="container-scroller">
 
-    @include("backOffice.layout.includes.navbarManager")
+    @include("backOffice.layout.includes.navbar")
 
     <div class="container-fluid page-body-wrapper">
 

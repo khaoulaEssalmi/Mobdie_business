@@ -23,10 +23,12 @@ class ManagerController extends Controller
     public function index()
     {
         $cin = request()->query('cin');
+        $count=request()->query('count');
+
         $nbrClients = 2000;
         $nbrProducts = 9800;
         $user = User::where('CIN', $cin)->first();
-        return view('backOffice.manager.dashboardManager')->with(["nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
+        return view('backOffice.manager.dashboardManager')->with(["count"=>$count,"nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
     }
 
     public function calls(Request $request){

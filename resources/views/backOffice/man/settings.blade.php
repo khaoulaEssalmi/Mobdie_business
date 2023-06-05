@@ -2,6 +2,14 @@
 
 @section("style")
     <link rel="stylesheet" href="{{asset("css/admin/profile.css")}}">
+    <style>
+        .ligne-separation {
+            border: none;
+            height: 1px;
+            background-color: #000000;
+            margin: 10px 0;
+        }
+    </style>
 @endsection
 
 @section("content-wrapper")
@@ -13,11 +21,11 @@
     @enderror
     <div class="container light-style flex-grow-1 container-p-y">
 
-        <h4 class="font-weight-bold py-3 mb-4" style="font-size: 24px;font-weight: bold;color: #333;text-transform: uppercase; border-bottom: 1px solid #ccc;padding-bottom: 10px;margin-bottom: 20px;">
+        <h4 class="font-weight-bold py-3 mb-4" style="font-size: 24px;font-weight: bold;color: #333;text-transform: uppercase;padding-bottom: 0px;margin-bottom: 0px; margin-top: 50px !important;">
             Account settings
         </h4>
 
-        <div class="cardd overflow-hidden" style="width: 90%;">
+        <div class="cardd overflow-hidden" style="width: 70%;">
             <div class="row no-gutters row-bordered row-border-light">
                 <div class="col-md-3 pt-0">
                     <div class="list-group list-group-flush account-settings-links">
@@ -34,7 +42,7 @@
                             <div class="card-body media align-items-center">
                                 <img src="{{asset("uploads/managers/avatars/" .  Auth::user()->picture )}}"
                                      width="130px" height="100px" alt="" class="d-block">
-                                <div class="media-body ml-4">
+                                <div class="media-body ml-4" style=" border-bottom: 0px !important;">
                                     <form id="change-picture-form" style="display: inline" method="POST"
                                           action="{{ route('general.picture.change') }}"
                                           enctype="multipart/form-data">
@@ -47,23 +55,13 @@
                                                    class="account-settings-fileinput">
                                         </label> &nbsp;
                                     </form>
-{{--                                    <form style="display: inline" method="POST"--}}
-{{--                                          action="{{ route('general.picture.reset') }}"--}}
-{{--                                          enctype="multipart/form-data">--}}
-{{--                                        @csrf--}}
-{{--                                        </i>--}}
-{{--                                        <button type="submit" class="btn btn-default md-btn-flat"><i class="fas fa-undo"></i>--}}
-{{--                                            Reset</button>--}}
-{{--                                    </form>--}}
-
                                     <div class="text-light small mt-1" style="color: #0B0F32 !important; font-family: solid !important;">Allowed JPG, GIF or PNG. Max size of 800K</div>
                                 </div>
                             </div>
-                            <hr class="border-light m-0">
-
+                            <hr class="ligne-separation">
                             <form id="general" method="POST" action="{{ route('general.update.general') }}">
                                 @csrf
-                                <div class="card-body">
+                                <div class="card-body" style="border-top: 0px !important;">
                                     <div class="form-group">
                                         <label class="form-label" style="font-family: solid ; font-size: 15px;">Full Name</label>
                                         <input type="text" name="full_name" class="form-control mb-1"

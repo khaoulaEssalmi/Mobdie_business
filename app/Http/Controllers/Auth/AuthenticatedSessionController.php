@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use App\Models\User;
+use Illuminate\Support\Facades\DB;
+
 
 
 class AuthenticatedSessionController extends Controller
@@ -28,30 +30,42 @@ class AuthenticatedSessionController extends Controller
     public function store(LoginRequest $request): RedirectResponse
     {
         $request->authenticate();
-
+        $email=$request->email;
+//        dd($email);
         $user = User::where('email', $request->email)->first();
 //        dd($user);
+        $count = DB::table('messages')
+            ->where('Recepteur', function ($query) use ($email) {
+                $query->select('CIN')
+                    ->from('users')
+                    ->where('email', $email);
+
+            })
+            ->where('State','=',1)
+            ->count();
+//        dd($count);
+
         $cin=$user->CIN;
         if ($user->isAdmin()) {
             Auth::guard('admin')->login($user);
-            return redirect()->route('admin.dashboard', ['cin' => $cin]);
+            return redirect()->route('admin.dashboard', ['cin' => $cin,'count'=>$count]);
         }
 
         if ($user->isAnalyst()) {
             Auth::guard('analyst')->login($user);
-            return redirect()->route('analyst.dashboard', ['cin' => $cin]);
+            return redirect()->route('analyst.dashboard', ['cin' => $cin,'count'=>$count]);
         }
 
         if ($user->isManager()) {
             Auth::guard('man')->login($user);
 
-            return redirect()->route('manager.dashboard', ['cin' => $cin]);
+            return redirect()->route('manager.dashboard', ['cin' => $cin,'count'=>$count]);
         }
 
         if ($user->isSuperAdmin()){
 //            dd('super admin');
             Auth::guard('super')->login($user);
-            return redirect()->route('superAdmin.dashboard', ['cin' => $cin]);
+            return redirect()->route('superAdmin.dashboard', ['cin' => $cin,'count'=>$count]);
         }
 
         return redirect()->route('superAdmin.dashboard');

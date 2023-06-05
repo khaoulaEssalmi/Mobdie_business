@@ -5,7 +5,7 @@
     <style>
         .mycardtitle{
             font-size: 30px;
-            color: violet !important;
+            /*color: violet !important;*/
         }
     </style>
 @endsection
@@ -16,7 +16,7 @@
         <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
     @endif
     <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -57,8 +57,8 @@
                                                       action="{{route('manager.callCandidat',['ProjetID'=>$candidat->ID])}}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="">
-                                                    <button type="submit" class="btn badge badge-danger custom-icon11" st>
-                                                        <i class="mdi mdi-phone">&nbsp; Call</i>
+                                                    <button type="submit" class="btn badge badge-danger custom-icon11" >
+                                                        <i class="mdi mdi-phone" style="font-size: 16px !important;"> <b>Call</b></i>
                                                         </button>
                                                 </form>
                                             </td>

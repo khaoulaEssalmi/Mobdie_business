@@ -105,7 +105,9 @@ body{
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.1);
 }
 
-
+.grid.email {
+    margin-top: 60px;
+}
 
 .grid .grid-header:after {
     clear: both;

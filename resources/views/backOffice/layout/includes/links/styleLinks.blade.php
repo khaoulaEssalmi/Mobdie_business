@@ -4,6 +4,7 @@
 <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/css/vendor.bundle.base.css">
 <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/mdi/css/materialdesignicons.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
 <!-- endinject -->
 

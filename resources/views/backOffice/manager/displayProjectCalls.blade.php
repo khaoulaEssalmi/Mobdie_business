@@ -13,7 +13,7 @@
         <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
     @endif
     <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -60,13 +60,13 @@
         </div>
         <div class="main-panel" >
             <div class="content-wrapper" >
-                <div class="row" style="width:430px !important;">
-                    <div class="col-12 grid-margin stretch-card">
-                        <div class="card" style="width:400px !important;">
-                            <div class="card-body " style="width:400px !important;">
+                <div class="row" style="width:530px !important;">
+                    <div class="col-12 grid-margin stretch-card" style="width:500px !important;">
+                        <div class="card" >
+                            <div class="card-body " style="width:500px !important;">
                                 <h4 class="card-title">Today Call</h4>
 {{--                                <br><br>--}}
-                                <form class="forms-sample"  style="width:400px !important;" method="POST" action="{{route("manager.submitFormCall",['PrId'=>$Pr->ID])}}"
+                                <form class="forms-sample"  style="width:500px !important;" method="POST" action="{{route("manager.submitFormCall",['PrId'=>$Pr->ID])}}"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
@@ -82,14 +82,14 @@
                                         <input type="date" class="form-control" id="call2" name="call2">
                                     </div>
 
-                                    <button type="submit" class="btn custom-button-style" style="margin-left: 240px !important;" name="button_clicked" value="validate">
-                                        <i class="fas fa-thumbs-up"></i>
-                                        Validate the call
+                                    <button type="submit" class="btn custom-button-style" style="margin-left: 290px !important;" name="button_clicked" value="validate">
+                                        <i class="fas fa-thumbs-up" style="font-size: 17px !important;"></i>
+                                        <b>Validate the call</b>
                                     </button>
                                     <br><br>
-                                        <button type="submit" class="btn custom-button-style1" style="margin-left: 240px !important;" name="button_clicked" value="mark">
-                                            <i class="far fa-check-circle"></i>
-                                            Mark as complete
+                                        <button type="submit" class="btn custom-button-style1" style="margin-left: 290px !important;" name="button_clicked" value="mark">
+                                            <i class="far fa-check-circle" style="font-size: 17px !important;"></i>
+                                            <b>Mark as complete</b>
                                         </button>
                                 </form>
                             </div>

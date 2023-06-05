@@ -139,14 +139,19 @@ class GeneralController extends Controller
     }
 
     public function inbox (Request $request) {
-        $cin=request()->input('cin');
+        $cin=auth()->user()->CIN;
+        $count=request()->query('count');
 //        dd($cin);
         $messages = DB::table('messages')
-            ->where('Recepteur', $cin)
+            ->join('users as emetteur', 'messages.Emetteur', '=', 'emetteur.CIN')
+            ->join('users as recepteur', 'messages.Recepteur', '=', 'recepteur.CIN')
+            ->select('messages.*', 'emetteur.email as email_emetteur')
+            ->where('messages.Recepteur', $cin)
             ->orderBy('date_envoi', 'desc')
             ->get();
-//        $messages = Contact::orderBy("created_at","DESC")->paginate(10);
-        return view("backOffice.general.inbox",compact("messages"));
+//     dd($messages);
+
+        return view("backOffice.general.inbox",['messages'=>$messages,'count'=>$count]);
     }
 
     public function setRead(Request $request)
@@ -161,5 +166,19 @@ class GeneralController extends Controller
 //        $manager->update();
 //
 //        return "ok";
+    }
+    public  function showMessage(Request $request){
+        $id=$request->input('id');
+        $count=request()->query('count');
+
+//        dd($id);
+        $message = Message::select('messages.*', 'emetteur.email AS email_emetteur')
+            ->join('users AS emetteur', 'messages.Emetteur', '=', 'emetteur.CIN')
+            ->where('messages.id', $id)
+            ->first();
+//        dd($message);
+
+        return view('backOffice.general.showMessage')->with(['message'=>$message,'count'=>$count]);
+
     }
 }

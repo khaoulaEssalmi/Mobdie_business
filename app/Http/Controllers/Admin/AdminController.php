@@ -4,8 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helper\UploadController;
+use App\Imports\importClass;
+use Illuminate\Support\Facades\Validator;
+use App\Imports\ProjectsImport;
 use App\Models\AnalystManager;
 use App\Models\Message;
+use RealRashid\SweetAlert\Facades\Alert;
 use App\Models\User;
 use App\Models\Projet;
 use Carbon\Carbon;
@@ -17,6 +21,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
+use Maatwebsite\Excel\Facades\Excel;
+
 
 
 class AdminController extends Controller
@@ -24,10 +30,12 @@ class AdminController extends Controller
     public function index()
     {
         $cin = request()->query('cin');
+        $count=request()->query('count');
+
         $nbrClients = 2000;
         $nbrProducts = 9800;
         $user = User::where('CIN', $cin)->first();
-        return view('backOffice.admin.dashboardAdmin')->with(["nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
+        return view('backOffice.admin.dashboardAdmin')->with(["count"=>$count,"nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
     }
 
     public function displayProjects()
@@ -46,8 +54,13 @@ class AdminController extends Controller
 
     public function displayAnalysts()
     {
-        $analysts = User::where('role', "Analyst")->get();
-        return view("backOffice.admin.displayAnalysts", compact("analysts"));
+        $count=request()->query('count');
+        $analysts = DB::table('users')
+            ->where('role', 'Analyst')
+            ->where('service',1)
+            ->get();
+
+        return view("backOffice.admin.displayAnalysts", ['analysts'=>$analysts,'count'=>$count]);
     }
 
     public function affectationDesProjets()
@@ -55,12 +68,12 @@ class AdminController extends Controller
         $cin = request()->query('cin');
         $user = User::where('CIN', $cin)->first();
         $projects = DB::table('projets')
-//            ->whereNull('ManagerCIN')
-            ->where('Statut', '=', 'En attente')
+            ->where('Statut', '=', 'Pending')
             ->orWhere('Statut', '=', 'Blocked')
             ->get();
 //        dd($projects);
-        $totalProjects = Projet::where('managerCIN', $cin)->where('Statut', 'En cours')->count();
+        $totalProjects = Projet::where('managerCIN', $cin)->where('Statut', 'In progress')->count();
+//        dd($totalProjects);
         return view('backOffice.admin.ProjectsManagers')->with(["projects" => $projects, "cin" => $cin, "user" => $user, "total" => $totalProjects]);
     }
 
@@ -69,12 +82,9 @@ class AdminController extends Controller
         $cin = request()->query('cin');
         $manager=User::find($cin);
         $user = auth()->user();
-//        dd($user->cin);
-
-//        $user = User::where('cin', $cin)->first();
-//        $totalProjects = Projet::where('managerCIN', $cin)->where('Statut','en cours')->count();
 
         $managers = User::where('role', "Manager")->get();
+
         $user = auth()->user();
         $adminCIN = $user->CIN;
 
@@ -87,12 +97,9 @@ class AdminController extends Controller
 
         $count = count($selected_projects_ids);
 
-//        dd($count);
-        $message = "Cher " . $manager->name . ",\n\n";
-        $message .= "Vous avez été affecté aux".$count." projets suivants :\n\n";
+        $message = "You have been assigned to the following projects :\n\n";
 
         foreach ($selected_projects_ids as $project_id) {
-//            dd($project_id);
             $res= Projet::select('NomPr')
                 ->where('ID', $project_id)
                 ->first();
@@ -105,22 +112,21 @@ class AdminController extends Controller
             $result = Projet::select('Statut')
                 ->where('ID', $project_id)
                 ->first();
-//            dd($result);
 
             if($result->Statut==="Blocked")
             {
                 Projet::where('ID', $project_id)
                     ->update([
-                        'Statut' => 'En cours',
+                        'Statut' => 'In progress',
                         'AdminCIN' => $adminCIN,
                         'ManagerCIN' => $cin
                     ]);
             }
-            else if ($result->Statut==="En attente")
+            else if ($result->Statut==="Pending")
             {
                 Projet::where('ID', $project_id)
                     ->update([
-                        'Statut' => 'En cours',
+                        'Statut' => 'In progress',
                         'AdminCIN' => $adminCIN,
                         'ManagerCIN' => $cin
                     ]);
@@ -130,10 +136,12 @@ class AdminController extends Controller
                 $appel->save();
             }
         }
-        $message .= "\nVeuillez prendre les mesures nécessaires et nous tenir informés de l'avancement de ces projets.\n\n";
-        $message .= "Cordialement,\n";
 
-//       dd($message);
+        $message .= "\nPlease take the necessary steps and keep us informed of the progress of these projects.\n\n";
+        $message .= "Regards.\n";
+
+//        dd($message);
+
         $envoi=new Message();
         $envoi->Emetteur=$user->cin;
         $envoi->Recepteur=$cin;
@@ -147,81 +155,76 @@ class AdminController extends Controller
             ->where('role', 'Manager')
             ->where('service',1)
             ->get();
+        Session::flash('success', 'Well-affected projects');
 
-        return view('backOffice.admin.displayManagers')->with(["success" => "Projets affected with success", "managers" => $managers]);
+        return view("backOffice.admin.displayManagers")->with(["managers"=>$managers]);
     }
 
-    public function affectationQuota(Request $request)
-    {
-        $cin = request()->query('cin');
-        $user = User::where('cin', $cin)->first();
-        $nombreDeProjets = Projet::where('ManagerCIN', $cin)->where('statut', 'En cours')->count();
-        $nombreDeProjets1 = Projet::where('ManagerCIN', $cin)->where('statut', 'Terminé')->count();
-        $formateur = Manager::where('CIN', $cin)->first();
-        $quota = $formateur->nb_max_des_appels;
-        return view('backOffice.admin.quota')->with(['cin' => $cin, 'user' => $user, 'total' => $nombreDeProjets, 'total1' => $nombreDeProjets1, 'quota' => $quota]);
-    }
-
-    public function quotaChange(Request $request)
-    {
-        $cin = request()->query('cin');
-        $user = Manager::where('cin', $cin)->first();
-//        dd($user);
-        $nb = $request->input("appels");
-//        dd($nb);
-        $user->update(['nb_max_des_appels' => $nb]);
-        $managers = DB::table('users')
-            ->where('role', 'Manager')
-            ->where('service',1)
-            ->get();
-        return view('backOffice.admin.displayManagers')->with(['managers' => $managers]);
-    }
 
     public function affectationDesManagers(Request $request)
     {
+        $count=request()->query('count');
         $cin = request()->query('cin');
         $analyst = User::where('CIN', $cin)->first();
-//        $managers = DB::table('users')
-//            ->where('role', '=', 'Manager')
-//            ->get();
-//        dd($managers);
 
         $excludedManagerCINs = DB::table('analyst_managers')
             ->where('AnalystCIN', $cin)
             ->pluck('ManagerCIN');
-//        dd($excludedManagerCINs);
+
 
         $managers = DB::table('users')
             ->whereNotIn('CIN', $excludedManagerCINs)
             ->where('role', 'Manager')
             ->where('service',1)
-//            ->pluck('CIN')
             ->get();
-//        dd($managers);
 
-        return view('backOffice.admin.ManagersAnalysts')->with(["managers" => $managers, "cin" => $cin, "analyst" => $analyst]);
+        return view('backOffice.admin.ManagersAnalysts')->with(["managers" => $managers, "cin" => $cin, "analyst" => $analyst,'count'=>$count]);
     }
 
     public function managersSubmit(Request $request)
     {
         $cin = request()->query('cin');
-//        dd($cin);
+        $count=request()->query('count');
+
         $user = auth()->user();
-//        dd($user);
         $selected_managers = $request->input('action');
         $managers = User::whereIn('CIN', $selected_managers)->get();
-//        dd($managers);
         $selected_managers_cin_array = $managers->pluck('CIN')->toArray();
+        $message = "You have been assigned to the following managers :\n\n";
+
 //        $selected_managers_ids = array_column($selected_managers_array, 'CIN');
 //        dd($selected_managers_cin_array);
         foreach ($selected_managers_cin_array as $manager_id) {
+            $user = User::where('CIN', $manager_id)->first();
+            $name=$user->name;
+            $message .= "- " . $name . "\n";
+
             AnalystManager::create([
                 'ManagerCIN' => $manager_id,
                 'AnalystCIN' => $cin,
             ]);
         }
-        $analysts = User::where('role', "Analyst")->get();
-        return view("backOffice.admin.displayAnalysts", compact("analysts"));
+
+        $message .= "\nPlease take the necessary steps and keep us informed of the progress of these projects.\n\n";
+        $message .= "Regards.\n";
+
+        $envoi=new Message();
+        $envoi->Emetteur=auth()->user()->CIN;
+        $envoi->Recepteur=$cin;
+        $envoi->Message=$message;
+        $envoi->state=1;
+        $envoi->date_envoi= Carbon::now();
+
+        $envoi->save();
+
+        $analysts = DB::table('users')
+            ->where('role', 'Analyst')
+            ->where('service',1)
+            ->get();
+
+        Session::flash('success', 'Well-affected managers');
+
+        return view("backOffice.admin.displayAnalysts", ["analysts"=>$analysts,"count"=>$count]);
     }
 
     public function ManagerProjects()
@@ -255,14 +258,24 @@ class AdminController extends Controller
 
     public function deleteAnalyst()
     {
-//        $cinMan= request()->query('cinMan');
+        $cinMan= request()->query('cinMan');
 //        dd($cinMan);
-//        $cinAna=request()->query('cinAna');
+        $cinAna=request()->query('cinAna');
 //        dd($cinAna);
-//        DB::table('analyst_managers')
-//            ->where('ManagerCIN', 'cinMan')
-//            ->where('AnalystCIN', 'cinAna')
-//            ->delete();
+
+        AnalystManager::where('ManagerCIN', $cinMan)
+            ->where('AnalystCIN', $cinAna)
+            ->delete();
+
+        Session::flash('success', 'Analyst successfully deleted');
+
+        $managers = DB::table('users')
+            ->where('role', 'Manager')
+            ->where('service',1)
+            ->get();
+//dd($managers);
+        return view("backOffice.admin.displayManagers")->with(["managers"=>$managers]);
+
     }
 
     public function addManager()
@@ -273,7 +286,7 @@ class AdminController extends Controller
     public function addManagerSubmit(Request $request)
     {
         if ($request->input('button_clicked') == 'validate') {
-            $request->validate([
+            $validator = Validator::make($request->all(), [
                 "name" => "required|max:100,name",
                 "cin" => "required|max:100|unique:users,CIN",
                 "email" => "required|email|unique:users,email",
@@ -282,25 +295,29 @@ class AdminController extends Controller
                 "phone" => "max:20",
             ],
                 [
-                    "name.required" => "le champ nom et Prenom est obligatoite",
-                    "name.max" => "le champ nom et Prenom ne peut pas depasser 100 caracteres",
-//                "name.unique"   => "cet utilisateur existe deja dans la base de donnees",
+                    "name.required" => "The name field is required",
+                    "name.max" => "Name field cannot exceed 100 characters",
 
-                    "cin.required" => "le champ nom et Prenom est obligatoite",
-                    "cin.max" => "le champ nom et Prenom ne peut pas depasser 100 caracteres",
-                    "cin.unique" => "cet CIN existe deja dans la base de donnees",
+                    "cin.required" => "The CIN field is required",
+                    "cin.max" => "CIN field cannot exceed 100 characters",
+                    "cin.unique" => "This CIN already exists in the database",
 
-                    "email.required" => "le champ Email est obligatoite",
-                    "email.email" => "le champ Email doit respecter la structure des emails",
-                    "email.unique" => "cet email existe deja",
+                    "email.required" => "The email field is required",
+                    "email.email" => "The Email field must respect the structure of the emails",
+                    "email.unique" => "This email already exists in the database",
 
-                    "password.required" => "le mot de passe est obligatoite",
-                    "password.min" => "le mot de passe ne peut pas etre compose de moins de 8 caracteres",
+                    "password.required" => "The password field is required",
+                    "password.min" => "The password cannot be composed of less than 8 characters",
 
-                    "address.max" => "l'Address ne peut pas depasser 255 caracteres",
+                    "address.max" => "The Address cannot exceed 255 characters",
 
-                    "phone.max" => "le champ Phone ne peut pas depasser 20 caracteres",
+                    "phone.max" => "The Phone field cannot exceed 12 characters",
                 ]);
+            $errors = $validator->errors();
+            if ($errors->any()){
+                return redirect()->back()->withErrors($errors);
+            }
+
 
             $user = new User();
 
@@ -316,18 +333,17 @@ class AdminController extends Controller
 
             $user->save();
 
-            $manager=new Manager();
-            $manager->CIN=$request->input("cin");
-            $manager->nb_max_des_appels=$request->input("Call");
+            $managers = User::where('role', 'Manager')
+                ->where('service', 1)
+                ->get();
+            Session::flash('success', 'user successfully adds');
 
-
-            $manager->save();
-
-            $managers = User::where('role', "Manager")->get();
-
-            return view("backOffice.admin.displayManagers")->with(["success" => "vous avez ajoute votre man avec succes","managers"=>$managers]);
+            return view("backOffice.admin.displayManagers")->with(["managers"=>$managers]);
         } elseif ($request->input('button_clicked') == 'cancel') {
-            return view("backOffice.admin.displayManagers");
+            $managers = User::where('role', 'Manager')
+                ->where('service', 1)
+                ->get();
+            return view("backOffice.admin.displayManagers")->with(["managers"=>$managers]);
         }
     }
 
@@ -335,10 +351,9 @@ class AdminController extends Controller
         $cin=request()->input('cin');
 //        dd($cin);
 
-        Manager::where('CIN', $cin)->delete();
         User::where('cin', $cin)->update(['service' => 0]);
         Projet::where('ManagerCIN', $cin)
-            ->where('Statut', 'En cours')
+            ->where('Statut', 'In progress')
             ->update(['Statut' => 'Blocked']);
 
         AnalystManager::where('ManagerCIN', $cin)
@@ -347,7 +362,30 @@ class AdminController extends Controller
         $managers = User::where('role', 'Manager')
             ->where('service', 1)
             ->get();
-        return view("backOffice.admin.displayManagers", compact("managers"));
+
+        Session::flash('success', 'Manager successfully deleted');
+
+        $managers = DB::table('users')
+            ->where('role', 'Manager')
+            ->where('service',1)
+            ->get();
+//dd($managers);
+        return view("backOffice.admin.displayManagers")->with(["managers"=>$managers]);
+
+    }
+
+    public function import(){
+        return view("backOffice.admin.import");
+    }
+
+    public function importcsv(Request $request){
+        $file = $request->file('csvFile');
+//        dd($file);
+        Excel::import(new ProjectsImport, $file);
+        Session::flash('success', 'Successfully importing data');
+//        dd(session('success'));
+        return redirect()->back();
+
 
     }
 }

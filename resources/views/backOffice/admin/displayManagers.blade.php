@@ -2,18 +2,36 @@
 
 @section("style")
     <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/mdi/css/materialdesignicons.min.css">
-    <style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    </style>
+    {{--    <style>--}}
+{{--.heho{--}}
+{{--    background-color: #F5F7FF !important;--}}
+{{--    margin-top: 70px;--}}
+{{--    font-size: 20px;--}}
+{{--     border: 1px solid #000;--}}
+{{--}--}}
+{{--    </style>--}}
 @endsection
 
 
 @section("content-wrapper")
-    @if(\Illuminate\Support\Facades\Session::has('success'))
-        <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
+    @if(Session::has('success'))
+
+        <script>
+                Toastify({
+                text: '{{ Session::get('success') }}',
+                duration: 3000, // Durée du toast en millisecondes
+                close: true, // Afficher le bouton de fermeture du toast
+                gravity: 'top', // Position du toast (top, bottom, left, right)
+                position: 'center', // Position horizontale du toast (left, center, right)
+                backgroundColor: '#28a745', // Couleur de fond du toast
+                stopOnFocus: true, // Arrêter le toast lorsqu'il est survolé ou en focus
+            }).showToast();
+        </script>
     @endif
     <div class="main-panel">
-        <div class="content-wrapper">
+        <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
@@ -90,15 +108,6 @@
                                                 </form>
                                             </td>
                                             <td style="width:20px">
-                                                <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.quota",['cin'=>$manager->CIN]) }}">
-                                                    @csrf
-                                                    <input type="hidden" name="id" value="{{$manager->CIN}}">
-                                                    <button type="submit" class="btn custom-button4">
-                                                        <i class="fas fa-sync-alt"></i>
-                                                    </button>
-                                                </form>
-                                            </td>
-                                            <td style="width:20px">
                                                 <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.showAnalysts",['cin'=>$manager->CIN]) }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">
@@ -126,17 +135,5 @@
                 </div>
             </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-{{--        <footer class="footer">--}}
-{{--            <div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
-{{--                <span--}}
-{{--                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a--}}
-{{--                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>--}}
-{{--                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i--}}
-{{--                        class="ti-heart text-danger ml-1"></i></span>--}}
-{{--            </div>--}}
-{{--        </footer>--}}
-        <!-- partial -->
     </div>
 @endsection

@@ -8353,6 +8353,12 @@ progress {
 ::-webkit-file-upload-button {
   font: inherit;
   -webkit-appearance: button;
+    background-color: #f5f5f5;
+    color: #000;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
 }
 
 output {
@@ -10642,9 +10648,9 @@ fieldset:disabled .wizard > .actions a,
 }
 
 .btn.custom-button {
-    background-color: #F59711; /* Couleur de fond */
+    background-color: #AD5DEC; /* Couleur de fond */
     color: #fff; /* Couleur du texte */
-    border: 2px solid #F59711; /* Bordure */
+    border: 2px solid #AD5DEC; /* Bordure */
     padding: 10px 20px; /* Espacement intérieur */
     font-size: 16px; /* Taille de police */
     border-radius: 5px; /* Bordure arrondie */
@@ -10676,9 +10682,9 @@ fieldset:disabled .wizard > .actions a,
 
 
 .btn.custom-button1 {
-    background-color: #FFB234; /* Couleur de fond */
+    background-color: #C156E2; /* Couleur de fond */
     color: #fff; /* Couleur du texte */
-    border: 2px solid #FFB234; /* Bordure */
+    border: 2px solid #C156E2; /* Bordure */
     padding: 10px 20px; /* Espacement intérieur */
     font-size: 16px; /* Taille de police */
     border-radius: 5px; /* Bordure arrondie */
@@ -10712,9 +10718,9 @@ fieldset:disabled .wizard > .actions a,
 
 
 .btn.custom-button2 {
-    background-color: #E3A3D7; /* Couleur de fond */
+    background-color: #E63FC6; /* Couleur de fond */
     color: #fff; /* Couleur du texte */
-    border: 2px solid #E3A3D7; /* Bordure */
+    border: 2px solid #E63FC6; /* Bordure */
     padding: 10px 20px; /* Espacement intérieur */
     font-size: 16px; /* Taille de police */
     border-radius: 5px; /* Bordure arrondie */
@@ -10746,9 +10752,9 @@ fieldset:disabled .wizard > .actions a,
 }
 
 .btn.custom-button3 {
-    background-color: #AD5DEC; /* Couleur de fond */
+    background-color: #FF0000; /* Couleur de fond */
     color: #fff; /* Couleur du texte */
-    border: 2px solid #AD5DEC; /* Bordure */
+    border: 2px solid #FF0000; /* Bordure */
     padding: 10px 20px; /* Espacement intérieur */
     font-size: 16px; /* Taille de police */
     border-radius: 5px; /* Bordure arrondie */
@@ -10781,9 +10787,9 @@ fieldset:disabled .wizard > .actions a,
 
 
 .btn.custom-button4 {
-    background-color:  #FFCB58; /* Couleur de fond */
+    background-color:  #CF47D7; /* Couleur de fond */
     color: #fff; /* Couleur du texte */
-    border: 2px solid  #FFCB58; /* Bordure */
+    border: 2px solid  #CF47D7; /* Bordure */
     padding: 10px 20px; /* Espacement intérieur */
     font-size: 16px; /* Taille de police */
     border-radius: 5px; /* Bordure arrondie */
@@ -10817,22 +10823,22 @@ fieldset:disabled .wizard > .actions a,
 .custom-button-style {
     /*background-color: #007bff;*/
     color: #000000;
-    background-image: linear-gradient(to right, #F59711,#AD5DEC);;
+    /*background-color: #727EE9;*/
+    background-image:linear-gradient(to right, #AD5DEC, #9AEDF8);
     border: none;
     padding: 10px 20px;
     margin-top:10px;
-    font-size: 26px;
+    font-size: 12px !important ;
     border-radius: 4px;
 }
 .custom-button-style i {
-    font-size: 24px; /* Ajustez la taille de l'icône selon vos besoins */
+    font-size: 20px; /* Ajustez la taille de l'icône selon vos besoins */
     margin-right: 5px; /* Ajoute un espace entre l'icône et le texte */
 }
 
 .custom-button-style:hover {
-    background-color: #0056b3;
+    background-color: #0056b3 !important;
     color: #ffffff;
-
 }
 
 .custom-button-style:focus {
@@ -10846,12 +10852,12 @@ fieldset:disabled .wizard > .actions a,
 .custom-button-style1 {
     /*background-color: #007bff;*/
     color: #000000;
-    background-image: linear-gradient(to right,#AD5DEC, #F59711);
+    background-image:linear-gradient(to left, #AD5DEC, #9AEDF8);
 
     border: none;
     padding: 10px 20px;
     margin-top:10px;
-    font-size: 26px;
+    font-size: 12px !important;
     border-radius: 4px;
 }
 .custom-button-style1 i {
@@ -11000,8 +11006,8 @@ fieldset:disabled .wizard > .actions a,
 }
 
 .btn-delete {
-    background-color: #F59711;
-    color:black;
+    background-color: #ff0000;
+    color:white;
     border: none;
     height: 30px;
     width: 30px;
@@ -11096,7 +11102,7 @@ fieldset:disabled .wizard > .actions a,
 .send-evaluation-button {
     display: inline-block;
     padding: 10px 20px;
-    background-color: #AD5DEC;
+    background-color: #727EE9;
     color: white;
     border-radius: 5px;
     font-size:20px;
@@ -21821,7 +21827,7 @@ code {
 }
 
 .card .card-title {
-    color: #000000;
+    /*color: #000000;*/
     margin-bottom: 1.2rem;
     text-transform: capitalize;
     font-size: 30px;
@@ -21830,9 +21836,10 @@ code {
     height: 50px;
     padding-top:10px;
     padding-left:10px;
-    background: linear-gradient(to right,#F59711, #AD5DEC);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+    /*background: linear-gradient(to right,#F59711, #AD5DEC);*/
+    color:#727EE9;
+    /*-webkit-background-clip: text;*/
+    /*-webkit-text-fill-color: transparent;*/
 }
 
 .card .card-subtitle {
@@ -24632,7 +24639,7 @@ table-striped th,
 }
 
 .tab-content {
-  border: 1px solid #CED4DA;
+  border-left: 1px solid #000000;
   border-top: 0;
   padding: 2rem 1rem;
   text-align: justify;
@@ -28222,12 +28229,21 @@ div.tagsinput span.tag a {
 }
 
 .content-wrapper {
-    background: linear-gradient(to right, #F59711, #AD5DEC);
+    background: linear-gradient(to right, #AD5DEC, #9AEDF8);
   padding: 1rem 0.375rem;
   width: 100%;
   -webkit-flex-grow: 1;
   flex-grow: 1;
-    margin-top: 60px;
+    margin-top: 0px;
+}
+
+.content-wrapper1 {
+    background: linear-gradient(to right, #AD5DEC, #9AEDF8);
+    padding: 1rem 0.375rem;
+    width: 100%;
+    -webkit-flex-grow: 1;
+    flex-grow: 1;
+    margin-top: 80px;
 }
 
 @media (max-width: 767px) {
@@ -28241,7 +28257,7 @@ div.tagsinput span.tag a {
 
 
 .sidebar {
-    background-color: #F59711;
+    background-color: #AD5DEC;
     color: #333;
     min-height: calc(100vh - 60px);
     font-family: "Helvetica Neue", Arial, sans-serif;
