@@ -15,6 +15,7 @@ class Candidat extends Model
     protected $primaryKey = 'CandidatID';
 
     protected $fillable = [
+        'ID',
         'Age',
         'Cin',
         'Commune',
@@ -24,6 +25,9 @@ class Candidat extends Model
         'Prenom',
         'Province',
         'Telephone',
+        'Institut_de_financement',
+        'Statut_juridique',
+        'Milieu',
     ];
 
     public  function  projets():HasMany {

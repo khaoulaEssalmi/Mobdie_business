@@ -14,7 +14,9 @@ class Appel extends Model
 
     protected $fillable = [
         'AppelID',
-        'Commentaire',
+        'Appreciation',
+        'Elements_discutes',
+        'Elements_convenus',
         'Date_appel',
         'Prochain_appel',
         'ProjetID',

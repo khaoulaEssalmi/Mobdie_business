@@ -44,13 +44,13 @@
                                         @foreach($projects as $project)
                                             <tr>
                                                 <td style="font-size: 12px; font-weight: bold;">
-                                                    {{$project->ID}}
+                                                    {{$project->ProjetID}}
                                                 </td>
                                                 <td style="font-size: 12px; font-weight: bold; padding-right: 10px; margin-right: 10px">
                                                     {{$project->NomPr}}
                                                 </td>
                                                 <td >
-                                                    <input type="checkbox" name="action[]" value="{{ $project->ID }}" class="custom-checkbox">
+                                                    <input type="checkbox" name="action[]" value="{{ $project->ProjetID }}" class="custom-checkbox">
                                                 </td>
                                             </tr>
                                         @endforeach

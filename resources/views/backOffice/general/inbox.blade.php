@@ -31,7 +31,6 @@
             width: 40px;
             height: 40px;
             margin-right: 10px;
-            background-color: white;
         }
 
         .envelope i {
@@ -71,25 +70,26 @@
                             <div class="col-md-12">
                                 <div class="row">
                                     <div class="col-sm-6">
-                                        <h2 class="grid-title" style="color: #AD5DEC "><i class="fa fa-inbox" style="color: #AD5DEC "></i style="color: #AD5DEC "> Inbox</h2>
+                                        <h2 class="grid-title"style="color: #000" ><i class="fa fa-inbox"></i> Inbox</h2>
                                     </div>
                                 </div>
-                                    <div class="inbox">
-                                        @foreach($messages as $message)
-                                            <div class="message {{ $message->state == 1 ? 'unread' : 'read' }}" onclick="redirectToMessage({{ $message->id }})">
-                                                <div class="envelope">
-                                                    <i class="fas fa-envelope{{ $message->state == 1 ? '' : '-open' }}" style="width: 20px;"></i>
-                                                </div>
-                                                <div class="icon"></div>
-                                                <div class="content">
-                                                    <h3><b>{{ $message->date_envoi }}</b></h3>
-                                                    <p>{{ $message->Message }}</p>
-                                                    <div id="details-{{ $message->id }}" class="details hidden">
-                                                    </div>
-                                                </div>
+                                <div class="inbox">
+                                    @foreach($messages as $message)
+                                        <div class="message" onclick="showDetails('{{ $message->email_emetteur }}', '{{ $message->Message }}')">
+                                            <div class="envelope">
+                                                <i class="fas fa-envelope{{ $message->state == 1 ? '' : '-open' }}" style="width: 20px;"></i>
                                             </div>
-                                        @endforeach
-                                    </div>
+                                            <div class="icon"></div>
+                                            <div class="content">
+                                                <h3><b>{{ $message->date_envoi }}</b></h3>
+                                                <p>{{ $message->Message }}</p>
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                </div>
+
+                                <!-- Reste du contenu -->
+
 
                                 <nav aria-label="Page navigation example" style="margin-top: 20px;">
 
@@ -109,13 +109,26 @@
 
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <script>
-      function redirectToMessage(messageId) {
-          // alert("ID du message : " + messageId);
-          var url = "{{ route('general.message.show') }}";
-          url = url.replace(':id', messageId);
-          url += "?id=" + messageId;
-          // alert(url);
-          window.location.href = url;
+      {{--function redirectToMessage(messageId) {--}}
+      {{--    // alert("ID du message : " + messageId);--}}
+      {{--    var url = "{{ route('general.message.show') }}";--}}
+      {{--    url = url.replace(':id', messageId);--}}
+      {{--    url += "?id=" + messageId;--}}
+      {{--    // alert(url);--}}
+      {{--    window.location.href = url;--}}
+      {{--}--}}
+
+      function showDetails(email, message) {
+          Swal.fire({
+              title: 'Détails de l\'e-mail',
+              html: '<strong>Email de l\'émetteur:</strong> ' + email + '<br><br><strong>Message:</strong> ' + message,
+              confirmButtonText: 'Fermer',
+              width: '600px',
+              showCancelButton: false,
+          });
       }
+
+
+
   </script>
 @endsection

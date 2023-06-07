@@ -20,7 +20,8 @@ class GeneralController extends Controller
 {
     public function profile()
     {
-        return view("backOffice.man.settings");
+        $count=request()->query('count');
+        return view("backOffice.man.settings")->with(['count'=>$count]);
     }
 
     public function updateGeneral(Request $request)
@@ -177,6 +178,8 @@ class GeneralController extends Controller
             ->where('messages.id', $id)
             ->first();
 //        dd($message);
+
+        Message::where('id', $id)->update(['state' => 0]);
 
         return view('backOffice.general.showMessage')->with(['message'=>$message,'count'=>$count]);
 

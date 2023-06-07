@@ -13,11 +13,17 @@ return new class extends Migration
     {
         Schema::create('appels', function (Blueprint $table) {
                 $table->id('AppelID');
-                $table->text('Commentaire')->nullable();
-                $table->date('Date_appel')->nullable();
-                $table->date('Prochain_appel')->nullable();
-                $table->integer('ProjetID')->nullable();
-                $table->timestamps();
+                $table->text('Appreciation')->nullable();
+                $table->text('Elements_discutes')->nullable();
+                $table->text('Elements_convenus')->nullable();
+
+            $table->date('Date_appel')->nullable();
+            $table->date('Prochain_appel')->nullable();
+
+            $table->integer('ProjetID')->nullable();
+//            $table->foreign('ProjetID')->references('ProjetID')->on('projets');
+
+            $table->timestamps();
             });
     }
 

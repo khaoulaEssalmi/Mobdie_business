@@ -54,7 +54,7 @@
                                             </td>
                                             <td>
                                                 <form style="display: inline; margin-right: -40px" method="POST"
-                                                      action="{{route('manager.callCandidat',['ProjetID'=>$candidat->ID])}}">
+                                                      action="{{route('manager.callCandidat',['ProjetID'=>$candidat->ProjetID,'Telephone'=>$candidat->Telephone,'AppelID'=>$candidat->AppelID])}}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="">
                                                     <button type="submit" class="btn badge badge-danger custom-icon11" >

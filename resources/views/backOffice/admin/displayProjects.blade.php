@@ -50,7 +50,7 @@
                                     @foreach($projects as $project)
                                         <tr>
                                             <td style="font-size: 12px; font-weight: bold;">
-                                                {{$project->ID}}
+                                                {{$project->ProjetID}}
                                             </td>
                                             <td style="font-size: 12px; font-weight: bold;">
                                                 {{ Str::limit($project->NomPr, $limit = 17, $end = ' ...') }}
@@ -59,7 +59,7 @@
                                                 {{ Str::limit($project->Description, $limit = 140, $end = ' ...') }}
                                             </td>
                                             <td>
-                                                @if ($project->Statut == 'En cours')
+                                                @if ($project->Statut == 'Pending')
                                                     <i class="fas fa-spinner"  style="font-size: 24px; color: #ffcd39; margin-right: 1px; "></i>
                                                 @elseif ($project->Statut == 'Completed')
                                                     <i class="fas fa-check-circle" style="font-size: 24px; color: #00bb00; margin-right: 1px; "></i>

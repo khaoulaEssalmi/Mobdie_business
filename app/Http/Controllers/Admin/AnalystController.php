@@ -34,6 +34,8 @@ class AnalystController extends Controller{
 
     public function displayManagers(){
         $cin=auth()->user()->cin;
+        $count=request()->query('count');
+
 //        dd($cin);
         $managers= DB::table('users')
             ->whereIn('CIN', function ($query) use ($cin) {
@@ -44,12 +46,14 @@ class AnalystController extends Controller{
             ->get();
 
 //        dd($managers);
-        return view('backOffice.analyst.displayManagers')->with(["managers"=>$managers]);
+        return view('backOffice.analyst.displayManagers')->with(["count"=>$count,"managers"=>$managers]);
 
     }
 
     public function displayManagerProjects(Request $request){
         $cin=request()->input('cin');
+        $count=request()->query('count');
+
         $startDate = Carbon::now()->subDays(7);
         $endDate = Carbon::now();
 
@@ -110,7 +114,7 @@ class AnalystController extends Controller{
 //        dd($chart);
 
 
-        return view('backOffice.analyst.displayManagerProjects')->with(["infos"=>$results,"user"=>$user,"scores"=>$scores,"labels"=>$labels,"monthlyScores" => $monthlyScores]);
+        return view('backOffice.analyst.displayManagerProjects')->with(["count"=>$count,"infos"=>$results,"user"=>$user,"scores"=>$scores,"labels"=>$labels,"monthlyScores" => $monthlyScores]);
     }
 
     public function emailManager(Request $request){

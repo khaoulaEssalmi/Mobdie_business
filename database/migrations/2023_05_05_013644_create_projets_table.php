@@ -13,12 +13,20 @@ return new class extends Migration
     {
         Schema::create('projets', function (Blueprint $table) {
             $table->id('ProjetID');
-            $table->integer('ID')->nullable();
+            ;
+            $table->integer('CandidatID')->nullable();
+//            $table->foreign('CandidatID')->references('CandidatID')->on('candidats');
+
             $table->string('Nom')->nullable();
             $table->string('Description')->nullable();
             $table->string('Statut')->nullable();
+
             $table->string('ManagerCIN')->nullable();
+//            $table->foreign('ManagerCIN')->references('CIN')->on('users');
+
             $table->string('AdminCIN')->nullable();
+//            $table->foreign('AdminCIN')->references('CIN')->on('users');
+
             $table->timestamps();
         });
     }

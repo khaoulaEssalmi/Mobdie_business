@@ -44,7 +44,7 @@
                         <i class="fas fa-inbox" style="font-size: 20px;"></i>
                         &nbsp;&nbsp;&nbsp;
                         <span class="menu-title">Inbox</span>
-                        <span class="num-messages">{{ $count }}</span>
+                        <span class="num-messages"></span>
                     </a>
                 </li>
     </ul>

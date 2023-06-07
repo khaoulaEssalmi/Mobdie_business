@@ -30,7 +30,6 @@ class AdminController extends Controller
     public function index()
     {
         $cin = request()->query('cin');
-        $count=request()->query('count');
 
         $nbrClients = 2000;
         $nbrProducts = 9800;
@@ -47,7 +46,7 @@ class AdminController extends Controller
     public function displayManagers()
     {
         $managers = User::where('role', 'Manager')
-            ->where('service', 1)
+            ->where('etat', 1)
             ->get();
         return view("backOffice.admin.displayManagers", compact("managers"));
     }
@@ -57,7 +56,7 @@ class AdminController extends Controller
         $count=request()->query('count');
         $analysts = DB::table('users')
             ->where('role', 'Analyst')
-            ->where('service',1)
+            ->where('etat',1)
             ->get();
 
         return view("backOffice.admin.displayAnalysts", ['analysts'=>$analysts,'count'=>$count]);
@@ -66,7 +65,9 @@ class AdminController extends Controller
     public function affectationDesProjets()
     {
         $cin = request()->query('cin');
+
         $user = User::where('CIN', $cin)->first();
+
         $projects = DB::table('projets')
             ->where('Statut', '=', 'Pending')
             ->orWhere('Statut', '=', 'Blocked')
@@ -90,32 +91,36 @@ class AdminController extends Controller
 
 
         $selected_projects = $request->input('action');
-        $projects = Projet::whereIn('ID', $selected_projects)->get();
+        $projects = Projet::whereIn('ProjetID', $selected_projects)->get();
         $selected_projects_array = $projects->toArray();
-        $selected_projects_ids = array_column($selected_projects_array, 'ID');
+        $selected_projects_ids = array_column($selected_projects_array, 'ProjetID');
 //        dd($selected_projects_ids);
 
         $count = count($selected_projects_ids);
+//        dd($count);
 
-        $message = "You have been assigned to the following projects :\n\n";
 
         foreach ($selected_projects_ids as $project_id) {
-            $res= Projet::select('NomPr')
-                ->where('ID', $project_id)
-                ->first();
 
-            $nomProjet=$res->NomPr;
+//            $res= Projet::select('Nom')
+//                ->where('ProjetID', $project_id)
+//                ->first();
+//
+//            dd($res);
 
-            $message .= "- " . $nomProjet . "\n";
+//            $nomProjet=$res->Nom;
+
 
 
             $result = Projet::select('Statut')
-                ->where('ID', $project_id)
+                ->where('ProjetID', $project_id)
                 ->first();
+
+//            dd($result);
 
             if($result->Statut==="Blocked")
             {
-                Projet::where('ID', $project_id)
+                Projet::where('ProjetID', $project_id)
                     ->update([
                         'Statut' => 'In progress',
                         'AdminCIN' => $adminCIN,
@@ -124,7 +129,7 @@ class AdminController extends Controller
             }
             else if ($result->Statut==="Pending")
             {
-                Projet::where('ID', $project_id)
+                Projet::where('ProjetID', $project_id)
                     ->update([
                         'Statut' => 'In progress',
                         'AdminCIN' => $adminCIN,
@@ -137,23 +142,21 @@ class AdminController extends Controller
             }
         }
 
-        $message .= "\nPlease take the necessary steps and keep us informed of the progress of these projects.\n\n";
-        $message .= "Regards.\n";
 
 //        dd($message);
 
-        $envoi=new Message();
-        $envoi->Emetteur=$user->cin;
-        $envoi->Recepteur=$cin;
-        $envoi->Message=$message;
-        $envoi->state=1;
-        $envoi->date_envoi= Carbon::now();
-
-        $envoi->save();
+//        $envoi=new Message();
+//        $envoi->Emetteur=$user->cin;
+//        $envoi->Recepteur=$cin;
+//        $envoi->Message=$message;
+//        $envoi->state=1;
+//        $envoi->date_envoi= Carbon::now();
+//
+//        $envoi->save();
 
         $managers = DB::table('users')
             ->where('role', 'Manager')
-            ->where('service',1)
+            ->where('etat',1)
             ->get();
         Session::flash('success', 'Well-affected projects');
 
@@ -163,7 +166,8 @@ class AdminController extends Controller
 
     public function affectationDesManagers(Request $request)
     {
-        $count=request()->query('count');
+//        $count=request()->query('count');
+
         $cin = request()->query('cin');
         $analyst = User::where('CIN', $cin)->first();
 
@@ -175,10 +179,10 @@ class AdminController extends Controller
         $managers = DB::table('users')
             ->whereNotIn('CIN', $excludedManagerCINs)
             ->where('role', 'Manager')
-            ->where('service',1)
+            ->where('etat',1)
             ->get();
 
-        return view('backOffice.admin.ManagersAnalysts')->with(["managers" => $managers, "cin" => $cin, "analyst" => $analyst,'count'=>$count]);
+        return view('backOffice.admin.ManagersAnalysts')->with(["managers" => $managers, "cin" => $cin, "analyst" => $analyst,]);
     }
 
     public function managersSubmit(Request $request)
@@ -190,14 +194,15 @@ class AdminController extends Controller
         $selected_managers = $request->input('action');
         $managers = User::whereIn('CIN', $selected_managers)->get();
         $selected_managers_cin_array = $managers->pluck('CIN')->toArray();
-        $message = "You have been assigned to the following managers :\n\n";
+//        dd($selected_managers_cin_array);
+//        $message = "You have been assigned to the following managers :\n\n";
 
 //        $selected_managers_ids = array_column($selected_managers_array, 'CIN');
 //        dd($selected_managers_cin_array);
         foreach ($selected_managers_cin_array as $manager_id) {
             $user = User::where('CIN', $manager_id)->first();
             $name=$user->name;
-            $message .= "- " . $name . "\n";
+//            $message .= "- " . $name . "\n";
 
             AnalystManager::create([
                 'ManagerCIN' => $manager_id,
@@ -205,21 +210,19 @@ class AdminController extends Controller
             ]);
         }
 
-        $message .= "\nPlease take the necessary steps and keep us informed of the progress of these projects.\n\n";
-        $message .= "Regards.\n";
 
-        $envoi=new Message();
-        $envoi->Emetteur=auth()->user()->CIN;
-        $envoi->Recepteur=$cin;
-        $envoi->Message=$message;
-        $envoi->state=1;
-        $envoi->date_envoi= Carbon::now();
+//        $envoi=new Message();
+//        $envoi->Emetteur=auth()->user()->CIN;
+//        $envoi->Recepteur=$cin;
+//        $envoi->Message=$message;
+//        $envoi->state=1;
+//        $envoi->date_envoi= Carbon::now();
 
-        $envoi->save();
+//        $envoi->save();
 
         $analysts = DB::table('users')
             ->where('role', 'Analyst')
-            ->where('service',1)
+            ->where('etat',1)
             ->get();
 
         Session::flash('success', 'Well-affected managers');
@@ -328,20 +331,20 @@ class AdminController extends Controller
             $user->address = $request->input("address");
             $user->phone = $request->input("Phone");
             $user->role = "Manager";
-            $user->service=1;
+            $user->etat=1;
             $user->picture = $request->file('images') ? UploadController::userPic($request) : "avatar.png";
 
             $user->save();
 
             $managers = User::where('role', 'Manager')
-                ->where('service', 1)
+                ->where('etat', 1)
                 ->get();
             Session::flash('success', 'user successfully adds');
 
             return view("backOffice.admin.displayManagers")->with(["managers"=>$managers]);
         } elseif ($request->input('button_clicked') == 'cancel') {
             $managers = User::where('role', 'Manager')
-                ->where('service', 1)
+                ->where('etat', 1)
                 ->get();
             return view("backOffice.admin.displayManagers")->with(["managers"=>$managers]);
         }
@@ -351,7 +354,7 @@ class AdminController extends Controller
         $cin=request()->input('cin');
 //        dd($cin);
 
-        User::where('cin', $cin)->update(['service' => 0]);
+        User::where('cin', $cin)->update(['etat' => 0]);
         Projet::where('ManagerCIN', $cin)
             ->where('Statut', 'In progress')
             ->update(['Statut' => 'Blocked']);
@@ -359,15 +362,12 @@ class AdminController extends Controller
         AnalystManager::where('ManagerCIN', $cin)
             ->delete();
 
-        $managers = User::where('role', 'Manager')
-            ->where('service', 1)
-            ->get();
 
         Session::flash('success', 'Manager successfully deleted');
 
         $managers = DB::table('users')
             ->where('role', 'Manager')
-            ->where('service',1)
+            ->where('etat',1)
             ->get();
 //dd($managers);
         return view("backOffice.admin.displayManagers")->with(["managers"=>$managers]);

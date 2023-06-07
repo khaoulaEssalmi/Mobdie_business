@@ -13,9 +13,11 @@ return new class extends Migration
     {
         Schema::create('scores', function (Blueprint $table) {
             $table->id();
-            $table->date("Date");
-            $table->double("Score");
-            $table->string("ManagerCIN");
+            $table->date("Date")->nullable();
+            $table->double("Score")->nullable();
+            $table->string("ManagerCIN")->nullable();
+            $table->foreign('ManagerCIN')->references('CIN')->on('users');
+
             $table->timestamps();
         });
     }

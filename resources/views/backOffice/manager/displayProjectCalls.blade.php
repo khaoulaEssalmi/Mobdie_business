@@ -9,9 +9,17 @@
 
 
 @section("content-wrapper")
-    @if(\Illuminate\Support\Facades\Session::has('success'))
-        <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
-    @endif
+    <script>
+            @if ($errors->any()){
+            Swal.fire({
+                title: 'Date error',
+                html: '<b>{{ $errors->first() }}</b>',
+                icon: 'error',
+                confirmButtonText: 'OK'
+            });
+        }
+        @endif
+    </script>
     <div class="main-panel">
         <div class="content-wrapper1">
             <div class="row">
@@ -35,7 +43,10 @@
                                             Date of call
                                         </th>
                                         <th>
-                                            Comment
+                                            Agreed elements
+                                        </th>
+                                        <th>
+                                            Elements discussed
                                         </th>
                                     </tr>
                                     </thead>
@@ -46,7 +57,10 @@
                                                 {{ $appel->Date_appel}}
                                             </td>
                                             <td style="font-size: 12px; font-weight: bold;">
-                                                {{$appel->Commentaire }}
+                                                {{$appel->Elements_convenus }}
+                                            </td>
+                                            <td style="font-size: 12px; font-weight: bold;">
+                                                {{$appel->Elements_discutes }}
                                             </td>
                                         </tr>
                                     @endforeach
@@ -64,22 +78,29 @@
                     <div class="col-12 grid-margin stretch-card" style="width:500px !important;">
                         <div class="card" >
                             <div class="card-body " style="width:500px !important;">
-                                <h4 class="card-title">Today Call</h4>
+                                <h4 class="card-title">Today Call: {{ $Telephone}}</h4>
 {{--                                <br><br>--}}
-                                <form class="forms-sample"  style="width:500px !important;" method="POST" action="{{route("manager.submitFormCall",['PrId'=>$Pr->ID])}}"
+                                <form class="forms-sample"  style="width:500px !important;" method="POST" action="{{route("manager.submitFormCall",['PrId'=>$Pr->ProjetID,'AppelID'=>$AppelID])}}"
                                       enctype="multipart/form-data">
                                     @csrf
                                     <div class="form-group">
-                                        <label for="call1" style="font-family: solid ; font-size: 15px;">Date of call </label>
-                                        <input type="date" class="form-control" id="call1" name="call1">
+                                        <label for="agreed" style="font-family: solid ; font-size: 15px;">Agreed elements </label>
+                                        <input type="text" class="form-control" id="agreed" name="agreed" value="{{ old('agreed') }}">
                                     </div>
                                     <div class="form-group">
-                                        <label for="comment" style="font-family: solid ; font-size: 15px;">Comment</label>
-                                        <input type="text" class="form-control" id="comment" name="comment">
+                                        <label for="discussed" style="font-family: solid ; font-size: 15px;">Elements discussed</label>
+                                        <input type="text" class="form-control" id="discussed" name="discussed" value="{{ old('discussed') }}">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="appreciation" style="font-family: solid ; font-size: 15px;">Appreciation</label>
+                                        <input type="text" class="form-control" id="appreciation" name="appreciation" value="{{ old('appreciation') }}">
                                     </div>
                                     <div class="form-group">
                                         <label for="call2" style="font-family: solid ; font-size: 15px;">Date of next call</label>
                                         <input type="date" class="form-control" id="call2" name="call2">
+{{--                                        @error('call2')--}}
+{{--                                        <span class="text-danger">{{ $message }}</span>--}}
+{{--                                        @enderror--}}
                                     </div>
 
                                     <button type="submit" class="btn custom-button-style" style="margin-left: 290px !important;" name="button_clicked" value="validate">

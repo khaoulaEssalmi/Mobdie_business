@@ -12,9 +12,10 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('candidats', function (Blueprint $table) {
+
             $table->id('CandidatID');
-            $table->integer('Age')->nullable();
             $table->integer('ID')->nullable();
+            $table->integer('Age')->nullable();
             $table->string('Cin')->nullable();
             $table->string('Commune')->nullable();
             $table->string('Email')->nullable();
@@ -22,6 +23,9 @@ return new class extends Migration
             $table->string('Prenom')->nullable();
             $table->string('Province')->nullable();
             $table->string('Telephone')->nullable();
+            $table->string('Institut_de_financement')->nullable();
+            $table->string('Statut_juridique')->nullable();
+            $table->string('Milieu')->nullable();
             $table->timestamps();
 
 

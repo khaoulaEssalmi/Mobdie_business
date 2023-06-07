@@ -9,7 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\GeneralController;
 use App\Http\Controllers\Admin\ManagerController;
 use App\Http\Controllers\Admin\AnalystController;
-
+use App\Http\Controllers\EmailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -166,7 +166,7 @@ Route::namespace("Admin")->prefix("general")->name('general.')->group(function()
         Route::post("picture/reset", [GeneralController::Class, "resetPicture"])->name("picture.reset");
         Route::post("picture/change", [GeneralController::Class, "changePicture"])->name("picture.change");
         Route::post("changePass", [GeneralController::Class, "changePass"])->name("change_password");
-        Route::get("inbox", [GeneralController::Class, "inbox"])->name("inbox");
+        Route::get("inbox", [GeneralController::Class, "inbox"])->name("inbox")->middleware('markAsUnread');
         Route::post("message/setRead", [GeneralController::Class, "setRead"])->name("message.setRead");
         Route::get("messages",[GeneralController::class,"showMessage"])->name("message.show");
 
@@ -182,7 +182,9 @@ Route::namespace("Admin")->prefix("analyst")->name("analyst.")->group(function (
         Route::get("managers",[AnalystController::class,"displayManagers"])->name("managers");
         Route::post("manager/projects",[AnalystController::class,"displayManagerProjects"])->name("manager.projects");
         Route::post("/manager/project/calls",[AnalystController::class,"displayManagerProjectCalls"])->name("manager.project.calls");
-        Route::get("/manager/emailManager",[AnalystController::class,"emailManager"])->name("sendEmailToManager");
+        Route::get("/manager/emailManager",[EmailController::class,"showEmailForm"])->name("sendEmail");
+        Route::post("/manager/emailManager/done",[EmailController::class,"sendEmail1"])->name("sendEmail1");
+
     });
 });
 require __DIR__.'/auth.php';

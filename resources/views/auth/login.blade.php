@@ -1,47 +1,175 @@
-<x-guest-layout>
-    <!-- Session Status -->
-    <x-auth-session-status class="mb-4" :status="session('status')" />
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Authentification</title>
+    <style>
+        body {
+            background: linear-gradient(45deg, #FC466B, #3F5EFB);
+            height: 100vh;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
 
+        .container {
+            position: relative;
+        }
+
+        form {
+            background: rgba(255, 255, 255, .3);
+            padding: 9rem 4rem 0rem 4rem;
+            height: 270px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 20px 20px 40px -6px rgba(0, 0, 0, .2);
+            text-align: center;
+        }
+
+        p {
+            color: white;
+            font-weight: 500;
+            opacity: .7;
+            font-size: 1.4rem;
+            margin-bottom: 60px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+        }
+
+        a {
+            text-decoration: none;
+            color: #ddd;
+            font-size: 12px;
+        }
+
+        a:hover {
+            text-shadow: 2px 2px 6px #00000040;
+        }
+
+        a:active {
+            text-shadow: none;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .input {
+            background: transparent;
+            border: none;
+            border-left: 1px solid rgba(255, 255, 255, .3);
+            border-top: 1px solid rgba(255, 255, 255, .3);
+            padding: 1rem;
+            width: 200px;
+            border-radius: 50px;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            -moz-backdrop-filter: blur(5px);
+            box-shadow: 4px 4px 60px rgba(0, 0, 0, .2);
+            color: white;
+            font-weight: 500;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+            transition: all .3s;
+            margin-bottom: 1em;
+        }
+
+        .input:hover,
+        .input[type="email"]:focus,
+        .input[type="password"]:focus {
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 4px 4px 60px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .input[type="button"] {
+            margin-top: 10px;
+            width: 150px;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .input::placeholder {
+            color: #fff;
+        }
+
+        .drop {
+            background: rgba(255, 255, 255, .3);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, .3);
+            box-shadow: 10px 10px 60px -8px rgba(0, 0, 0, 0.2);
+            position: absolute;
+            transition: all 0.2s ease;
+        }
+
+        .drop-1 {
+            height: 80px;
+            width: 80px;
+            top: -20px;
+            left: -40px;
+            z-index: -1;
+        }
+
+        .drop-2 {
+            height: 80px;
+            width: 80px;
+            bottom: -30px;
+            right: -10px;
+        }
+
+        .drop-3 {
+            height: 100px;
+            width: 100px;
+            bottom: 120px;
+            right: -50px;
+            z-index: -1;
+        }
+
+        .drop-4 {
+            height: 120px;
+            width: 120px;
+            top: -60px;
+            right: -60px;
+        }
+
+        .drop-5 {
+            height: 60px;
+            width: 60px;
+            bottom: 170px;
+            left: 90px;
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Authentification</h2>
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
-        <!-- Email Address -->
-        <div>
-            <x-input-label for="email" :value="__('Email')" />
-            <x-text-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus autocomplete="username" />
-            <x-input-error :messages="$errors->get('email')" class="mt-2" />
+        <div class="form-group">
+            <input id="email" class="input" type="text" name="email" placeholder="Email" required autofocus>
         </div>
 
-        <!-- Password -->
-        <div class="mt-4">
-            <x-input-label for="password" :value="__('Password')" />
-
-            <x-text-input id="password" class="block mt-1 w-full"
-                            type="password"
-                            name="password"
-                            required autocomplete="current-password" />
-
-            <x-input-error :messages="$errors->get('password')" class="mt-2" />
+        <div class="form-group">
+            <input id="password" class="input" type="password" name="password" placeholder="Mot de passe" required>
         </div>
 
-        <!-- Remember Me -->
-        <div class="block mt-4">
-            <label for="remember_me" class="inline-flex items-center">
-                <input id="remember_me" type="checkbox" class="rounded border-gray-300 text-indigo-600 shadow-sm focus:ring-indigo-500" name="remember">
-                <span class="ml-2 text-sm text-gray-600">{{ __('Remember me') }}</span>
-            </label>
+        <div class="form-group">
+            <input id="remember_me" type="checkbox" name="remember">
+            <label for="remember_me">Se souvenir de moi</label>
         </div>
 
-        <div class="flex items-center justify-end mt-4">
-            @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
-                    {{ __('Forgot your password?') }}
-                </a>
-            @endif
-
-            <x-primary-button class="ml-3">
-                {{ __('Log in') }}
-            </x-primary-button>
+        <div class="form-group">
+            <button type="submit" class="input">Se connecter</button>
         </div>
     </form>
-</x-guest-layout>
+    <div class="drop drop-1"></div>
+    <div class="drop drop-2"></div>
+    <div class="drop drop-3"></div>
+    <div class="drop drop-4"></div>
+    <div class="drop drop-5"></div>
+</div>
+</body>
+</html>

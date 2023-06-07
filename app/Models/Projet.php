@@ -16,8 +16,9 @@ class Projet extends Model
     protected $primaryKey = 'ProjetID';
 
     protected $fillable = [
-        'ID',
-        'NomPr',
+        'ProjetID',
+        'CandidatID',
+        'Nom',
         'Description',
         'Statut',
         'ManagerCIN',
