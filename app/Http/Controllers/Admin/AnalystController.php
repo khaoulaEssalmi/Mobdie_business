@@ -66,11 +66,10 @@ class AnalystController extends Controller{
 //            ->get();
 
         $results = DB::table('projets')
-            ->join('appels', 'projets.ID', '=', 'appels.ProjetID')
-            ->leftJoin('candidats', 'candidats.ID', '=', 'projets.ID')
-            ->select('projets.NomPr', DB::raw('MAX(projets.Statut) as Statut'), 'projets.ID', DB::raw('COUNT(appels.ProjetID) as appels_count'), DB::raw('(SELECT GROUP_CONCAT(CONCAT(c.Nom, " ", c.Prenom)) FROM candidats c WHERE c.ID = projets.ID) as candidats_names'), DB::raw('(SELECT IF(projets.Statut = "Completed", MAX(appels.Date_appel) - MIN(appels.Date_appel), NULL) FROM appels WHERE appels.ProjetID = projets.ID) as periode'))
+            ->select('projets.NomPr', 'projets.Statut', DB::raw('COUNT(appels.AppelID) AS appels_count'))
+            ->leftJoin('appels', 'projets.ProjetID', '=', 'appels.ProjetID')
             ->where('projets.ManagerCIN', $cin)
-            ->groupBy('projets.NomPr', 'projets.ID', 'projets.Statut')
+            ->groupBy('projets.ProjetID', 'projets.NomPr', 'projets.Statut')
             ->get();
 
 
@@ -99,20 +98,6 @@ class AnalystController extends Controller{
             ->groupBy(DB::raw('MONTHNAME(Date)'), DB::raw('MONTH(Date)'))
             ->orderBy(DB::raw('MONTH(Date)'), 'ASC')
             ->get();
-
-
-
-//        dd($labels);
-//        dd($scores);
-//        print_r(json_encode($scores));
-
-//        $chart = Charts::create('line', 'highcharts')
-//            ->title('Score Chart')
-//            ->labels($scores->keys())
-//            ->values($scores->values())
-//            ->responsive(true);
-//        dd($chart);
-
 
         return view('backOffice.analyst.displayManagerProjects')->with(["count"=>$count,"infos"=>$results,"user"=>$user,"scores"=>$scores,"labels"=>$labels,"monthlyScores" => $monthlyScores]);
     }

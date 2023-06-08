@@ -149,6 +149,7 @@ Route::namespace("Admin")->prefix("manager")->name("manager.")->group(function (
         Route::get("dashboard", [ManagerController::Class, "index"])->name("dashboard");
         Route::get("/calls",[ManagerController::class,"calls"])->name("listCalls");
         Route::post("/call/candidat",[ManagerController::class,"callCandidat"])->name("callCandidat");
+        Route::get("/call/candidat",[ManagerController::class,"callCandidat"])->name("callCandidat");
         Route::post("/call/candidat/submit",[ManagerController::class,"CallCandidatSubmit"])->name("submitFormCall");
         Route::post("/call/candidat/ProjectComplete",[ManagerController::class,"CallCandidatProjectComplete"])->name("ProjectComplete");
     });
@@ -182,7 +183,7 @@ Route::namespace("Admin")->prefix("analyst")->name("analyst.")->group(function (
         Route::get("managers",[AnalystController::class,"displayManagers"])->name("managers");
         Route::post("manager/projects",[AnalystController::class,"displayManagerProjects"])->name("manager.projects");
         Route::post("/manager/project/calls",[AnalystController::class,"displayManagerProjectCalls"])->name("manager.project.calls");
-        Route::get("/manager/emailManager",[EmailController::class,"showEmailForm"])->name("sendEmail");
+        Route::get("/manager/emailManager",[EmailController::class,"showEmailForm"])->name("sendEmailToManager");
         Route::post("/manager/emailManager/done",[EmailController::class,"sendEmail1"])->name("sendEmail1");
 
     });

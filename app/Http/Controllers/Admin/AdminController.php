@@ -34,7 +34,7 @@ class AdminController extends Controller
         $nbrClients = 2000;
         $nbrProducts = 9800;
         $user = User::where('CIN', $cin)->first();
-        return view('backOffice.admin.dashboardAdmin')->with(["count"=>$count,"nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
+        return view('backOffice.admin.dashboardAdmin')->with(["nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
     }
 
     public function displayProjects()
@@ -143,17 +143,6 @@ class AdminController extends Controller
         }
 
 
-//        dd($message);
-
-//        $envoi=new Message();
-//        $envoi->Emetteur=$user->cin;
-//        $envoi->Recepteur=$cin;
-//        $envoi->Message=$message;
-//        $envoi->state=1;
-//        $envoi->date_envoi= Carbon::now();
-//
-//        $envoi->save();
-
         $managers = DB::table('users')
             ->where('role', 'Manager')
             ->where('etat',1)
@@ -166,7 +155,6 @@ class AdminController extends Controller
 
     public function affectationDesManagers(Request $request)
     {
-//        $count=request()->query('count');
 
         $cin = request()->query('cin');
         $analyst = User::where('CIN', $cin)->first();

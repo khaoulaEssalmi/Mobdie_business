@@ -14,6 +14,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Carbon\Carbon;
+use DateTime;
+use Carbon\CarbonImmutable;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
@@ -44,14 +46,16 @@ class ManagerController extends Controller
             ->where('projets.ManagerCIN', $cin)
             ->where(function ($query) use ($today) {
                 $query->whereNull('appels.Prochain_appel')
-                    ->orWhereDate('appels.Prochain_appel', '<', $today);
+                    ->orWhereDate('appels.Prochain_appel', '<=', $today);
             })
             ->where('appels.Done', '=', 0)
             ->select('candidats.*', 'projets.*','appels.AppelID')
             ->get();
 
 //        dd($candidats);
-//
+
+        Session::flash('success', 'Call made');
+
         return view('backOffice.manager.displayCalls')->with(['candidats' => $candidats]);
     }
 
@@ -59,6 +63,7 @@ class ManagerController extends Controller
     {
         $AppelID=request()->input('AppelID');
 //        dd($AppelID);
+
         $ProjetID = request()->input('ProjetID');
 //        dd($ProjetID);
         $Telephone = request()->input('Telephone');
@@ -82,15 +87,32 @@ class ManagerController extends Controller
             'call2' => 'required|date|after_or_equal:' . Carbon::now()->format('Y-m-d'),
         ]);
 
+        $PrId=request()->input("PrId");
+//        dd($PrId);
+
         $AppelID=request()->input('AppelID');
-        dd($AppelID);
+//        dd($AppelID);
+
         $agreed = request()->input("agreed");
         $discussed = request()->input("discussed");
         $appreciation = request()->input("appreciation");
+
         $call2 = request()->input("call2");
 //        dd($call2);
 
+        $currentDate = Carbon::today()->toDateString();
+//        dd($currentDate);
+
         $id = request()->input("PrId");
+
+        $appel = DB::table('appels')
+            ->where('AppelID', $AppelID)
+            ->first();
+
+//            dd($appel);
+
+        $cin=auth()->user()->Cin;
+//        dd($cin);
 
         if ($request->input('button_clicked') == 'validate') {
             $validator = Validator::make($request->all(), [
@@ -105,144 +127,89 @@ class ManagerController extends Controller
                 return redirect()->back()->withErrors($validator)->withInput();
             }
             else{
-                DB::table('appels')
-                ->where('ProjetID','=',$id)
-                ->whereDate('Prochain_appel', Carbon::today())
-                ->update(['Done' => 1]);
+                $scores = Score::where('ManagerCIN', $cin)
+                    ->whereDate('Date', $currentDate)
+                    ->first();
+//                    dd($scores);
+                if (empty($scores)){
+                    $score=new Score();
+                    $score->Date=$currentDate;
+                    $score->Score=1;
+                    $score->ManagerCIn=$cin;
 
+                    $score->save();
+                }
+                else{
+                    $scores->Score=$scores->Score+1;
+                    $scores->save();
+                }
+
+                if($appel->Appreciation===null && $appel->Elements_discutes===null && $appel->Elements_convenus===null && $appel->Date_appel===null && $appel->Prochain_appel===null){
+//                    dd("hi");
+                    DB::table('appels')
+                        ->where('AppelID', $AppelID) // Utilisez la clé primaire (AppelID) pour sélectionner l'enregistrement à mettre à jour
+                        ->update([
+                            'Appreciation' => $appreciation,
+                            'Elements_discutes' => $discussed,
+                            'Elements_convenus' => $agreed,
+                            'Date_appel' => $currentDate,
+                            'Prochain_appel' => $call2,
+
+                        ]);
+                }
+                else{
+
+                    $appel1 = new Appel();
+                    $appel1->Appreciation = $appreciation;
+                    $appel1->Elements_discutes = $discussed;
+                    $appel1->Elements_convenus = $agreed;
+                    $appel1->Date_appel =$currentDate;
+                    $appel1->Prochain_appel = $call2;
+                    $appel1->ProjetID =$PrId;
+
+                    $appel1->save();
+
+                    DB::table('appels')
+                        ->where('AppelID', $AppelID)
+                        ->update(['Done' => 1]);
+
+                }
             }
         }
+        elseif ($request->input('button_clicked') == 'mark'){
+            DB::table('projets')
+                ->where('ProjetID', $PrId) // Remplacez $valeurId par la valeur réelle de l'ID du projet à mettre à jour
+                ->update(['Statut' => 'Terminated']);
 
-//
-//            else {
-//                $currentDate = Carbon::today()->toDateString();
-//            dd($currentDate);
+            $appel = new Appel();
+            $appel->Appreciation = $appreciation;
+            $appel->Elements_discutes = $discussed;
+            $appel->Elements_convenus = $agreed;
+            $appel->Date_appel =$currentDate;
+            $appel->Prochain_appel = null;
+            $appel->ProjetID =$PrId;
 
-//                $cin = auth()->user()->CIN;
-//            dd($cin);
+            $appel->save();
 
-//                $manager = Manager::where('CIN', $cin)->first();
-//                $nb = $manager->nb_max_des_appels;
-//            dd($nb)
-//            }
-//
-//            $scores = Score::where('ManagerCIN', $cin)
-//                ->whereDate('Date', $currentDate)
-//                ->first();
-
-
-//            dd($inc);
-
-////            if (empty($scores)){
-////                $score=new Score();
-////                $score->Date=$currentDate;
-////                $score->Score=$inc;
-////                $score->ManagerCIn=$cin;
-////
-////                $score->save();
-////            }
-////            else{
-////                $scores->Score=$scores->Score+$inc;
-////                $scores->save();
-////            }
-//
-//            DB::table('appels')
-//                ->where('ProjetID','=',$id)
-//                ->whereDate('Prochain_appel', Carbon::today())
-//                ->update(['Done' => 1]);
-//
-//            $appel = Appel::where('ProjetID', $id)->first();
-//            if ($appel->Commentaire === null && $appel->date_appel === null && $appel->prochain_appel === null) {
-//                Appel::where('ProjetID', $id)
-//                    ->whereNull('Date_appel')
-//                    ->whereNull('Prochain_appel')
-//                    ->whereNull('Commentaire')
-//                    ->delete();
-//
-////                $appel = new Appel();
-////                $appel->Commentaire = $comment;
-////                $appel->Date_appel = $call1;
-////                $appel->Prochain_appel = $call2;
-////                $appel->Done = 0;
-////                $appel->ProjetID = $id;
-////
-////                $appel->save();
-//
-//                $cin = auth()->user()->CIN;
-//                $candidats = DB::table('candidats')
-//                    ->join('projets', 'candidats.ID', '=', 'projets.CandidatID')
-//                    ->join('appels', 'projets.ID', '=', 'appels.ProjetID')
-//                    ->where('projets.ManagerCIN', $cin)
-//                    ->where(function ($query) {
-//                        $query->whereNull('appels.Prochain_appel')
-//                            ->orWhereDate('appels.Prochain_appel', Carbon::today());
-//                    })
-//                    ->where('appels.Done', '=', 0)
-//                    ->select('candidats.*', 'projets.*')
-//                    ->get();
-//                return view('backOffice.manager.displayCalls')->with(['candidats' => $candidats]);
-//
-//            }
-//            else {
-////                $appel = new Appel();
-////                $appel->Commentaire = $comment;
-////                $appel->Date_appel = $call1;
-////                $appel->Prochain_appel = $call2;
-////                $appel->Done = 0;
-////                $appel->ProjetID = $id;
-//
-//                $appel->save();
-//                $cin = auth()->user()->CIN;
-//                $candidats = DB::table('candidats')
-//                    ->join('projets', 'candidats.ID', '=', 'projets.CandidatID')
-//                    ->join('appels', 'projets.ID', '=', 'appels.ProjetID')
-//                    ->where('projets.ManagerCIN', $cin)
-//                    ->where(function ($query) {
-//                        $query->whereNull('appels.Prochain_appel')
-//                            ->orWhereDate('appels.Prochain_appel', Carbon::yesterday());
-//                    })
-//                    ->where('appels.Done', '=', 0)
-//                    ->select('candidats.*', 'projets.*')
-//                    ->get();
-//                return view('backOffice.manager.displayCalls')->with(['candidats' => $candidats]);
-//            }
-//        }
-//        elseif ($buttonClicked === 'mark'){
-//            $id=request()->input('PrId');
-////            dd($id);
-//            $call1=request()->input("call1");
-//            $comment=request()->input("comment");
-//
-//            $appel = new Appel();
-//            $appel->Commentaire = $comment;
-//            $appel->Date_appel = $call1;
-//            $appel->ProjetID=$id;
-//            $appel->Done=1;
-//            $appel->save();
-//
-//            DB::table('appels')
-//                ->where('ProjetID','=',$id)
-//                ->whereDate('Prochain_appel','<=', Carbon::today())
-//                ->update(['Done' => 1]);
-//
-//            Projet::where('ID', $id)
-//                ->update(['Statut' => 'Completed']);
-//
-//        }
-//        $cin=auth()->user()->CIN;
-//        $today=Carbon::today();
-//        $candidats = DB::table('candidats')
-//            ->join('projets', 'candidats.ID', '=', 'projets.CandidatID')
-//            ->join('appels', 'projets.ID', '=', 'appels.ProjetID')
-//            ->where('projets.ManagerCIN', $cin)
-//            ->where(function ($query) use ($today) {
-//                $query->whereNull('appels.Prochain_appel')
-//                    ->orWhereDate('appels.Prochain_appel', '<',$today);
-//            })
-//            ->where('appels.Done','=', 0)
-//            ->select('candidats.*', 'projets.*')
-//            ->get();
-//
-//        return view('backOffice.manager.displayCalls')->with(['candidats'=>$candidats]);
+            DB::table('appels')
+                ->where('AppelID', $AppelID)
+                ->update(['Done' => 1]);
         }
+
+        $today = Carbon::today();
+
+        $candidats = DB::table('candidats')
+            ->join('projets', 'candidats.ID', '=', 'projets.CandidatID')
+            ->join('appels', 'projets.ProjetID', '=', 'appels.ProjetID')
+            ->where('projets.ManagerCIN', $cin)
+            ->where(function ($query) use ($today) {
+                $query->whereNull('appels.Date_appel')
+                    ->orWhereDate('appels.Prochain_appel', '<=', $today);
+            })
+            ->where('appels.Done', '=', 0)
+            ->select('candidats.*', 'projets.*','appels.AppelID')
+            ->get();
+        return view('backOffice.manager.displayCalls')->with(['candidats' => $candidats]);
+
+    }
 }
