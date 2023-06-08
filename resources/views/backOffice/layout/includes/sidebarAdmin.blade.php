@@ -17,9 +17,9 @@
                     </a>
                     <div class="collapse" id="form-elements">
                         <ul class="nav flex-column sub-menu">
-                            <li ><a class="custom-link" href="{{ route('admin.import') }}"><i class="fas fa-file-import" style="font-size: 15px"></i> &nbsp;&nbsp;Import new projects</a></li>
+                            <li ><a class="custom-link" href="{{ route('admin.import') }}"><i class="fas fa-file-import" style="font-size: 17px"></i> &nbsp;&nbsp;Import new projects</a></li>
                             <br>
-                            <li ><a class="custom-link" href="{{ route('admin.projects') }}"><i class="fas fa-list" style="font-size: 15px"></i> &nbsp;&nbsp; List of projects </a></li>
+                            <li ><a class="custom-link" href="{{ route('admin.projects') }}"><i class="fas fa-list" style="font-size: 17px"></i> &nbsp;&nbsp; List of projects </a></li>
                         </ul>
                     </div>
 
@@ -40,11 +40,10 @@
             </a>
         </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="{{route("general.inbox")}}">
-                        <i class="fas fa-inbox" style="font-size: 20px;"></i>
+                    <a class="nav-link" href="{{route("general.logout")}}" style="padding-top: 380px;">
+                        <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
                         &nbsp;&nbsp;&nbsp;
-                        <span class="menu-title">Inbox</span>
-                        <span class="num-messages"></span>
+                        <span class="menu-title">Logout</span>
                     </a>
                 </li>
     </ul>
@@ -69,6 +68,6 @@
     }
 
     .rotate {
-        transform: rotate(0deg);
+        transform: rotate(90deg);
     }
 </style>

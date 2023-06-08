@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zyhZyEAH0qF6Hr9N4S+Ak5dLU1V+8zqo5i0qI+6y" crossorigin="anonymous">
     <title>Authentification</title>
     <style>
         body {
-            background: linear-gradient(45deg, #FC466B, #3F5EFB);
+        background-image:  linear-gradient(45deg, #Ad5DEC, #f59711);;
             height: 100vh;
             font-family: Arial, sans-serif;
             display: flex;
@@ -19,7 +20,7 @@
         form {
             background: rgba(255, 255, 255, .3);
             padding: 9rem 4rem 0rem 4rem;
-            height: 270px;
+            height: 330px;
             border-radius: 20px;
             border: 1px solid rgba(255, 255, 255, .3);
             backdrop-filter: blur(10px);
@@ -35,6 +36,11 @@
             font-size: 1.4rem;
             margin-bottom: 60px;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, .2);
+        }
+        .input-icon {
+            position: absolute;
+            top: 8px;
+            left: 8px;
         }
 
         a {
@@ -109,6 +115,7 @@
             top: -20px;
             left: -40px;
             z-index: -1;
+            background-color: #9aedf8;
         }
 
         .drop-2 {
@@ -116,6 +123,7 @@
             width: 80px;
             bottom: -30px;
             right: -10px;
+            background-color: #F59711;
         }
 
         .drop-3 {
@@ -124,6 +132,7 @@
             bottom: 120px;
             right: -50px;
             z-index: -1;
+            background-color: #727EE9;
         }
 
         .drop-4 {
@@ -131,6 +140,7 @@
             width: 120px;
             top: -60px;
             right: -60px;
+            background-color: #AD5DEC;
         }
 
         .drop-5 {
@@ -139,6 +149,12 @@
             bottom: 170px;
             left: 90px;
             z-index: -1;
+            background-color: cadetblue;
+        }
+        .label{
+            font-size: 17px;
+            font-family: -webkit-body;
+            margin-right: 160px;
         }
     </style>
 </head>
@@ -148,12 +164,16 @@
     <form method="POST" action="{{ route('login') }}">
         @csrf
 
+        <label for="remember_me" class="label" >Email</label>
+        <br><br>
         <div class="form-group">
-            <input id="email" class="input" type="text" name="email" placeholder="Email" required autofocus>
+            <input id="email" class="input" type="text" name="email" placeholder="Email" required autofocus style="height: 20px;">
         </div>
 
+        <label for="remember_me" class="label" style="margin-right: 140px !important;">Password</label>
+        <br><br>
         <div class="form-group">
-            <input id="password" class="input" type="password" name="password" placeholder="Mot de passe" required>
+            <input id="password" class="input" type="password" name="password" placeholder="Mot de passe" required style="height: 20px;">
         </div>
 
         <div class="form-group">
@@ -162,7 +182,9 @@
         </div>
 
         <div class="form-group">
-            <button type="submit" class="input">Se connecter</button>
+            <button type="submit" class="input" style="    color: black;
+    width: 150px;
+    font-size: 12px;">Se connecter</button>
         </div>
     </form>
     <div class="drop drop-1"></div>

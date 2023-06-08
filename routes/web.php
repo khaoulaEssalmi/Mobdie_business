@@ -188,4 +188,14 @@ Route::namespace("Admin")->prefix("analyst")->name("analyst.")->group(function (
 
     });
 });
+
+##################################################
+##superAdmintasks##
+#############################################################
+Route::namespace("Admin")->prefix("superAdmin")->name("superAdmin.")->group(function () {
+    Route::middleware("auth:super")->group(function () {
+        Route::get("dashboard", [SuperAdminController::Class, "index"])->name("dashboard");
+
+    });
+});
 require __DIR__.'/auth.php';

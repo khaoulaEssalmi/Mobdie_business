@@ -27,7 +27,7 @@ class SuperAdminController extends Controller
         $nbrClients = 20;
         $nbrProducts = 10;
         $user = User::where('CIN', $cin)->first();
-        return view('backOffice.dashboardSuperAdmin')->with(["count"=>$count,"nbrClients" => $nbrClients,"nbrProducts" => $nbrProducts,"user"=>$user]);
+        return view('backOffice.superAdmin.dashboardSuperAdmin')->with(["count"=>$count,"nbrClients" => $nbrClients,"nbrProducts" => $nbrProducts,"user"=>$user]);
     }
 
     public function check(Request $request) {

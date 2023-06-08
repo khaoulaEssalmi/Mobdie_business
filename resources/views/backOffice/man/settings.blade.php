@@ -65,7 +65,7 @@
                                     <div class="form-group">
                                         <label class="form-label" style="font-family: solid ; font-size: 15px;">Full Name</label>
                                         <input type="text" name="full_name" class="form-control mb-1"
-                                               value="{{ Auth::user()->name}}" style="width:200px !important; border: 2px solid #000000 ;">
+                                               value="{{ Auth::user()->name}}" style="height: 30px; width:200px !important; border: 2px solid #000000 ;    ">
                                         @error('full_name')
                                         <span class="invalid-feedback" style="display: block !important;" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -75,7 +75,7 @@
                                     <div class="form-group">
                                         <label class="form-label" style="font-family: solid ; font-size: 15px;">E-mail</label>
                                         <input type="text" name="email" class="form-control mb-1"
-                                               value="{{Auth::user()->email}}" style="width:200px !important; border: 2px solid #000000">
+                                               value="{{Auth::user()->email}}" style="height: 30px; width:200px !important; border: 2px solid #000000; ">
                                         @error('email')
                                         <span class="invalid-feedback" style="display: block !important;" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -89,7 +89,7 @@
                                     <div class="form-group">
                                         <label class="form-label" style="font-family: solid ; font-size: 15px;">Phone</label>
                                         <input type="text" name="phone" class="form-control mb-1"
-                                               value="{{Auth::user()->phone}}" style="width:200px !important; border: 2px solid #000000">
+                                               value="{{Auth::user()->phone}}" style="height: 30px; width:200px !important; border: 2px solid #000000 ;">
                                         @error('Phone')
                                         <span class="invalid-feedback" style="display: block !important;" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -99,7 +99,7 @@
                                     <div class="form-group">
                                         <label class="form-label" style="font-family: solid ; font-size: 15px;">Address</label>
                                         <input type="text" name="address" class="form-control mb-1"
-                                               value="{{Auth::user()->address}}" style="width:200px !important; border: 2px solid #000000">
+                                               value="""{{Auth::user()->address}}" style="height: 30px; width:200px !important; border: 2px solid #000000 ;">
                                         @error('address')
                                         <span class="invalid-feedback" style="display: block !important;" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -127,7 +127,7 @@
                                     @csrf
                                     <div class="form-group">
                                         <label class="form-label" style="font-family: solid ; font-size: 15px;">Current password</label>
-                                        <input name="password" type="password" class="form-control"  style="width:200px !important; border: 2px solid #000000 ;">
+                                        <input name="password" type="password" class="form-control"  style="height: 30px; width:200px !important; border: 2px solid #000000 ;    ">
                                         @error('password')
                                         <span class="invalid-feedback" style="display: block !important;" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -137,7 +137,7 @@
 
                                     <div class="form-group">
                                         <label class="form-label" style="font-family: solid ; font-size: 15px;">New password</label>
-                                        <input name="new_pass" type="password" class="form-control"  style="width:200px !important; border: 2px solid #000000 ;">
+                                        <input name="new_pass" type="password" class="form-control"  style="height: 30px; width:200px !important; border: 2px solid #000000 ;    ">
                                         @error('new_pass')
                                         <span class="invalid-feedback" style="display: block !important;" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -147,7 +147,7 @@
 
                                     <div class="form-group">
                                         <label class="form-label" style="font-family: solid ; font-size: 15px;">Repeat new password</label>
-                                        <input name="new_pass_confirm" type="password" class="form-control"  style="width:200px !important; border: 2px solid #000000 ;">
+                                        <input name="new_pass_confirm" type="password" class="form-control"  style="height: 30px; width:200px !important; border: 2px solid #000000 ;    ">
                                         @error('new_pass_confirm')
                                         <span class="invalid-feedback" style="display: block !important;" role="alert">
                                             <strong>{{ $message }}</strong>

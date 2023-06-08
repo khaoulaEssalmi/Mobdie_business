@@ -50,7 +50,7 @@
         .import-button {
             padding: 10px 20px;
             /*background-color: #727EE9;*/
-            background-image: linear-gradient(to left,#AD5DEC,#9AEDF8);
+            background-color:#ad5decc9;
             color: #000000;
             border: none;
             font-size: 20px;
@@ -90,7 +90,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card" style="background-color: transparent !important;">
                         <div class="card-body1" style=" background-color:transparent !important;">
-                            <div class="container">
+                            <div class="container" style="    background-color: #e9ecef;">
                                 <h2 style="color: #2b2e4c; font-size: 24px; font-family: Arial; ">Importer un fichier CSV</h2>
                                 <form action="{{ route('admin.import.csv') }}" method="post" enctype="multipart/form-data">
                                     @csrf
@@ -98,7 +98,7 @@
                                     <div class="form-group">
 <br>
                                         <label for="csvFile">Sélectionnez un fichier CSV :</label>
-                                        <input type="file" id="csvFile" name="csvFile" >
+                                        <input type="file" id="csvFile" name="csvFile" style="background-image: linear-gradient(45deg, #ad5dec, transparent);" >
                                     </div>
                                     <div class="form-group">
                                             <button type="submit" onclick="" class="import-button">

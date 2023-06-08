@@ -27,6 +27,13 @@
                 <span class="menu-title">Managers</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{{route("general.logout")}}" style="padding-top: 380px;">
+                <i class="class="fas fa-sign-out-alt"" style="font-size: 20px;"></i>
+                &nbsp;&nbsp;&nbsp;
+                <span class="menu-title">Logout</span>
+            </a>
+        </li>
 {{--        <li class="nav-item">--}}
 {{--            <a class="nav-link" href="{{route("general.inbox")}}">--}}
 {{--                <i class="fas fa-inbox" style="font-size: 20px;"></i>--}}

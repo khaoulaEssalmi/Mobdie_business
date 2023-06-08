@@ -48,24 +48,24 @@ class AuthenticatedSessionController extends Controller
         $cin=$user->CIN;
         if ($user->isAdmin()) {
             Auth::guard('admin')->login($user);
-            return redirect()->route('admin.dashboard', ['cin' => $cin,'count'=>$count]);
+            return redirect()->route('admin.dashboard', ['cin' => $cin]);
         }
 
         if ($user->isAnalyst()) {
             Auth::guard('analyst')->login($user);
-            return redirect()->route('analyst.dashboard', ['cin' => $cin,'count'=>$count]);
+            return redirect()->route('analyst.dashboard', ['cin' => $cin]);
         }
 
         if ($user->isManager()) {
             Auth::guard('man')->login($user);
 
-            return redirect()->route('manager.dashboard', ['cin' => $cin,'count'=>$count]);
+            return redirect()->route('manager.dashboard', ['cin' => $cin]);
         }
 
         if ($user->isSuperAdmin()){
 //            dd('super admin');
             Auth::guard('super')->login($user);
-            return redirect()->route('superAdmin.dashboard', ['cin' => $cin,'count'=>$count]);
+            return redirect()->route('superAdmin.dashboard', ['cin' => $cin]);
         }
 
         return redirect()->route('superAdmin.dashboard');

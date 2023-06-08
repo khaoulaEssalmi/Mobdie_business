@@ -14,10 +14,10 @@
     @endif
     <div class="main-panel">
         <div class="content-wrapper1">
-            <div class="row">
+            <div class="row" style="max-width: 1200px !important; padding-left: 100px !important;">
                 <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body" style="max-width: 1092px !important;">
+                    <div class="card" >
+                        <div class="card-body" style="max-width: 1200px !important;">
                             <h3 class="card-title">Projects List</h3>
 {{--                            <p class="card-description">--}}
 {{--                                <a href="#" class="btn btn-sm btn-outline-success">--}}
@@ -59,11 +59,11 @@
                                                 {{ Str::limit($project->Description, $limit = 140, $end = ' ...') }}
                                             </td>
                                             <td>
-                                                @if ($project->Statut == 'Pending')
+                                                @if ($project->Statut === 'Pending')
                                                     <i class="fas fa-spinner"  style="font-size: 24px; color: #ffcd39; margin-right: 1px; "></i>
-                                                @elseif ($project->Statut == 'Completed')
+                                                @elseif ($project->Statut === 'Completed')
                                                     <i class="fas fa-check-circle" style="font-size: 24px; color: #00bb00; margin-right: 1px; "></i>
-                                                @elseif ($project->Statut == 'Blocked')
+                                                @elseif ($project->Statut === 'Blocked')
                                                     <i class="fas fa-ban" style="font-size: 24px; color: #ff0000; margin-right: 1px; "></i>
                                                 @endif
                                             </td>

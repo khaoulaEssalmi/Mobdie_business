@@ -74,10 +74,7 @@
                 </div>
             </div>
         </div>
-
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="row">
+        <div class="row">
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
@@ -116,21 +113,16 @@
                             </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        <div class="main-panel">
-            <div class="content-wrapper">
-                <div class="row">
+        <div class="row">
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">{{ $user->name  }} 's Scores monthly</h4>
                                 <br>
                             </div>
-                            <div>
+                            <div style="width: 100%; height: 300px;">
                                 <canvas id="monthly-chart"></canvas>
                             </div>
-
                             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
                             <script>
                                 var monthlyScores = {!! json_encode($monthlyScores) !!};
@@ -157,7 +149,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+    </div>
         <!-- content-wrapper ends -->
         <!-- partial:../../partials/_footer.html -->
 

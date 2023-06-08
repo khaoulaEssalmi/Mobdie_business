@@ -78,7 +78,7 @@ label.btn {
     font-size:18px;
     font-family: solid;
     color: #727EE9;
-    background: #FFFFFF;
+    background: rgba(0,0,0,0);
 }
 .account-settings-links .list-group-item.active {
     background: transparent !important;
@@ -141,7 +141,7 @@ button.btn.btn-default.md-btn-flat {
     flex-direction: column;
     min-width: 0;
     word-wrap: break-word;
-    background-color: transparent;
+    background-color: #e9ecef;
     background-clip: border-box;
     border: 2px solid #000000;
     border-radius: 20px;
@@ -153,7 +153,7 @@ button.btn.btn-default.md-btn-flat {
     border-radius: 5px;
     padding: 10px 15px;
     cursor: pointer;
-    background-color: white;
+    background-color: #ad5decc9;
     color: #333;
     transition: background-color 0.3s ease-in-out;
 }
