@@ -11092,7 +11092,7 @@ fieldset:disabled .wizard > .actions a,
 }
 
 .custom-icon11 {
-    background-color: #AD5DEC !important;
+    background-color: #727EE9 !important;
     transition: color 0.3s ease-in-out;
 }
 .custom-icon11:hover {
@@ -16914,7 +16914,7 @@ button.bg-dark:focus,
 
 .ml-4,
 .mx-4 {
-  margin-left: 1.5rem !important;
+  margin-left: 3rem !important;
 }
 
 .m-5 {
@@ -28230,8 +28230,8 @@ div.tagsinput span.tag a {
 }
 
 .content-wrapper {
-    background:linear-gradient(to right, #AD5DEC, #ced4da);
-  padding: 1rem 0.375rem;
+    background: linear-gradient(to right, #e9ecef, #e9ecef);
+    padding: 1rem 0.375rem;
   width: 100%;
   -webkit-flex-grow: 1;
   flex-grow: 1;
@@ -28239,7 +28239,7 @@ div.tagsinput span.tag a {
 }
 
 .content-wrapper1 {
-    background: linear-gradient(to right, #AD5DEC, #ced4da);
+    background: linear-gradient(to right, #e9ecef, #fff);
     padding: 1rem 0.375rem;
     width: 100%;
     -webkit-flex-grow: 1;

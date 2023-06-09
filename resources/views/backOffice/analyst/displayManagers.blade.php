@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" style="border:none !important;">
                             <h4 class="card-title">{{auth()->user()->name }} 's List Managers</h4>
 
                             <div class="table-responsive">

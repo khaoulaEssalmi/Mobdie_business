@@ -1,10 +1,17 @@
-@extends("backOffice.layout.panelAdmin")
+@extends("backOffice.layout.panelSuperAdmin")
 
 @section("style")
     <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/mdi/css/materialdesignicons.min.css">
-    <style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
-    </style>
+    {{--    <style>--}}
+    {{--.heho{--}}
+    {{--    background-color: #F5F7FF !important;--}}
+    {{--    margin-top: 70px;--}}
+    {{--    font-size: 20px;--}}
+    {{--     border: 1px solid #000;--}}
+    {{--}--}}
+    {{--    </style>--}}
 @endsection
 
 
@@ -28,14 +35,21 @@
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
-                        <div class="card-body" style="border: none;">
-                            <h4 class="card-title">Analysts List</h4>
-                            {{--                            <p class="card-description">--}}
-                            {{--                                <a href="{{ route('superAdmin.managers.add') }}" class="btn btn-sm btn-outline-success">--}}
-                            {{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
-                            {{--                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter</strong>--}}
-                            {{--                                </a>--}}
-                            {{--                            </p>--}}
+                        <div class="card-body" style="border: none !important;">
+                            <h4 class="card-title">Admins List</h4>
+                            <br><br>
+                            <p class="card-description">
+                                <a  class="add-manager-link" href="{{ route('superAdmin.addAdmin') }}">
+                                    <button class="add-manager-btn">
+                                        <i class="fas fa-plus"></i> ADD Admin
+                                    </button>
+                                </a>
+                                {{--                                <a href="{{ route('admin.addManager') }}" class="btn btn-sm btn-outline-success">--}}
+                                {{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
+                                {{--                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter un manager</strong>--}}
+                                {{--                                </a>--}}
+                            </p>
+                            <br>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
@@ -53,34 +67,32 @@
                                             CIN
                                         </th>
                                         <th>
-                                            Action
+
                                         </th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($analysts as $analyst)
+                                    @foreach($admins as $admin)
                                         <tr>
                                             <td class="py-1">
-                                                <img src="{{asset("uploads/managers/avatars/" . $analyst->picture)}}"
+                                                <img src="{{asset("uploads/managers/avatars/" . $admin->picture)}}"
                                                      alt="image"/>
                                             </td>
                                             <td>
-                                                {{$analyst->name}}
+                                                {{$admin->name}}
                                             </td>
                                             <td>
-                                                {{$analyst->email}}
+                                                {{$admin->email}}
                                             </td>
                                             <td>
-                                                {{$analyst->CIN}}
+                                                {{$admin->CIN}}
                                             </td>
-
-                                            <td>
-                                                <form style="display: inline; margin-right: 10px" method="POST"
-                                                      action="{{ route("admin.managers.to.analysts",['cin'=> $analyst->CIN] )}}">
+                                            <td style="width:20px">
+                                                <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.delete",['cin'=>$admin->CIN]) }}">
                                                     @csrf
-                                                    <input type="hidden" name="id" value="{{$analyst->CIN}}">
-                                                    <button type="submit" class="btn btn-affect-managers">
-                                                        <i class="fas fa-users" style="font-size: 18px !important;"></i> &nbsp;&nbsp; <p style="font-size: 14px !important; padding-top: 7px;"><b>Affect Managers</b></p>
+                                                    <input type="hidden" name="id" value="{{$admin->CIN}}">
+                                                    <button type="submit" class="btn custom-button3">
+                                                        <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
                                             </td>
@@ -94,17 +106,5 @@
                 </div>
             </div>
         </div>
-        <!-- content-wrapper ends -->
-        <!-- partial:../../partials/_footer.html -->
-{{--        <footer class="footer">--}}
-{{--            <div class="d-sm-flex justify-content-center justify-content-sm-between">--}}
-{{--                <span--}}
-{{--                    class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © 2021.  Premium <a--}}
-{{--                        href="https://www.bootstrapdash.com/" target="_blank">Bootstrap admin template</a> from BootstrapDash. All rights reserved.</span>--}}
-{{--                <span class="float-none float-sm-right d-block mt-1 mt-sm-0 text-center">Hand-crafted & made with <i--}}
-{{--                        class="ti-heart text-danger ml-1"></i></span>--}}
-{{--            </div>--}}
-{{--        </footer>--}}
-        <!-- partial -->
     </div>
 @endsection

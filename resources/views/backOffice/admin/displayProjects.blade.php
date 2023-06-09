@@ -14,10 +14,10 @@
     @endif
     <div class="main-panel">
         <div class="content-wrapper1">
-            <div class="row" style="max-width: 1200px !important; padding-left: 100px !important;">
+            <div class="row" style="max-width: 1200px !important; padding-left: 70px !important; padding-top: 30px;">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card" >
-                        <div class="card-body" style="max-width: 1200px !important;">
+                        <div class="card-body" style="max-width: 1200px !important; border:none;">
                             <h3 class="card-title">Projects List</h3>
 {{--                            <p class="card-description">--}}
 {{--                                <a href="#" class="btn btn-sm btn-outline-success">--}}

@@ -6,30 +6,12 @@
     @if(\Illuminate\Support\Facades\Session::has('success'))
         <div class="alert alert-success">{{ \Illuminate\Support\Facades\Session::get('success') }}</div>
     @endif
-{{--    <div class="main-panel">--}}
-{{--        <div class="content-wrapper1" style="height: 70px !important;">--}}
-{{--            <div class="row" style="width: 0px !important; background-color: transparent !important;">--}}
-{{--                <div class="col-lg-12 grid-margin stretch-card">--}}
-{{--                    <div class="card">--}}
-{{--                        <div class="card-body" style="width: 300px !important; background-color: transparent !important; border: none !important;">--}}
-{{--                            <p class="card-description" style="width: 300px !important; background-color: transparent !important;">--}}
-{{--                                <a href="{{ route('analyst.sendEmailToManager',['cin'=>$user->CIN ]) }}" class="btn send-evaluation-button" style="">--}}
-{{--                                    <i class="fas fa-paper-plane" style="position: relative; top: -2px; font-size: 20px;"></i>--}}
-{{--                                    <span style="position: relative; top: -2px; font-size: 15px;">Send Evaluation to Manager</span>--}}
-{{--                                </a>--}}
-{{--                            </p>--}}
-{{--                        </div>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        display: inline-block; text-decoration: none; padding: 6px 12px; border: 1px solid #28a745; border-radius: 4px; background-color: #fff; color: #28a745; font-size: 16px; font-weight: bold;--}}
     <div class="main-panel">
         <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" style="border: none !important;">
                             <h4 class="card-title">{{ $user->name  }} 's List Projects</h4>
                             <br>
                             <div class="table-responsive">
@@ -74,10 +56,11 @@
                 </div>
             </div>
         </div>
-        <div class="row">
-                    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="content-wrapper1">
+        <div class="row" style="width: 800px;">
+                    <div class="col-lg-12 grid-margin stretch-card" style="margin-left: 200px;">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body" style="border:none !important;">
                                 <h4 class="card-title">{{ $user->name  }} 's Scores in last 7 days</h4>
                                 <br>
                             </div>
@@ -113,10 +96,11 @@
                             </div>
                         </div>
                     </div>
-        <div class="row">
-                    <div class="col-lg-12 grid-margin stretch-card">
+{{--            <div class="content-wrapper1">--}}
+            <div class="row" style="width: 800px;">
+                    <div class="col-lg-12 grid-margin stretch-card"style="margin-left: 200px;">
                         <div class="card">
-                            <div class="card-body">
+                            <div class="card-body"  style="border:none !important;">
                                 <h4 class="card-title">{{ $user->name  }} 's Scores monthly</h4>
                                 <br>
                             </div>

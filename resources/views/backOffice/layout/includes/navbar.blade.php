@@ -43,18 +43,18 @@
 
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
-        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
+        <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center" style="background-color: #e9ecef !important;">
             <a class="navbar-brand brand-logo mr-5" href="index.html"><img src="{{asset("uploads/managers/avatars/logo.jpg")}}" class="mr-2" alt="logo"/></a>
             <a class="navbar-brand brand-logo-mini" href="index.html"><img src="images/logo-mini.svg" alt="logo"/></a>
         </div>
-        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end" style="background-color: #e9ecef!important;">
             <div class="nav-right">
                 <div class="profile-button">
                     <img class="profile-image" src="{{asset("uploads/managers/avatars/" . auth()->user()->picture)}}" alt="Photo de profil">
                 </div>
                 <div class="dropdown-content">
                     <a href="{{ route('general.profile') }}" style="font-style: inherit; font-size: 14px;"><i class="fas fa-user" style="color: #AD5DEC; font-size: 15px;"></i> &nbsp; Profil</a>
-                    <a href="{{ route('general.logout') }}" style="font-style: inherit; font-size: 14px;"><i class="fas fa-sign-out-alt" style="color: #AD5DEC; font-size: 15px;"> </i> &nbsp; Logout </a>
+{{--                    <a href="{{ route('general.logout') }}" style="font-style: inherit; font-size: 14px;"><i class="fas fa-sign-out-alt" style="color: #AD5DEC; font-size: 15px;"> </i> &nbsp; Logout </a>--}}
                 </div>
             </div>
         </div>

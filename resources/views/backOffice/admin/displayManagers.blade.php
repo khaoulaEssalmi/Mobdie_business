@@ -35,7 +35,7 @@
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" style="border: none;">
                             <h4 class="card-title">Managers List</h4>
                             <br><br>
                             <p class="card-description">
@@ -88,7 +88,7 @@
                                                 {{$manager->CIN}}
                                             </td>
 
-                                            <td>
+                                            <td >
                                                 <form style="display: inline; margin-right: -40px" method="POST"
                                                       action="{{ route("admin.projects.to.managers",['cin'=> $manager->CIN] )}}">
                                                     @csrf
@@ -98,7 +98,7 @@
                                                     </button>
                                                 </form>
                                             </td>
-                                            <td style="width:20px">
+                                            <td style="width:20px; padding-right: 50px;">
                                                 <form style="display: inline;margin-right: -40px" method="POST" action="{{ route("admin.man.showProjects",['cin'=>$manager->CIN]) }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">
@@ -107,7 +107,7 @@
                                                     </button>
                                                 </form>
                                             </td>
-                                            <td style="width:20px">
+                                            <td style="width:20px; padding-right: 40px;">
                                                 <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.showAnalysts",['cin'=>$manager->CIN]) }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">

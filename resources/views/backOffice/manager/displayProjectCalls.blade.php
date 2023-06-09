@@ -25,7 +25,7 @@
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
-                        <div class="card-body">
+                        <div class="card-body" style="border:none !important;">
                             <h4 class="card-title"> {{ $Pr->NomPr }}'s Calls list</h4>
                             <br><br>
                             {{--                            <p class="card-description">--}}
@@ -77,7 +77,7 @@
                 <div class="row" style="width:530px !important;">
                     <div class="col-12 grid-margin stretch-card" style="width:500px !important;">
                         <div class="card" >
-                            <div class="card-body " style="width:500px !important;">
+                            <div class="card-body " style="width:500px !important; border: none !important;">
                                 <h4 class="card-title">Today Call: {{ $Telephone}}</h4>
 {{--                                <br><br>--}}
                                 <form class="forms-sample"  style="width:500px !important;" method="POST" action="{{route("manager.submitFormCall",['PrId'=>$Pr->ProjetID,'AppelID'=>$AppelID])}}"

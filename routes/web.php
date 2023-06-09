@@ -195,6 +195,11 @@ Route::namespace("Admin")->prefix("analyst")->name("analyst.")->group(function (
 Route::namespace("Admin")->prefix("superAdmin")->name("superAdmin.")->group(function () {
     Route::middleware("auth:super")->group(function () {
         Route::get("dashboard", [SuperAdminController::Class, "index"])->name("dashboard");
+        Route::get("admins",[SuperAdminController::class,"displayAdmins"])->name("admins");
+        Route::get("addAdmin", [SuperAdminController::Class, "addAdmin"])->name("addAdmin");
+        Route::post("addAdmin/submit",[SuperAdminController::class,"addAdminSubmit"])->name("admin.add.submit");
+
+
 
     });
 });

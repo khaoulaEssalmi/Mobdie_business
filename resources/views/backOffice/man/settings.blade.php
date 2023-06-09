@@ -1,4 +1,4 @@
-@extends("backOffice.layout.panelAdmin")
+@extends("backOffice.layout.panel")
 
 @section("style")
     <link rel="stylesheet" href="{{asset("css/admin/profile.css")}}">

@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color: #9AEDF8">
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ route("analyst.dashboard", ['name' => auth()->user()->name]) }}"  >
@@ -28,8 +28,8 @@
             </a>
         </li>
         <li class="nav-item">
-            <a class="nav-link" href="{{route("general.logout")}}" style="padding-top: 380px;">
-                <i class="class="fas fa-sign-out-alt"" style="font-size: 20px;"></i>
+            <a class="nav-link" href="{{route("general.logout")}}" style="padding-top: 520px;">
+                <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
                 &nbsp;&nbsp;&nbsp;
                 <span class="menu-title">Logout</span>
             </a>

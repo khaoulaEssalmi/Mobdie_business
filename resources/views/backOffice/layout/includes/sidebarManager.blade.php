@@ -1,4 +1,4 @@
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas" id="sidebar" style="background-color: #727EE9">
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ route("manager.dashboard", ['name' => auth()->user()->name]) }}"  >
@@ -35,7 +35,7 @@
         {{--            </div>--}}
 
         <li class="nav-item">
-            <a class="nav-link" href="{{route("general.logout")}}" style="padding-top: 380px;">
+            <a class="nav-link" href="{{route("general.logout")}}" style="padding-top: 520px;">
                 <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
                 &nbsp;&nbsp;&nbsp;
                 <span class="menu-title">Logout</span>

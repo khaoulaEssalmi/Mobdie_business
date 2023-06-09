@@ -20,8 +20,8 @@ class GeneralController extends Controller
 {
     public function profile()
     {
-        $count=request()->query('count');
-        return view("backOffice.man.settings")->with(['count'=>$count]);
+//        $count=request()->query(+'count');
+        return view("backOffice.man.settings");
     }
 
     public function updateGeneral(Request $request)
@@ -60,6 +60,12 @@ class GeneralController extends Controller
             }
             if(auth()->user()->isSuperAdmin()){
                 return  redirect()->route("superAdmin.dashboard");
+            }
+            if(auth()->user()->isManager()){
+                return  redirect()->route("manager.dashboard");
+            }
+            if(auth()->user()->isAnalyst()){
+                return  redirect()->route("analyst.dashboard");
             }
         }
     }

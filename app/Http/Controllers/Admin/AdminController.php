@@ -29,12 +29,24 @@ class AdminController extends Controller
 {
     public function index()
     {
+        $managerCount = DB::table('users')
+            ->where('role', 'Manager')
+            ->where('etat', 1)
+            ->count();
+
+        $analystCount = DB::table('users')
+            ->where('role', 'Analyst')
+            ->where('etat', 1)
+            ->count();
+
+        $projetCount = DB::table('projets')->count();
+
         $cin = request()->query('cin');
 
         $nbrClients = 2000;
         $nbrProducts = 9800;
         $user = User::where('CIN', $cin)->first();
-        return view('backOffice.admin.dashboardAdmin')->with(["nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
+        return view('backOffice.admin.dashboardAdmin')->with(["projetCount"=>$projetCount,"analystCount"=>$analystCount,"managerCount"=>$managerCount]);
     }
 
     public function displayProjects()

@@ -1,5 +1,5 @@
 
-<nav class="sidebar sidebar-offcanvas" id="sidebar">
+<nav class="sidebar sidebar-offcanvas  " style="background-color: #AD5DEC !important;" id="sidebar">
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ route("superAdmin.dashboard", ['name' => auth()->user()->name]) }}"  >
