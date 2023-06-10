@@ -57,6 +57,34 @@ class AdminController extends Controller
 
     public function displayManagers()
     {
+        $managersInProgress = DB::table('users')
+            ->select('users.CIN', 'users.name', DB::raw('COUNT(DISTINCT projets.ProjetID) AS projects_in_progress'))
+            ->leftJoin('projets', 'users.CIN', '=', 'projets.ManagerCIN')
+            ->where('projets.Statut', 'In progress')
+            ->orWhereNull('projets.ProjetID')
+            ->where('users.role', 'Manager')
+            ->where('users.etat', 1)
+            ->groupBy('users.CIN', 'users.name')
+            ->get();
+
+//        dd($managersInProgress);
+
+        $managersNoCalls = DB::table('users')
+            ->select('projets.ProjetID', 'users.name', DB::raw('COUNT(appels.appelID) AS nombre_appels'))
+            ->join('projets', 'users.CIN', '=', 'projets.ManagerCIN')
+            ->leftJoin('appels', function ($join) {
+                $join->on('projets.ProjetID', '=', 'appels.projetID')
+                    ->where(function ($query) {
+                        $query->where('appels.Prochain_appel', '<=', DB::raw('CURRENT_DATE'))
+                            ->orWhereNull('appels.Elements_discutes');
+                    });
+            })
+            ->where('appels.Done', 0)
+            ->where('users.role', 'Manager')
+            ->groupBy('projets.ProjetID', 'users.name')
+            ->get();
+
+
         $managers = User::where('role', 'Manager')
             ->where('etat', 1)
             ->get();
@@ -350,6 +378,73 @@ class AdminController extends Controller
         }
     }
 
+    public function addAnalyst()
+    {
+        return view("backOffice.admin.addAnalyst");
+    }
+
+    public function addAnalystSubmit(Request $request)
+    {
+        if ($request->input('button_clicked') == 'validate') {
+            $validator = Validator::make($request->all(), [
+                "name" => "required|max:100,name",
+                "cin" => "required|max:100|unique:users,CIN",
+                "email" => "required|email|unique:users,email",
+                "password" => "required|min:8",
+                "address" => "max:255",
+                "phone" => "max:20",
+            ],
+                [
+                    "name.required" => "The name field is required",
+                    "name.max" => "Name field cannot exceed 100 characters",
+
+                    "cin.required" => "The CIN field is required",
+                    "cin.max" => "CIN field cannot exceed 100 characters",
+                    "cin.unique" => "This CIN already exists in the database",
+
+                    "email.required" => "The email field is required",
+                    "email.email" => "The Email field must respect the structure of the emails",
+                    "email.unique" => "This email already exists in the database",
+
+                    "password.required" => "The password field is required",
+                    "password.min" => "The password cannot be composed of less than 8 characters",
+
+                    "address.max" => "The Address cannot exceed 255 characters",
+
+                    "phone.max" => "The Phone field cannot exceed 12 characters",
+                ]);
+            $errors = $validator->errors();
+            if ($errors->any()){
+                return redirect()->back()->withErrors($errors);
+            }
+            $user = new User();
+
+            $user->name = $request->input("name");
+            $user->CIN = $request->input("cin");
+            $user->email = $request->input("email");
+            $user->password = Hash::make($request->input("password"));
+            $user->address = $request->input("address");
+            $user->phone = $request->input("Phone");
+            $user->role = "Analyst";
+            $user->etat=1;
+            $user->picture = $request->file('images') ? UploadController::userPic($request) : "avatar.png";
+
+            $user->save();
+
+            $analysts = User::where('role', 'Analyst')
+                ->where('etat', 1)
+                ->get();
+            Session::flash('success', 'user successfully adds');
+
+            return view("backOffice.admin.displayAnalysts")->with(["analysts"=>$analysts]);
+        } elseif ($request->input('button_clicked') == 'cancel') {
+            $analysts = User::where('role', 'Analyst')
+                ->where('etat', 1)
+                ->get();
+            return view("backOffice.admin.displayManagers")->with(["analysts"=>$analysts]);
+        }
+    }
+
     public  function  delete(request $request){
         $cin=request()->input('cin');
 //        dd($cin);
@@ -372,6 +467,26 @@ class AdminController extends Controller
 //dd($managers);
         return view("backOffice.admin.displayManagers")->with(["managers"=>$managers]);
 
+    }
+
+    public  function  delete1(request $request){
+        $cin=request()->input('cin');
+//        dd($cin);
+
+        User::where('cin', $cin)->update(['etat' => 0]);
+
+        AnalystManager::where('AnalystCIN', $cin)
+            ->delete();
+
+
+        Session::flash('success', 'Analyst successfully deleted');
+
+        $analysts = DB::table('users')
+            ->where('role', 'Analyst')
+            ->where('etat',1)
+            ->get();
+//dd($analysts);
+        return view("backOffice.admin.displayAnalysts")->with(["analysts"=>$analysts]);
     }
 
     public function import(){

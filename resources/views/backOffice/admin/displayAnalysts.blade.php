@@ -30,12 +30,15 @@
                     <div class="card">
                         <div class="card-body" style="border: none;">
                             <h4 class="card-title" style="color: #7c3eac">Analysts List</h4>
-                            {{--                            <p class="card-description">--}}
-                            {{--                                <a href="{{ route('superAdmin.managers.add') }}" class="btn btn-sm btn-outline-success">--}}
-                            {{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
-                            {{--                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter</strong>--}}
-                            {{--                                </a>--}}
-                            {{--                            </p>--}}
+                            <br><br>
+                            <p class="card-description">
+                                <a  class="add-manager-link" href="{{ route('admin.addAnalyst') }}">
+                                    <button class="add-manager-btn" style="background-color: #7c3eac">
+                                        <i class="fas fa-plus"></i> ADD Analyst
+                                    </button>
+                                </a>
+                            </p>
+                            <br>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
@@ -81,6 +84,15 @@
                                                     <input type="hidden" name="id" value="{{$analyst->CIN}}">
                                                     <button type="submit" class="btn btn-affect-managers">
                                                         <i class="fas fa-users" style="font-size: 18px !important;"></i> &nbsp;&nbsp; <p style="font-size: 14px !important; padding-top: 7px;"><b>Affect Managers</b></p>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                            <td style="width:20px">
+                                                <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.analyst.delete",['cin'=>$analyst->CIN]) }}">
+                                                    @csrf
+                                                    <input type="hidden" name="id" value="{{$analyst->CIN}}">
+                                                    <button type="submit" class="btn custom-button3">
+                                                        <i class="fas fa-trash-alt"></i>
                                                     </button>
                                                 </form>
                                             </td>

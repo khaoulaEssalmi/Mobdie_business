@@ -44,10 +44,6 @@
                                         <i class="fas fa-plus"></i> ADD Manager
                                     </button>
                                 </a>
-{{--                                <a href="{{ route('admin.addManager') }}" class="btn btn-sm btn-outline-success">--}}
-{{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
-{{--                                        style="position: relative;top: -2px;font-size: 16px;">Ajouter un manager</strong>--}}
-{{--                                </a>--}}
                             </p>
                             <br>
                             <div class="table-responsive">

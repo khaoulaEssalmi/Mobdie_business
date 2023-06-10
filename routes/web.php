@@ -135,8 +135,11 @@ Route::namespace("Admin")->prefix("admin")->name("admin.")->group(function () {
         Route::post("/analysts/managers",[AdminController::class,"affectationDesManagers"])->name("managers.to.analysts");
         Route::post("/managers/submit",[AdminController::class,"managersSubmit"])->name("managers.submit");
         Route::post("/managers/showAnalystsdelete",[AdminController::class,"deleteAnalyst"])->name("deleteAnalyst");
-        Route::get("/man/add", [AdminController::Class, "addManager"])->name("addManager");
-        Route::post("/man/add/submit",[AdminController::class,"addManagerSubmit"])->name("man.add.submit");
+        Route::get("/manager/add", [AdminController::Class, "addManager"])->name("addManager");
+        Route::post("/manager/add/submit",[AdminController::class,"addManagerSubmit"])->name("man.add.submit");
+        Route::get("/analyst/add", [AdminController::Class, "addAnalyst"])->name("addAnalyst");
+        Route::post("/analyst/add/submit",[AdminController::class,"addAnalystSubmit"])->name("analyst.add.submit");
+        Route::post("/analysts/delete",[AdminController::class,"delete1"])->name("analyst.delete");
 
     });
 });
@@ -189,6 +192,7 @@ Route::namespace("Admin")->prefix("analyst")->name("analyst.")->group(function (
     });
 });
 
+
 ##################################################
 ##superAdmintasks##
 #############################################################
@@ -198,6 +202,7 @@ Route::namespace("Admin")->prefix("superAdmin")->name("superAdmin.")->group(func
         Route::get("admins",[SuperAdminController::class,"displayAdmins"])->name("admins");
         Route::get("addAdmin", [SuperAdminController::Class, "addAdmin"])->name("addAdmin");
         Route::post("addAdmin/submit",[SuperAdminController::class,"addAdminSubmit"])->name("admin.add.submit");
+        Route::post("admin/delete",[SuperAdminController::class,"deleteAdmin"])->name("admin.delete");
 
 
 

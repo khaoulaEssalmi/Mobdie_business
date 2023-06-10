@@ -88,7 +88,7 @@
                                                 {{$admin->CIN}}
                                             </td>
                                             <td style="width:20px">
-                                                <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("admin.man.delete",['cin'=>$admin->CIN]) }}">
+                                                <form style="display: inline; margin-right: -40px" method="POST" action="{{ route("superAdmin.admin.delete",['cin'=>$admin->CIN]) }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$admin->CIN}}">
                                                     <button type="submit" class="btn custom-button3">

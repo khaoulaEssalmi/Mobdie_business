@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\Helper\UploadController;
+use App\Models\AnalystManager;
 use App\Models\Manager;
 use App\Models\Product;
 use App\Models\User;
@@ -118,5 +119,21 @@ class SuperAdminController extends Controller
                 ->get();
             return view("backOffice.superAdmin.displayAdmins")->with(["admins"=>$admins]);
         }
+    }
+
+    public function deleteAdmin(Request $request){
+        $cin=request()->input('cin');
+//        dd($cin);
+
+        User::where('cin', $cin)->update(['etat' => 0]);
+
+        Session::flash('success', 'Admin successfully deleted');
+
+        $admins = DB::table('users')
+            ->where('role', 'Admin')
+            ->where('etat',1)
+            ->get();
+//dd($admins);
+        return view("backOffice.superAdmin.displayAdmins")->with(["admins"=>$admins]);
     }
 }
