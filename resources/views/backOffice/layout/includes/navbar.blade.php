@@ -53,7 +53,7 @@
                     <img class="profile-image" src="{{asset("uploads/managers/avatars/" . auth()->user()->picture)}}" alt="Photo de profil">
                 </div>
                 <div class="dropdown-content">
-                    <a href="{{ route('general.profile') }}" style="font-style: inherit; font-size: 14px;"><i class="fas fa-user" style="color: #AD5DEC; font-size: 15px;"></i> &nbsp; Profil</a>
+                    <a href="{{ route('general.profile') }}" style="font-style: inherit; font-size: 14px;"><i class="fas fa-user" style="color: #000; font-size: 15px;"></i> &nbsp; Profil</a>
 {{--                    <a href="{{ route('general.logout') }}" style="font-style: inherit; font-size: 14px;"><i class="fas fa-sign-out-alt" style="color: #AD5DEC; font-size: 15px;"> </i> &nbsp; Logout </a>--}}
                 </div>
             </div>

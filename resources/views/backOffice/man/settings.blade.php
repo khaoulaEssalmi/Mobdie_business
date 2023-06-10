@@ -99,7 +99,7 @@
                                     <div class="form-group">
                                         <label class="form-label" style="font-family: solid ; font-size: 15px;">Address</label>
                                         <input type="text" name="address" class="form-control mb-1"
-                                               value="""{{Auth::user()->address}}" style="height: 30px; width:200px !important; border: 2px solid #000000 ;">
+                                               value="{{Auth::user()->address}}" style="height: 30px; width:200px !important; border: 2px solid #000000 ;">
                                         @error('address')
                                         <span class="invalid-feedback" style="display: block !important;" role="alert">
                                             <strong>{{ $message }}</strong>
@@ -109,11 +109,11 @@
                                 </div>
                                 <div class="text-right mt-3">
                                     <button type="submit" class="btn custom-button-style" name="button_clicked"
-                                            value="save_changes">
+                                            value="save_changes" style="background-image: linear-gradient(45deg, #7690b9, #fff);">
                                         <i class="fas fa-check-circle fa-lg"></i>
                                         Save changes
                                     </button>&nbsp;
-                                    <button type="submit" class="btn custom-button-style1" name="button_clicked" value="cancel">
+                                    <button type="submit" class="btn custom-button-style1" name="button_clicked" value="cancel" style="background-image: linear-gradient(45deg, #7690b9, #fff);">
                                         <i class="fas fa-times"></i>
                                         Cancel
                                     </button>
@@ -155,12 +155,12 @@
                                         @enderror
                                     </div>
                                     <div class="text-right mt-3">
-                                        <button type="submit" class="btn custom-button-style" name="button_clicked"
+                                        <button type="submit" class="btn custom-button-style" name="button_clicked" style="background-image: linear-gradient(45deg, #7690b9, #fff);"
                                                 value="save_changes">
                                             <i class="fas fa-check-circle fa-lg"></i>
                                             Save changes
                                         </button>&nbsp;
-                                        <button type="submit" class="btn custom-button-style1" name="button_clicked" value="cancel">
+                                        <button type="submit" class="btn custom-button-style1" name="button_clicked" value="cancel" style="background-image: linear-gradient(45deg, #7690b9, #fff);">
                                             <i class="fas fa-times"></i>
                                             Cancel
                                         </button>

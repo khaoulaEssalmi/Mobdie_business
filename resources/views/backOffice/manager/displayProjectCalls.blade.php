@@ -3,7 +3,9 @@
 @section("style")
     <link rel="stylesheet" href="{{asset("adminPanel")}}/vendors/mdi/css/materialdesignicons.min.css">
     <style>
-
+        .hello{
+            background-image: linear-gradient();
+        }
     </style>
 @endsection
 
@@ -75,7 +77,7 @@
         <div class="main-panel" >
             <div class="content-wrapper" >
                 <div class="row" style="width:530px !important;">
-                    <div class="col-12 grid-margin stretch-card" style="width:500px !important;">
+                    <div class="col-12 grid-margin stretch-card" style="width:500px !important;margin-left:100px;">
                         <div class="card" >
                             <div class="card-body " style="width:500px !important; border: none !important;">
                                 <h4 class="card-title">Today Call: {{ $Telephone}}</h4>
@@ -103,12 +105,12 @@
 {{--                                        @enderror--}}
                                     </div>
 
-                                    <button type="submit" class="btn custom-button-style" style="margin-left: 290px !important;" name="button_clicked" value="validate">
+                                    <button type="submit" class="btn custom-button-style hello" style="margin-left: 290px !important;     background-image: linear-gradient(45deg, #727ee9, #fff);" name="button_clicked" value="validate">
                                         <i class="fas fa-thumbs-up" style="font-size: 17px !important;"></i>
                                         <b>Validate the call</b>
                                     </button>
                                     <br><br>
-                                        <button type="submit" class="btn custom-button-style1" style="margin-left: 290px !important;" name="button_clicked" value="mark">
+                                        <button type="submit" class="btn custom-button-style hello" style="margin-left: 290px !important;     background-image: linear-gradient(45deg, #727ee9, #fff);" name="button_clicked" value="mark">
                                             <i class="far fa-check-circle" style="font-size: 17px !important;"></i>
                                             <b>Mark as complete</b>
                                         </button>

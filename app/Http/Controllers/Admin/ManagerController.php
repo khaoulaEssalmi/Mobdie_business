@@ -26,13 +26,27 @@ class ManagerController extends Controller
 {
     public function index()
     {
-        $cin = request()->query('cin');
-        $count = request()->query('count');
+        $cin = auth()->user()->Cin;
+//        $user = User::where('CIN', $cin)->first();
+//        dd($cin);
+        $today = Carbon::today();
 
-        $nbrClients = 2000;
-        $nbrProducts = 9800;
-        $user = User::where('CIN', $cin)->first();
-        return view('backOffice.manager.dashboardManager')->with(["count" => $count, "nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
+        $candidats = DB::table('candidats')
+            ->join('projets', 'candidats.ID', '=', 'projets.CandidatID')
+            ->join('appels', 'projets.ProjetID', '=', 'appels.ProjetID')
+            ->where('projets.ManagerCIN', $cin)
+            ->where(function ($query) use ($today) {
+                $query->whereNull('appels.Prochain_appel')
+                    ->orWhereDate('appels.Prochain_appel', '<=', $today);
+            })
+            ->where('appels.Done', '=', 0)
+            ->select('candidats.*', 'projets.*','appels.AppelID')
+            ->get();
+//        dd($candidats);
+
+        $candidatCount = $candidats->count();
+
+        return view('backOffice.manager.dashboardManager')->with(["candidatCount" => $candidatCount]);
     }
 
     public function calls(Request $request)
@@ -52,7 +66,7 @@ class ManagerController extends Controller
             ->select('candidats.*', 'projets.*','appels.AppelID')
             ->get();
 
-//        dd($candidats);
+        dd($candidats);
 
         Session::flash('success', 'Call made');
 

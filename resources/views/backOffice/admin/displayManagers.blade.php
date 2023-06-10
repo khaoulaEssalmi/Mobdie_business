@@ -36,11 +36,11 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border: none;">
-                            <h4 class="card-title">Managers List</h4>
+                            <h4 class="card-title" style="color: #7c3eac">Managers List</h4>
                             <br><br>
                             <p class="card-description">
                                 <a  class="add-manager-link" href="{{ route('admin.addManager') }}">
-                                    <button class="add-manager-btn">
+                                    <button class="add-manager-btn" style="background-color: #7c3eac">
                                         <i class="fas fa-plus"></i> ADD Manager
                                     </button>
                                 </a>
@@ -54,16 +54,16 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             User
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Full name
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Email
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             CIN
                                         </th>
                                         <th>
@@ -78,13 +78,13 @@
                                                 <img src="{{asset("uploads/managers/avatars/" . $manager->picture)}}"
                                                      alt="image"/>
                                             </td>
-                                            <td>
+                                            <td style="font-weight: bold; font-size: 14px;">
                                                 {{$manager->name}}
                                             </td>
-                                            <td>
+                                            <td style="font-weight: bold; font-size: 14px;">
                                                 {{$manager->email}}
                                             </td>
-                                            <td>
+                                            <td style="font-weight: bold; font-size: 14px;">
                                                 {{$manager->CIN}}
                                             </td>
 
@@ -98,7 +98,7 @@
                                                     </button>
                                                 </form>
                                             </td>
-                                            <td style="width:20px; padding-right: 50px;">
+                                            <td style="width:20px; padding-right: 20px;">
                                                 <form style="display: inline;margin-right: -40px" method="POST" action="{{ route("admin.man.showProjects",['cin'=>$manager->CIN]) }}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">

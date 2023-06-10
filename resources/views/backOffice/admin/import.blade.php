@@ -102,7 +102,7 @@
                                     </div>
                                     <div class="form-group">
                                             <button type="submit" onclick="" class="import-button">
-                                                <i class="fas fa-file-import"></i>&nbsp; Importer
+                                                <i class="fas fa-file-import"></i>&nbsp;<b>Importer</b>
                                             </button>
                                     </div>
                                 </form>

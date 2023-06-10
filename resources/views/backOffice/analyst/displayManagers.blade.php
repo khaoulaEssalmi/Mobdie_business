@@ -18,16 +18,16 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border:none !important;">
-                            <h4 class="card-title">{{auth()->user()->name }} 's List Managers</h4>
+                            <h4 class="card-title" style="color: #36b5c7">{{auth()->user()->name }} 's List Managers</h4>
 
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <th style="    color: #36b5c7;">
                                             User
                                         </th>
-                                        <th>
+                                        <th style="    color: #36b5c7;">
                                             Full name
                                         </th>
                                     </tr>
@@ -54,7 +54,7 @@
                                                       action="{{ route("analyst.manager.projects",['cin'=> $manager->CIN] )}}">
                                                     @csrf
                                                     <input type="hidden" name="id" value="{{$manager->CIN}}">
-                                                    <button type="submit" class="btn badge badge-danger custom-icon11" style="font-size: 14px !important;">
+                                                    <button type="submit" class="btn badge badge-danger custom-icon11" style="font-size: 14px !important;     background-image: linear-gradient(45deg, #36b5c7, #36b5c7);">
                                                         &nbsp;
                                                         <i class="fas fa-project-diagram" style="font-size: 14px !important;"></i>
                                                         &nbsp;

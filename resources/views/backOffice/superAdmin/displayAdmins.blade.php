@@ -36,11 +36,11 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border: none !important;">
-                            <h4 class="card-title">Admins List</h4>
+                            <h4 class="card-title" style="color:#d57b00;">Admins List</h4>
                             <br><br>
                             <p class="card-description">
                                 <a  class="add-manager-link" href="{{ route('superAdmin.addAdmin') }}">
-                                    <button class="add-manager-btn">
+                                    <button class="add-manager-btn" style="background-color: #d57b00 !important;">
                                         <i class="fas fa-plus"></i> ADD Admin
                                     </button>
                                 </a>
@@ -54,18 +54,18 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <th style="color:#d57b00;">
                                             User
                                         </th>
-                                        <th>
+                                        <th style="color:#d57b00;">
                                             Full name
                                         </th>
-                                        <th>
+                                        <th style="color:#d57b00;">
                                             Email
                                         </th>
-                                        <th>
+                                        <th style="color:#d57b00;">
                                             CIN
-                                        </th>
+                                        </th >
                                         <th>
 
                                         </th>
@@ -74,17 +74,17 @@
                                     <tbody>
                                     @foreach($admins as $admin)
                                         <tr>
-                                            <td class="py-1">
+                                            <td class="py-1" >
                                                 <img src="{{asset("uploads/managers/avatars/" . $admin->picture)}}"
                                                      alt="image"/>
                                             </td>
-                                            <td>
+                                            <td style="font-size: 14px;font-weight: bold;">
                                                 {{$admin->name}}
                                             </td>
-                                            <td>
+                                            <td style="font-size: 14px;font-weight: bold;">
                                                 {{$admin->email}}
                                             </td>
-                                            <td>
+                                            <td style="font-size: 14px;font-weight: bold;">
                                                 {{$admin->CIN}}
                                             </td>
                                             <td style="width:20px">

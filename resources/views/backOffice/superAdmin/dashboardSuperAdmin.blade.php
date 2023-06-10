@@ -7,6 +7,10 @@
         margin-left: 50px;
         margin-top: 30px;
     }
+    .flip-horizontal {
+        transform: scaleX(-1);
+    }
+
 </style>
 
 @section("title","Tableau de bord")
@@ -26,38 +30,40 @@
         </div>
     </div>
 
-{{--    <div class="cont">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-md-4">--}}
-{{--                <div class="card card-tale">--}}
-{{--                    <div class="card-body" style="background-image: linear-gradient(45deg, #Ad5DEC, #C368E5);">--}}
-{{--                        <p class="mb-4" style="font-size: 20px;">Number of managers</p>--}}
-{{--                        <p class="fs-30 mb-2">--}}
-{{--                            <span class="mr-2">{{ $managerCount }}</span>--}}
-{{--                            <i class= "fas fa-user-tie" style="font-size: 30px;padding-left:170px;"></i>                        </p>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-            <div class="col-md-4" style="margin-left: 30px;">
+    <div class="cont">
+        <div class="row">
+            <div class="col-md-4">
                 <div class="card card-tale">
-                    <div class="card-body" style="background-image: linear-gradient(45deg,#F59711 , #F9B959);">
-                        <p class="mb-4" style="font-size: 20px;">Number of admins</p>
+                    <div class="card-body" style="background-image: linear-gradient(45deg,#F59711, #ebbe7d);">
+                        <p class="mb-4" style="font-size: 20px;">Number of managers</p>
                         <p class="fs-30 mb-2">
                             <span class="mr-2">{{ $adminCount }}</span>
-                            <i class= "fas fa-user-chart" style="font-size: 30px;padding-left:170px;"></i>
+                            <i class= "fas fa-user-tie" style="font-size: 30px;padding-left:170px;"></i>                        </p>
                     </div>
                 </div>
             </div>
-{{--            <div class="col-md-4">--}}
-{{--                <div class="card card-tale">--}}
-{{--                    <div class="card-body" style="background-image: linear-gradient(45deg, #D27FE2,#E195DF);">--}}
-{{--                        <p class="mb-4" style="font-size: 20px;">Number of projects</p>--}}
-{{--                        <p class="fs-30 mb-2">--}}
-{{--                            <span class="mr-2">{{ $projetCount }}</span>--}}
-{{--                            <i class= "fas fa-tasks" style="font-size: 30px;padding-left:170px;"></i>--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
+
+            {{--            <div class="col-md-4" style="margin-left: 30px;">--}}
+            {{--                <div class="card card-tale">--}}
+            {{--                    <div class="card-body" style="background-image: linear-gradient(45deg,#868eca, #b1b5ed);">--}}
+            {{--                        <p class="mb-4" style="font-size: 20px;">Score</p>--}}
+            {{--                        <p class="fs-30 mb-2">--}}
+            {{--                            <span class="mr-2"></span>--}}
+            {{--                            <i class= "fas fa-trophy" style="font-size: 30px;padding-left:200px;"></i>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
+
+            {{--            <div class="col-md-4">--}}
+            {{--                <div class="card card-tale">--}}
+            {{--                    <div class="card-body" style="background-image: linear-gradient(45deg, #D27FE2,#E195DF);">--}}
+            {{--                        <p class="mb-4" style="font-size: 20px;">Number of projects</p>--}}
+            {{--                        <p class="fs-30 mb-2">--}}
+            {{--                            <span class="mr-2">{{ $projetCount }}</span>--}}
+            {{--                            <i class= "fas fa-tasks" style="font-size: 30px;padding-left:170px;"></i>--}}
+            {{--                    </div>--}}
+            {{--                </div>--}}
+            {{--            </div>--}}
         </div>
     </div>
 @endsection

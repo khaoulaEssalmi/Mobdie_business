@@ -15,10 +15,10 @@
     <div class="main-panel">
         <div class="content-wrapper1">
             <div class="row">
-                <div class="col-lg-12 grid-margin stretch-card">
+                <div class="col-lg-12 grid-margin stretch-card" style="border:none !important;">
                     <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">
+                        <div class="card-body" style="border:none;">
+                            <h4 class="card-title" style="color: #7c3eac">
                                 Managers List
                             </h4>
                             <form method="POST" action="{{ route('admin.managers.submit',['cin' => $analyst->CIN] )}}">
@@ -27,16 +27,16 @@
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th>
+                                            <th style="color: #7c3eac">
                                                 User
                                             </th>
-                                            <th>
+                                            <th style="color: #7c3eac">
                                                 Full name
                                             </th>
-                                            <th>
+                                            <th style="color: #7c3eac">
                                                 CIN
                                             </th>
-                                            <th>
+                                            <th style="color: #7c3eac">
                                                 Action
                                             </th>
                                         </tr>
@@ -48,10 +48,10 @@
                                                     <img src="{{asset("uploads/managers/avatars/" . $manager->picture)}}"
                                                          alt="image"/>
                                                 </td>
-                                                <td>
+                                                <td style="font-weight: bold; font-size: 14px;">
                                                     {{$manager->name}}
                                                 </td>
-                                                <td>
+                                                <td style="font-weight: bold; font-size: 14px;">
                                                     {{$manager->CIN}}
                                                 </td>
                                                 <td>
@@ -62,9 +62,10 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <button type="submit" class="btn custom-button-style">
+                                <button type="submit" class="btn custom-button-style" style="background-image: linear-gradient(to right, #727EE9, #AD5DEC);">
                                     <i class="fas fa-check-circle fa-lg" style="font-size: 15px !important;"></i>
-                                    Soumettre
+                                    <b style="font-size: 13px;">Soumettre</b>
+
                                 </button>
                             </form>
                             {{--                            <p class="card-description">--}}

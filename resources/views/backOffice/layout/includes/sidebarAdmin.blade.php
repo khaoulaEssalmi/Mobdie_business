@@ -3,16 +3,16 @@
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ route("superAdmin.dashboard", ['name' => auth()->user()->name]) }}"  >
-                <i class= "mdi mdi-monitor-dashboard" style="font-size: 20px;"></i>
+                <i class= "mdi mdi-monitor-dashboard" style="font-size: 23px;"></i>
                 &nbsp;&nbsp;&nbsp;
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title"><b style="font-size: 14px;">Dashboard</b></span>
             </a>
         </li>
                 <li class="nav-item">
                     <a class="nav-link"  href="#form-elements" aria-expanded="false" aria-controls="form-elements">
-                        <i class="fas fa-tasks" style="font-size: 20px;"></i>
+                        <i class="fas fa-tasks" style="font-size: 23px;"></i>
                         &nbsp;&nbsp;&nbsp;
-                        <span class="menu-title">Projects</span>
+                        <span class="menu-title"><b  style="font-size: 14px;">Projects</b></span>
                         <i class="menu-arrow"></i>
                     </a>
                     <div class="collapse" id="form-elements">
@@ -27,23 +27,23 @@
 
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.managers') }}"  >
-                <i class= "fas fa-user-tie" style="font-size: 20px;"></i>
+                <i class= "fas fa-user-tie" style="font-size: 23px;"></i>
                 &nbsp;&nbsp;&nbsp;
-                <span class="menu-title">Managers</span>
+                <span class="menu-title"><b  style="font-size: 14px;">Managers</b></span>
             </a>
         </li>
         <li class="nav-item">
             <a class="nav-link" href="{{ route('admin.analysts') }}"  >
-                <i class= "fas fa-user-chart" style="font-size: 20px;"></i>
+                <i class= "fas fa-user-chart" style="font-size: 23px;"></i>
                 &nbsp;&nbsp;&nbsp;
-                <span class="menu-title">Analysts</span>
+                <span class="menu-title"><b  style="font-size: 14px;">Analysts</b></span>
             </a>
         </li>
                 <li class="nav-item">
                     <a class="nav-link" href="{{route("general.logout")}}" style="padding-top: 380px;">
-                        <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
+                        <i class="fas fa-sign-out-alt" style="font-size: 23px;"></i>
                         &nbsp;&nbsp;&nbsp;
-                        <span class="menu-title">Logout</span>
+                        <span class="menu-title"><b  style="font-size: 14px;">Logout</b></span>
                     </a>
                 </li>
     </ul>

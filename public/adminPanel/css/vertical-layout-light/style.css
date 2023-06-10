@@ -10891,7 +10891,7 @@ fieldset:disabled .wizard > .actions a,
 }
 
 .custom-checkbox:checked {
-    background-color: #727EE9; /* Couleur de fond lorsque la case est cochée */
+    background-color: #7c3eac; /* Couleur de fond lorsque la case est cochée */
 }
 
 .custom-checkbox:not(:checked) {
@@ -19627,7 +19627,7 @@ code {
   display: flex;
   -webkit-align-items: stretch;
   align-items: stretch;
-  justify-content: stretch;
+  justify-content: center;
 }
 
 .stretch-card > .card {

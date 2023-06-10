@@ -12,19 +12,19 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border: none !important;">
-                            <h4 class="card-title">{{ $user->name  }} 's List Projects</h4>
+                            <h4 class="card-title" style="color: #36b5c7;">{{ $user->name  }} 's List Projects</h4>
                             <br>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <th style="    color: #36b5c7;">
                                             Project Name
                                         </th>
-                                        <th>
+                                        <th style="    color: #36b5c7;">
                                             Number of calls
                                         </th>
-                                        <th>
+                                        <th style="    color: #36b5c7;">
                                             Statut
                                         </th>
                                     </tr>
@@ -61,7 +61,7 @@
                     <div class="col-lg-12 grid-margin stretch-card" style="margin-left: 200px;">
                         <div class="card">
                             <div class="card-body" style="border:none !important;">
-                                <h4 class="card-title">{{ $user->name  }} 's Scores in last 7 days</h4>
+                                <h4 class="card-title" style="    color: #36b5c7;">{{ $user->name  }} 's Scores in last 7 days</h4>
                                 <br>
                             </div>
                             <div>
@@ -101,7 +101,7 @@
                     <div class="col-lg-12 grid-margin stretch-card"style="margin-left: 200px;">
                         <div class="card">
                             <div class="card-body"  style="border:none !important;">
-                                <h4 class="card-title">{{ $user->name  }} 's Scores monthly</h4>
+                                <h4 class="card-title" style="   color: #36b5c7;">{{ $user->name  }} 's Scores monthly</h4>
                                 <br>
                             </div>
                             <div style="width: 100%; height: 300px;">

@@ -18,7 +18,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card" >
                         <div class="card-body" style="max-width: 1200px !important; border:none;">
-                            <h3 class="card-title">Projects List</h3>
+                            <h3 class="card-title" style="color: #7c3eac">Projects List</h3>
 {{--                            <p class="card-description">--}}
 {{--                                <a href="#" class="btn btn-sm btn-outline-success">--}}
 {{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
@@ -29,19 +29,19 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                            ID
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                            Name of project
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Description
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Statut
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Action
                                         </th>
                                     </tr>
@@ -78,7 +78,7 @@
 {{--                                                      action="{{ route('superAdmin.managers.delete', ['cin' => $man->CIN]) }}">--}}>
                                                     @csrf
                                                     <input type="hidden" name="id" value="">
-                                                    <button type="submit" class="btn badge badge-info">Details</button>
+                                                    <button type="submit" class="btn badge badge-info" style="background-color: #7c3eac">Details</button>
                                                 </form>
                                                 {{--                                            <form style="display: inline;" method="POST" action="">--}}
                                                 {{--                                                @csrf--}}

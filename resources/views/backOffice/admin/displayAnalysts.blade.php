@@ -29,7 +29,7 @@
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
                         <div class="card-body" style="border: none;">
-                            <h4 class="card-title">Analysts List</h4>
+                            <h4 class="card-title" style="color: #7c3eac">Analysts List</h4>
                             {{--                            <p class="card-description">--}}
                             {{--                                <a href="{{ route('superAdmin.managers.add') }}" class="btn btn-sm btn-outline-success">--}}
                             {{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
@@ -40,19 +40,19 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             User
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Full name
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Email
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             CIN
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Action
                                         </th>
                                     </tr>
@@ -64,13 +64,13 @@
                                                 <img src="{{asset("uploads/managers/avatars/" . $analyst->picture)}}"
                                                      alt="image"/>
                                             </td>
-                                            <td>
+                                            <td style="font-weight: bold; font-size: 14px;">
                                                 {{$analyst->name}}
                                             </td>
-                                            <td>
+                                            <td style="font-weight: bold; font-size: 14px;">
                                                 {{$analyst->email}}
                                             </td>
-                                            <td>
+                                            <td style="font-weight: bold; font-size: 14px;">
                                                 {{$analyst->CIN}}
                                             </td>
 

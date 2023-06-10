@@ -2,17 +2,17 @@
     <ul class="nav">
         <li class="nav-item">
             <a class="nav-link" href="{{ route("manager.dashboard", ['name' => auth()->user()->name]) }}"  >
-                <i class="mdi mdi-monitor-dashboard" style="font-size: 20px;"></i>
+                <i class="mdi mdi-monitor-dashboard" style="font-size: 23px;"></i>
                 &nbsp;&nbsp;&nbsp;
-                <span class="menu-title">Dashboard</span>
+                <span class="menu-title"><b style="font-size: 14px;">Dashboard</b></span>
             </a>
         </li>
 
         <li class="nav-item">
             <a class="nav-link" href="{{route("superAdmin.admins",['cin'=>auth()->user()->CIN]) }}" >
-                <i  class="fas fa-list" style="font-size: 20px;"></i>
+                <i  class="fas fa-list" style="font-size: 23px;"></i>
                 &nbsp;&nbsp;&nbsp;
-                <span class="menu-title">Admins</span>
+                <span class="menu-title"><b style="font-size: 14px;">Admins</b></span>
             </a>
         </li>
         {{--        <li class="nav-item">--}}
@@ -36,9 +36,9 @@
 
         <li class="nav-item">
             <a class="nav-link" href="{{route("general.logout")}}" style="padding-top: 520px;">
-                <i class="fas fa-sign-out-alt" style="font-size: 20px;"></i>
+                <i class="fas fa-sign-out-alt" style="font-size: 23px;"></i>
                 &nbsp;&nbsp;&nbsp;
-                <span class="menu-title">Logout</span>
+                <span class="menu-title"><b style="font-size: 14px;">Logout</b></span>
             </a>
         </li>
 

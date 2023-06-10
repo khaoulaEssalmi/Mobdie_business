@@ -16,9 +16,9 @@
         <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title"> List of {{ $user->name }}'s projects</h4>
+                    <div class="card"  style="border:none !important;">
+                        <div class="card-body" style="border:none !important;">
+                            <h4 class="card-title" style="color: #7c3eac"> List of {{ $user->name }}'s projects</h4>
                             {{--                            <p class="card-description">--}}
                             {{--                                <a href="{{ route('superAdmin.managers.add') }}" class="btn btn-sm btn-outline-success">--}}
                             {{--                                    <i class="mdi mdi-plus-box"></i> <strong--}}
@@ -29,10 +29,10 @@
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Nom
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Statut
                                         </th>
                                     </tr>

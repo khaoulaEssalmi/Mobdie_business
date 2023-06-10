@@ -27,16 +27,16 @@
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
                     <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title"> List of {{ $user->name }}'s analysts</h4>
+                        <div class="card-body" style="border:none !important;">
+                            <h4 class="card-title" style="color: #7c3eac"> List of {{ $user->name }}'s analysts</h4>
                             <div class="table-responsive">
                                 <table class="table table-striped">
                                     <thead>
                                     <tr>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             User
                                         </th>
-                                        <th>
+                                        <th style="color: #7c3eac">
                                             Full name
                                         </th>
                                         <th>
@@ -51,7 +51,7 @@
                                                 <img src="{{asset("uploads/managers/avatars/" . $analyst->picture)}}"
                                                      alt="image"/>
                                             </td>
-                                            <td style="font-size: 15px">
+                                            <td style="font-size: 12px; font-weight: bold;">
                                                 {{$analyst->name}}
                                             </td>
                                             <td>

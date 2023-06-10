@@ -25,11 +25,11 @@ class AnalystController extends Controller{
     {
 //        dd("hi");
         $cin = request()->query('cin');
-        $count=request()->query('count');
-        $nbrClients = 2000;
-        $nbrProducts = 9800;
         $user = User::where('CIN', $cin)->first();
-        return view('backOffice.analyst.dashboardAnalyst')->with(["count"=>$count,"nbrClients" => $nbrClients, "nbrProducts" => $nbrProducts, "user" => $user]);
+        $managerCount= DB::table('analyst_managers')
+            ->where('AnalystCIN', $cin)
+            ->count();
+        return view('backOffice.analyst.dashboardAnalyst')->with(["managerCount"=>$managerCount]);
     }
 
     public function displayManagers(){

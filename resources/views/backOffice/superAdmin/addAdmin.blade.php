@@ -108,12 +108,13 @@
                                     {{--                                </div>--}}
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <button type="submit" class="btn custom-button-style"  name="button_clicked"
-                                            value="validate">
-                                        <i class="fas fa-check"></i> Submit
+                                            value="validate" style="    background-image: linear-gradient(45deg, #d57b00, #ffffff);
+}">
+                                        <i class="fas fa-check"></i><b>Submit</b>
                                     </button>
-                                    <button type="submit" class="btn custom-button-style1" name="button_clicked" value="cancel">
+                                    <button type="submit" class="btn custom-button-style1" name="button_clicked" value="cancel" style="    background-image: linear-gradient(45deg, #d57b00, #ffffff);">
                                         <i class="fas fa-times"></i>
-                                        Cancel
+                                        <b>Cancel</b>
                                     </button>
                                     <br>
                                     <p style=" color: transparent;">Ce texte est invisible.</p>

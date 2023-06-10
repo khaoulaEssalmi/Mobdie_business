@@ -16,9 +16,9 @@
         <div class="content-wrapper1">
             <div class="row">
                 <div class="col-lg-12 grid-margin stretch-card">
-                    <div class="card">
-                        <div class="card-body">
-                            <h4 class="card-title">
+                    <div class="card" style="border:none !important;">
+                        <div class="card-body" style="border:none !important;">
+                            <h4 class="card-title" style="color: #7c3eac">
                                 {{ $user->name }}
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 Total des projets: {{ $total }}
@@ -29,13 +29,13 @@
                                     <table class="table table-striped">
                                         <thead>
                                         <tr>
-                                            <th>
+                                            <th style="color: #7c3eac">
                                                 ID
                                             </th>
-                                            <th>
+                                            <th style="color: #7c3eac">
                                                 Name of project
                                             </th>
-                                            <th>
+                                            <th style="color: #7c3eac">
                                                 Action
                                             </th>
                                         </tr>
@@ -57,9 +57,9 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <button type="submit" class="btn custom-button-style ">
+                                <button type="submit" class="btn custom-button-style " style="background-image: linear-gradient(to right, #727EE9, #AD5DEC);">
                                     <i class="fas fa-check-circle fa-lg" style="font-size: 15px !important;"></i>
-                                    Soumettre
+                                    <b style="font-size: 13px;">Soumettre</b>
                                 </button>
                             </form>
                             {{--                            <p class="card-description">--}}
