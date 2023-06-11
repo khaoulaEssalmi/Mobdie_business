@@ -1,0 +1,131 @@
+@import '_vars.css';
+@import '_base.css';
+
+/* Attention seekers  */
+@import 'bounce.css';
+@import 'flash.css';
+@import 'pulse.css';
+@import 'rubberBand.css';
+@import 'shakeX.css';
+@import 'shakeY.css';
+@import 'headShake.css';
+@import 'swing.css';
+@import 'tada.css';
+@import 'wobble.css';
+@import 'jello.css';
+@import 'heartBeat.css';
+
+/* Back entrances */
+@import 'backInDown.css';
+@import 'backInLeft.css';
+@import 'backInRight.css';
+@import 'backInUp.css';
+
+/* Back exits */
+@import 'backOutDown.css';
+@import 'backOutLeft.css';
+@import 'backOutRight.css';
+@import 'backOutUp.css';
+
+/* Bouncing entrances  */
+@import 'bounceIn.css';
+@import 'bounceInDown.css';
+@import 'bounceInLeft.css';
+@import 'bounceInRight.css';
+@import 'bounceInUp.css';
+
+/* Bouncing exits  */
+@import 'bounceOut.css';
+@import 'bounceOutDown.css';
+@import 'bounceOutLeft.css';
+@import 'bounceOutRight.css';
+@import 'bounceOutUp.css';
+
+/* Fading entrances  */
+@import 'fadeIn.css';
+@import 'fadeInDown.css';
+@import 'fadeInDownBig.css';
+@import 'fadeInLeft.css';
+@import 'fadeInLeftBig.css';
+@import 'fadeInRight.css';
+@import 'fadeInRightBig.css';
+@import 'fadeInUp.css';
+@import 'fadeInUpBig.css';
+@import 'fadeInTopLeft.css';
+@import 'fadeInTopRight.css';
+@import 'fadeInBottomLeft.css';
+@import 'fadeInBottomRight.css';
+
+/* Fading exits */
+@import 'fadeOut.css';
+@import 'fadeOutDown.css';
+@import 'fadeOutDownBig.css';
+@import 'fadeOutLeft.css';
+@import 'fadeOutLeftBig.css';
+@import 'fadeOutRight.css';
+@import 'fadeOutRightBig.css';
+@import 'fadeOutUp.css';
+@import 'fadeOutUpBig.css';
+@import 'fadeOutTopLeft.css';
+@import 'fadeOutTopRight.css';
+@import 'fadeOutBottomRight.css';
+@import 'fadeOutBottomLeft.css';
+
+/* Flippers */
+@import 'flip.css';
+@import 'flipInX.css';
+@import 'flipInY.css';
+@import 'flipOutX.css';
+@import 'flipOutY.css';
+
+/* Lightspeed */
+@import 'lightSpeedInRight.css';
+@import 'lightSpeedInLeft.css';
+@import 'lightSpeedOutRight.css';
+@import 'lightSpeedOutLeft.css';
+
+/* Rotating entrances */
+@import 'rotateIn.css';
+@import 'rotateInDownLeft.css';
+@import 'rotateInDownRight.css';
+@import 'rotateInUpLeft.css';
+@import 'rotateInUpRight.css';
+
+/* Rotating exits */
+@import 'rotateOut.css';
+@import 'rotateOutDownLeft.css';
+@import 'rotateOutDownRight.css';
+@import 'rotateOutUpLeft.css';
+@import 'rotateOutUpRight.css';
+
+/* Specials */
+@import 'hinge.css';
+@import 'jackInTheBox.css';
+@import 'rollIn.css';
+@import 'rollOut.css';
+
+/* Zooming entrances */
+@import 'zoomIn.css';
+@import 'zoomInDown.css';
+@import 'zoomInLeft.css';
+@import 'zoomInRight.css';
+@import 'zoomInUp.css';
+
+/* Zooming exits */
+@import 'zoomOut.css';
+@import 'zoomOutDown.css';
+@import 'zoomOutLeft.css';
+@import 'zoomOutRight.css';
+@import 'zoomOutUp.css';
+
+/* Sliding entrances */
+@import 'slideInDown.css';
+@import 'slideInLeft.css';
+@import 'slideInRight.css';
+@import 'slideInUp.css';
+
+/* Sliding exits */
+@import 'slideOutDown.css';
+@import 'slideOutLeft.css';
+@import 'slideOutRight.css';
+@import 'slideOutUp.css';

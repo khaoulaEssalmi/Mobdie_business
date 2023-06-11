@@ -67,7 +67,7 @@ class AdminController extends Controller
             ->groupBy('users.CIN', 'users.name')
             ->get();
 
-//        dd($managersInProgress);
+        dd($managersInProgress);
 
         $managersNoCalls = DB::table('users')
             ->select('projets.ProjetID', 'users.name', DB::raw('COUNT(appels.appelID) AS nombre_appels'))
