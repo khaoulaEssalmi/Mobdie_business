@@ -222,24 +222,24 @@
     <div class = "container">
         <div class = "row">
             <div class = "detail-item wow animate__animated animate__fadeInLeft animate__slow">
-                <span><i class = "fas fa-tablet-alt"></i></span>
-                <h2>Responsive Design</h2>
+                <span><i class = "fas fa-tasks" style="font-size: 26px;"></i></span>
+                <h2>Suivi des Projets Efficace</h2>
                 <div class = "line"></div>
-                <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam provident suscipit culpa minus aliquid possimus, nemo ducimus amet itaque nam quis quaerat debitis. Quis, quidem.</p>
+                <p class = "text">Notre équipe expérimentée assure un suivi minutieux de vos projets, en utilisant des méthodologies éprouvées pour garantir leur réussite. De la planification à la livraison, nous nous engageons à vous fournir un suivi étroit et transparent, afin que vous puissiez atteindre vos objectifs en toute confiance.</p>
             </div>
 
             <div class = "detail-item wow animate__animated animate__fadeInUp animate__s">
-                <span><i class = "fab fa-html5"></i></span>
-                <h2>HTML5</h2>
+                <span><i class="fas fa-lightbulb" style="font-size: 26px;"></i></span>
+                <h2>Expertise en Conseil d'Entreprise</h2>
                 <div class = "line"></div>
-                <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam provident suscipit culpa minus aliquid possimus, nemo ducimus amet itaque nam quis quaerat debitis. Quis, quidem.</p>
+                <p class = "text">Bénéficiez de notre expertise approfondie en matière de conseil d'entreprise. Nos consultants chevronnés vous guideront à travers les défis complexes du monde des affaires, en vous fournissant des stratégies adaptées à votre secteur d'activité. Que ce soit pour des décisions stratégiques, des analyses de marché ou des conseils financiers, nous sommes là pour vous aider à prendre des décisions éclairées.</p>
             </div>
 
             <div class = "detail-item wow animate__animated animate__fadeInRight animate__slow">
-                <span><i class = "far fa-bell"></i></span>
-                <h2>24 Hour Support</h2>
+                <span><i class = "fas fa-headset" style="font-size: 26px;"></i></span>
+                <h2>Assistance 24h/24</h2>
                 <div class = "line"></div>
-                <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Totam provident suscipit culpa minus aliquid possimus, nemo ducimus amet itaque nam quis quaerat debitis. Quis, quidem.</p>
+                <p class = "text">Nous comprenons que les besoins de votre entreprise ne s'arrêtent pas à la fin de la journée. C'est pourquoi nous offrons une assistance 24h/24, pour répondre à toutes vos questions et préoccupations. Notre équipe dévouée est là pour vous soutenir à chaque étape de votre parcours, afin que vous puissiez obtenir l'aide dont vous avez besoin, quand vous en avez besoin.</p>
             </div>
         </div>
     </div>
@@ -251,29 +251,27 @@
     <div class = "container">
         <div class = "row">
             <div class = "feature-left wow animate__animated animate__fadeInUp animate__slow">
-                <img src = "{{asset("front")}}/assets/features-mockup.png" alt = "">
+                <img src = "{{asset("front")}}/assets/commercial.jpg" alt = "">
             </div>
             <div class = "feature-right wow animate__animated animate__fadeInUp animate__slow">
                 <div class = "title">
-                    <h2>Explore the Features</h2>
-                    <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Distinctio earum fugiat culpa laborum porro modi?</p>
+                    <span><i class="fas fa-cogs" style="font-size: 40px;"></i></span>
+{{--                    <h2>Explore the Features</h2>--}}
                 </div>
 
                 <div class = "feature-item">
-                    <span><i class = "fas fa-tablet-alt"></i></span>
-                    <div>
-                        <h3>Responsive Design</h3>
-                        <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est minima voluptas cupiditate molestias! Vel.</p>
-                    </div>
+                        <p class = "text" style="font-size: 16px;">Chez Mobdie Business, nous proposons une gamme complète de services, notamment le conseil en stratégie commerciale, le marketing digital, la gestion de projets et bien plus encore. <br><br>Notre approche personnalisée nous permet de comprendre les besoins uniques de chaque entreprise et de proposer des solutions adaptées pour stimuler leur succès.
+<br><br>
+                            Faites équipe avec Mobdie Business et bénéficiez d'un partenariat solide et fiable pour propulser votre entreprise vers de nouveaux sommets.</p>
                 </div>
 
-                <div class = "feature-item">
-                    <span><i class = "fas fa-clone"></i></span>
-                    <div>
-                        <h3>Retina Ready</h3>
-                        <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est minima voluptas cupiditate molestias! Vel.</p>
-                    </div>
-                </div>
+{{--                <div class = "feature-item">--}}
+{{--                    <span><i class = "fas fa-clone"></i></span>--}}
+{{--                    <div>--}}
+{{--                        <h3>Retina Ready</h3>--}}
+{{--                        <p class = "text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque est minima voluptas cupiditate molestias! Vel.</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>
@@ -283,11 +281,11 @@
 <!-- sample video section -->
 <section class = "video">
     <div class = "container">
-        <a class = "center popup-youtube" href = "https://www.youtube.com/watch?v=zYhdKPwgjGo">
-            <i class = "fas fa-play"></i>
-        </a>
-        <h2 class = "wow animate__animated animate__fadeInUp animate__slow">Watch Sample Video</h2>
-        <p class = "wow animate__animated animate__fadeInUp animate__slow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus quo a nesciunt cupiditate odio numquam possimus explicabo. Consectetur, quis!</p>
+{{--        <a class = "center popup-youtube" href = "https://www.youtube.com/watch?v=zYhdKPwgjGo">--}}
+{{--            <i class = "fas fa-play"></i>--}}
+{{--        </a>--}}
+{{--        <h2 class = "wow animate__animated animate__fadeInUp animate__slow">Watch Sample Video</h2>--}}
+{{--        <p class = "wow animate__animated animate__fadeInUp animate__slow">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores doloribus quo a nesciunt cupiditate odio numquam possimus explicabo. Consectetur, quis!</p>--}}
     </div>
 </section>
 <!-- end of sample video section -->
@@ -296,25 +294,26 @@
 <section class = "team" id = "team">
     <div class = "container">
         <div class = "title">
-            <h2 class = "wow animate__animated animate__bounceIn animate__slow">Meet Best People</h2>
-            <p class = "text">Lorem ipsum dolor sit amet consectetur</p>
+            <h2 class = "wow animate__animated animate__bounceIn animate__slow"
+            style="color: #AD5DEC;font-weight: bold;font-size: 40px;text-decoration: overline;">Photos</h2>
+            <p class = "text"></p>
         </div>
 
         <div class = "row owl-carousel owl-theme wow animate__animated animate__fadeInUp animate__slow">
             <div class = "team-item">
                 <div class = "team-img">
-                    <img src = "{{asset("front")}}/assets/team-1.jpg" alt = "">
-                    <div class = "team-icons">
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-facebook-f"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-twitter"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-instagram"></i>
-                        </a>
-                    </div>
+                    <img src = "{{asset("front")}}/assets/header.jpg" alt = "" style="width: 40%; margin-left: 400px;">
+{{--                    <div class = "team-icons">--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-facebook-f"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-twitter"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-instagram"></i>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
                 </div>
                 <div class = "team-info">
                     <h3>Full Name Here</h3>
@@ -324,18 +323,18 @@
 
             <div class = "team-item">
                 <div class = "team-img">
-                    <img src = "{{asset("front")}}/assets/team-2.jpg" alt = "">
-                    <div class = "team-icons">
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-facebook-f"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-twitter"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-instagram"></i>
-                        </a>
-                    </div>
+                    <img src = "{{asset("front")}}/assets/photo2.jpg" alt = "" style="width: 40%; margin-left: 400px;">
+{{--                    <div class = "team-icons">--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-facebook-f"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-twitter"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-instagram"></i>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
                 </div>
                 <div class = "team-info">
                     <h3>Full Name Here</h3>
@@ -345,18 +344,18 @@
 
             <div class = "team-item">
                 <div class = "team-img">
-                    <img src = "{{asset("front")}}/assets/team-3.jpg" alt = "">
-                    <div class = "team-icons">
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-facebook-f"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-twitter"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-instagram"></i>
-                        </a>
-                    </div>
+                    <img src = "{{asset("front")}}/assets/photo3.jpg" alt = "" style="width: 40%; margin-left: 400px;" >
+{{--                    <div class = "team-icons">--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-facebook-f"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-twitter"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-instagram"></i>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
                 </div>
                 <div class = "team-info">
                     <h3>Full Name Here</h3>
@@ -366,45 +365,45 @@
 
             <div class = "team-item">
                 <div class = "team-img">
-                    <img src = "{{asset("front")}}/assets/team-4.jpg" alt = "">
-                    <div class = "team-icons">
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-facebook-f"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-twitter"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-instagram"></i>
-                        </a>
-                    </div>
+                    <img src = "{{asset("front")}}/assets/photo4.jpg" alt = "" style="width: 40%; margin-left: 400px;">
+{{--                    <div class = "team-icons">--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-facebook-f"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-twitter"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-instagram"></i>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
                 </div>
-                <div class = "team-info">
-                    <h3>Full Name Here</h3>
-                    <span>Web Developer</span>
-                </div>
+{{--                <div class = "team-info">--}}
+{{--                    <h3>Full Name Here</h3>--}}
+{{--                    <span>Web Developer</span>--}}
+{{--                </div>--}}
             </div>
 
-            <div class = "team-item">
-                <div class = "team-img">
-                    <img src = "{{asset("front")}}/assets/team-5.jpg" alt = "">
-                    <div class = "team-icons">
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-facebook-f"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-twitter"></i>
-                        </a>
-                        <a href = "#" class = "center">
-                            <i class = "fab fa-instagram"></i>
-                        </a>
-                    </div>
-                </div>
-                <div class = "team-info">
-                    <h3>Full Name Here</h3>
-                    <span>Web Developer</span>
-                </div>
-            </div>
+{{--            <div class = "team-item">--}}
+{{--                <div class = "team-img">--}}
+{{--                    <img src = "{{asset("front")}}/assets/team-5.jpg" alt = "" style="width: 40%; margin-left: 400px;">--}}
+{{--                    <div class = "team-icons">--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-facebook-f"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-twitter"></i>--}}
+{{--                        </a>--}}
+{{--                        <a href = "#" class = "center">--}}
+{{--                            <i class = "fab fa-instagram"></i>--}}
+{{--                        </a>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
+{{--                <div class = "team-info">--}}
+{{--                    <h3>Full Name Here</h3>--}}
+{{--                    <span>Web Developer</span>--}}
+{{--                </div>--}}
+{{--            </div>--}}
         </div>
     </div>
 </section>
